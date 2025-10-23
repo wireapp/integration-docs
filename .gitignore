@@ -13,3 +13,10 @@ bower_components
 psd
 thumb
 sketch
+
+### intellij ###
+.idea
+
+### docusaurus ###
+.docusaurus
+build
