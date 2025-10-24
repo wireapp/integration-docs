@@ -112,6 +112,22 @@ const config = {
         additionalLanguages: ['java'],
       },
     }),
+  headTags: [
+    {
+      tagName: "link",
+      attributes: {
+        rel: "preconnect",
+        href: "https://dev.wire.com/",
+      },
+    },
+    {
+      tagName: "link",
+      attributes: {
+        rel: "stylesheet",
+        href: "fonts/inter.css",
+      },
+    },
+  ],
 };
 
 export default config;
