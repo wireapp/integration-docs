@@ -23,7 +23,7 @@ All conversation data sent through the Wire SDK is end-to-end encrypted (E2EE).
 
 The Wire SDK automatically establishes and manages TLS connections, so developers don’t need to manually configure encryption for data in transit, ensuring data between the client and the Wire server transport encrypted.
 
-Please verify that the SDK is communication with the correct backend. The backend domain can be configured via the *apiHost* variable.
+Please verify that the SDK is communicating with the correct backend. The backend domain is configured via the `WIRE_SDK_ENVIRONMENT` environment variable, and the hostname can be set using the apiHost variable when initializing `WireAppSdk`.
 
 ## Managing Token and Credentials
 
