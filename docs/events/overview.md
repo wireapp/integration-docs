@@ -7,7 +7,7 @@ Below is a table of existing events that can be received and what are their purp
 | Name                                                              | Description                                                                                                                               |
 |-------------------------------------------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------|
 | [`onMessage`](on_message.mdx)                                     | A Text message was received.                                                                                                              |
-| [`onConversationJoin`](on_conversation_join.mdx)                  | The App has been added to a conversation. This is a good opportunity to introduce the App and provide usage instructions to the users.    |
+| [`onConversationJoin`](on_conversation_join.mdx)                  | The App has been added to a conversation.                                                                                                 |
 | [`onConversationDelete`](on_conversation_delete.mdx)              | A conversation that the App was part of, was deleted.                                                                                     |
 | [`onAsset`](on_asset.mdx)                                         | An Asset (file) was received.                                                                                                             |
 | [`onComposite`](on_composite.mdx)                                 | A Composite message was received. Composite messages are a combination of text and buttons in a single message.                           |
