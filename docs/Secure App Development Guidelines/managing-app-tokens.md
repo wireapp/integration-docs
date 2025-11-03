@@ -1,6 +1,6 @@
 # Managing App Tokens
 
-The Wire SDK uses an App Token to authenticate it self against the Wire backend.
+The Wire SDK uses an App Token to authenticate itself against the Wire backend.
 Once an App Token [has been created](../manage-apps/create-app.md) it must be handled with the same care as any other sensitive credential.
 This section provides guidance on secure storage, exposure prevention, rotation, and revocation.
 
