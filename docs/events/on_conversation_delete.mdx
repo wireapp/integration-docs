@@ -1,3 +1,9 @@
 # `onConversationDelete` event
 
-A conversation that the App was part of, was deleted.
+The conversation has been **deleted**.  
+Use this event to perform cleanup tasks, such as deleting conversation-specific data, 
+or stopping scheduled actions related to the conversation.
+
+## Received properties
+
+**`conversationId`** — Unique identifier (`QualifiedId`) of the deleted conversation.
