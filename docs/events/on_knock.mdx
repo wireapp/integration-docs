@@ -1,3 +1,49 @@
 # `onKnock` event
 
 Also known as `ping` (to call for attention in a conversation) was received.
+
+## Received properties
+
+In addition to the [Base](../core-concepts/message-model.md#base-message-properties), and [Ephemeral](../core-concepts/message-model.md#ephemeral-message-properties) properties,
+a `WireMessage.Knock` object includes a `hotKnock` boolean.
+<!-- I think no one knows what is a hotKnock -->
+
+## Sample usage
+
+### Knock back
+
+```mdx-code-block
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+```
+
+<Tabs groupId="programming-language">
+<TabItem value="kotlin" label="Kotlin">
+
+```kotlin
+override suspend fun onKnock(wireMessage: WireMessage.Knock) {
+    val knock = WireMessage.Knock.create(
+        conversationId = wireMessage.conversationId,
+        hotKnock = true
+    )
+    manager.sendMessageSuspending(message = knock)
+}
+```
+
+</TabItem>
+<TabItem value="java" label="Java">
+
+```java
+@Override
+public void onKnock(@NotNull WireMessage.Knock wireMessage) {
+    WireMessage.Knock knock = WireMessage.Knock.create(
+            wireMessage.conversationId(),
+            true,
+            null
+    );
+    getManager().sendMessage(knock);
+}
+```
+
+</TabItem>
+</Tabs>
