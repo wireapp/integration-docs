@@ -44,9 +44,6 @@ const config = {
           routeBasePath: '/',
           sidebarPath: './sidebars.js',
           // Please change this to your repo.
-          // Remove this to remove the "edit this page" links.
-          editUrl:
-            'https://github.com/wireapp/integration-docs/edit/main/',
         },
         blog: false,
         theme: {
@@ -98,6 +95,10 @@ const config = {
               {
                 label: 'GitHub',
                 href: 'https://github.com/wireapp/',
+              },
+              {
+                label: '✏️ Contribute',
+                href: 'https://github.com/wireapp/integration-docs/tree/main/docs',
               },
             ],
           },
