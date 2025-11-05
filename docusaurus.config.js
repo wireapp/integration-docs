@@ -43,7 +43,6 @@ const config = {
         docs: {
           routeBasePath: '/',
           sidebarPath: './sidebars.js',
-          // Please change this to your repo.
         },
         blog: false,
         theme: {
