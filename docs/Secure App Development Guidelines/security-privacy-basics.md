@@ -87,7 +87,7 @@ Follow these best practices:
 
 Do not store sensitive information in plain files. Use hardware backed encryption, like Secure Enclave, for generating and storing cryptographic keys when available.
 
-If your app is not web-based, ensure that you are using recommendations for the platform it's running on for how to store secrets. You should never have an instance in which you are writing a token to disk in plaintext when there is a system keychain or other encryption mechanism available.
+Ensure that you are using recommendations for the platform it's running on for how to store secrets. You should never have an instance in which you are writing a token to disk in plaintext when there is a system keychain or other encryption mechanisms available.
 
 ## Data Minimization & Privacy Principles
 
