@@ -16,9 +16,9 @@ import ShowcaseSearchBar from '@site/src/pages/showcase/_components/ShowcaseSear
 import ShowcaseCards from './_components/ShowcaseCards';
 import ShowcaseFilters from './_components/ShowcaseFilters';
 
-const TITLE = translate({message: 'Docusaurus Site Showcase'});
+const TITLE = translate({message: 'Wire Apps'});
 const DESCRIPTION = translate({
-  message: 'List of websites people are building with Docusaurus',
+  message: 'Integrations built with Wire Apps SDK',
 });
 
 function ShowcaseHeader() {
