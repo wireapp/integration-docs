@@ -8,7 +8,7 @@
 import type {ReactNode, CSSProperties} from 'react';
 import clsx from 'clsx';
 import Translate from '@docusaurus/Translate';
-import FavoriteIcon from '@site/src/pages/showcase/_components/FavoriteIcon';
+import WireIcon from '@site/src/pages/showcase/_components/WireIcon';
 import {Tags, TagList, type TagType} from '@site/src/data/users';
 import Heading from '@theme/Heading';
 import ShowcaseTagSelect from '../ShowcaseTagSelect';
@@ -41,8 +41,8 @@ function ShowcaseTagListItem({tag}: {tag: TagType}) {
         label={label}
         description={description}
         icon={
-          tag === 'favorite' ? (
-            <FavoriteIcon size="small" style={{marginLeft: 8}} />
+          tag === 'wire-developed' ? (
+            <WireIcon size="small" style={{marginLeft: 8}} />
           ) : (
             <TagCircleIcon
               color={color}

@@ -7,7 +7,6 @@
 
 .svg {
   user-select: none;
-  color: #e9669e;
   width: 1em;
   height: 1em;
   display: inline-block;
@@ -23,5 +22,5 @@
 }
 
 .large {
-  font-size: 1.8rem;
+  font-size: 2.3rem;
 }

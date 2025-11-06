@@ -9,6 +9,7 @@
   overflow: hidden;
   height: 150px;
   border-bottom: 2px solid var(--ifm-color-emphasis-200);
+  margin-inline: auto;
 }
 
 .showcaseCardHeader {

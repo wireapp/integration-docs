@@ -15,8 +15,8 @@ import {sortBy} from '@site/src/utils/jsUtils';
 // Please choose all tags that you think might apply.
 // We'll remove inappropriate tags, but it's less likely that we add tags.
 export type TagType =
-  // DO NOT USE THIS TAG: we choose sites to add to favorites
-  | 'favorite'
+  // DO NOT USE THIS TAG: only we introduce Wire-developed Apps
+  | 'wire-developed'
   // For open-source sites, a link to the source code is required.
   // The source should be the *website's* source, not the project's source!
   | 'opensource'
@@ -30,49 +30,49 @@ const Users: User[] = [
     description: 'An app to remind you about important things.',
     preview: null,
     source: 'https://github.com/wireapp/remind-app',
-    tags: ['favorite', 'opensource'],
+    tags: ['wire-developed', 'opensource'],
   },
   {
     title: 'Poll App',
     description: 'Create polls directly in chat conversations',
     preview: null,
     source: 'https://github.com/wireapp/poll-app',
-    tags: ['favorite', 'opensource'],
+    tags: ['wire-developed', 'opensource'],
   },
   {
     title: 'QR App',
     description: 'A utility bot. You ask for a deeplink, it will give you one.',
     preview: null,
     source: null,
-    tags: ['favorite'],
+    tags: ['wire-developed'],
   },
   {
-    title: 'Github App',
-    description: 'Get Github notifications directly in Wire',
+    title: 'GitHub App',
+    description: 'Get GitHub notifications directly in Wire',
     preview: null,
     source: 'https://github.com/wireapp/github-app',
-    tags: ['favorite', 'product', 'opensource'],
+    tags: ['wire-developed', 'product', 'opensource'],
   },
   {
     title: 'Debug App',
     description: 'A Wire app to debug clients',
     preview: null,
     source: null,
-    tags: ['favorite'],
+    tags: ['wire-developed'],
   },
   {
     title: 'Broadcast App',
     description: 'Message multiple conversations simultaneously',
     preview: null,
     source: null,
-    tags: ['favorite'],
+    tags: ['wire-developed'],
   },
   {
     title: 'Scribe App',
     description: 'Transcribe and summarize audio files in conversation',
     preview: null,
     source: null,
-    tags: ['favorite'],
+    tags: ['wire-developed'],
   },
 
   /*
@@ -96,12 +96,12 @@ export type Tag = {
 };
 
 export const Tags: {[type in TagType]: Tag} = {
-  favorite: {
-    label: translate({message: 'Favorite'}),
+  "wire-developed": {
+    label: translate({message: 'Wire-developed'}),
     description: translate({
       message:
-        'Our favorite Wire Apps that you must absolutely check out!',
-      id: 'showcase.tag.favorite.description',
+        'Explore apps developed by Wire',
+      id: 'showcase.tag.wire-developed.description',
     }),
     color: '#e9669e',
   },
@@ -130,8 +130,8 @@ function sortUsers() {
   let result = Users;
   // Sort by site name
   result = sortBy(result, (user) => user.title.toLowerCase());
-  // Sort by favorite tag, favorites first
-  result = sortBy(result, (user) => !user.tags.includes('favorite'));
+  // wire-developed first
+  result = sortBy(result, (user) => !user.tags.includes('wire-developed'));
   return result;
 }
 

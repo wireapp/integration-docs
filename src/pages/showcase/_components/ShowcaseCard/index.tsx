@@ -9,11 +9,11 @@ import React from 'react';
 import clsx from 'clsx';
 import Link from '@docusaurus/Link';
 import Translate from '@docusaurus/Translate';
-import Image from '@theme/IdealImage';
+import CodeIcon from '@site/static/img/code.svg';
 import {Tags, TagList, type TagType, type User} from '@site/src/data/users';
 import {sortBy} from '@site/src/utils/jsUtils';
 import Heading from '@theme/Heading';
-import FavoriteIcon from '../FavoriteIcon';
+import WireIcon from '../WireIcon';
 import styles from './styles.module.css';
 
 function TagItem({
@@ -50,22 +50,11 @@ function ShowcaseCardTag({tags}: {tags: TagType[]}) {
   );
 }
 
-function getCardImage(user: User): string {
-  return (
-    user.preview ??
-    // TODO make it configurable
-    `https://slorber-api-screenshot.netlify.app/${encodeURIComponent(
-      user.website,
-    )}/showcase`
-  );
-}
-
 function ShowcaseCard({user}: {user: User}) {
-  const image = getCardImage(user);
   return (
     <li key={user.title} className="card shadow--md">
       <div className={clsx('card__image', styles.showcaseCardImage)}>
-        <Image img={image} alt={user.title} />
+        <CodeIcon />
       </div>
       <div className="card__body">
         <div className={clsx(styles.showcaseCardHeader)}>
@@ -74,9 +63,6 @@ function ShowcaseCard({user}: {user: User}) {
               {user.title}
             </Link>
           </Heading>
-          {user.tags.includes('favorite') && (
-            <FavoriteIcon size="medium" style={{marginRight: '0.25rem'}} />
-          )}
           {user.source && (
             <Link
               href={user.source}
@@ -86,6 +72,9 @@ function ShowcaseCard({user}: {user: User}) {
               )}>
               <Translate id="showcase.card.sourceLink">source</Translate>
             </Link>
+          )}
+          {user.tags.includes('wire-developed') && (
+            <WireIcon size="large" style={{marginRight: '0.25rem'}} />
           )}
         </div>
         <p className={styles.showcaseCardBody}>{user.description}</p>
