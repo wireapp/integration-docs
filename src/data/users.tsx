@@ -25,13 +25,56 @@ export type TagType =
 // Add sites to this list
 // prettier-ignore
 const Users: User[] = [
-//   {
-//     title: 'AI-Speaker',
-//     description: 'Local, reliable, fast and private Audio and IoT gate.',
-//     preview: './showcase/aispeaker.png',
-//     source: 'https://github.com/didi/blablabla',
-//     tags: ['opensource'],
-//   },
+  {
+    title: 'Remind App',
+    description: 'An app to remind you about important things.',
+    preview: null,
+    source: 'https://github.com/wireapp/remind-app',
+    tags: ['favorite', 'opensource'],
+  },
+  {
+    title: 'Poll App',
+    description: 'Create polls directly in chat conversations',
+    preview: null,
+    source: 'https://github.com/wireapp/poll-app',
+    tags: ['favorite', 'opensource'],
+  },
+  {
+    title: 'QR App',
+    description: 'A utility bot. You ask for a deeplink, it will give you one.',
+    preview: null,
+    source: null,
+    tags: ['favorite'],
+  },
+  {
+    title: 'Github App',
+    description: 'Get Github notifications directly in Wire',
+    preview: null,
+    source: 'https://github.com/wireapp/github-app',
+    tags: ['favorite', 'product', 'opensource'],
+  },
+  {
+    title: 'Debug App',
+    description: 'A Wire app to debug clients',
+    preview: null,
+    source: null,
+    tags: ['favorite'],
+  },
+  {
+    title: 'Broadcast App',
+    description: 'Message multiple conversations simultaneously',
+    preview: null,
+    source: null,
+    tags: ['favorite'],
+  },
+  {
+    title: 'Scribe App',
+    description: 'Transcribe and summarize audio files in conversation',
+    preview: null,
+    source: null,
+    tags: ['favorite'],
+  },
+
   /*
   Pro Tip: add your site in alphabetical order.
   Appending your site here (at the end) is more likely to produce Git conflicts.
