@@ -52,11 +52,7 @@ function ShowcaseCardTag({tags}: {tags: TagType[]}) {
 
 function getCardImage(user: User): string {
   return (
-    user.preview ??
-    // TODO make it configurable
-    `https://slorber-api-screenshot.netlify.app/${encodeURIComponent(
-      user.website,
-    )}/showcase`
+    user.preview ?? "./img/code-on-dark.svg"
   );
 }
 
