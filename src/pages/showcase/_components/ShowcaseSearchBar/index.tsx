@@ -16,7 +16,7 @@ export default function ShowcaseSearchBar(): ReactNode {
     <div className={styles.searchBar}>
       <input
         placeholder={translate({
-          message: 'Search for site name...',
+          message: 'Search for App name...',
           id: 'showcase.searchBar.placeholder',
         })}
         value={searchName}
