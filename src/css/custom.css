@@ -33,3 +33,9 @@
   --ifm-color-primary-lightest: #badbff;
   --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.3);
 }
+
+iframe {
+    width: 100%;
+    height: 100%;
+    aspect-ratio: 16 / 9;
+}
