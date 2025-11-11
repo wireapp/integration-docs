@@ -6,7 +6,7 @@ Below is a table of existing events that can be received and what are their purp
 
 | Event                      | Description                                                                                                                               |
 |----------------------------|-------------------------------------------------------------------------------------------------------------------------------------------|
-| onMessage                  | A Text message was received.                                                                                                              |
+| onTextMessageReceived      | A Text message was received.                                                                                                              |
 | onConversationJoin         | The App has been added to a conversation. This is a good opportunity to introduce the App and provide usage instructions to the users.    |
 | onConversationDelete       | A conversation that the App was part of, was deleted.                                                                                     |
 | onAsset                    | An Asset (file) was received.                                                                                                             |
