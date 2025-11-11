@@ -7,7 +7,7 @@ Below is a table of existing events that can be received and what are their purp
 | Event                      | Description                                                                                                                               |
 |----------------------------|-------------------------------------------------------------------------------------------------------------------------------------------|
 | onTextMessageReceived      | A Text message was received.                                                                                                              |
-| onConversationJoin         | The App has been added to a conversation. This is a good opportunity to introduce the App and provide usage instructions to the users.    |
+| onAppAddedToConversation   | The App has been added to a conversation. This is a good opportunity to introduce the App and provide usage instructions to the users.    |
 | onConversationDelete       | A conversation that the App was part of, was deleted.                                                                                     |
 | onAsset                    | An Asset (file) was received.                                                                                                             |
 | onComposite                | A Composite message was received. Composite messages are a combination of text and buttons in a single message.                           |
