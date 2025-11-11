@@ -10,7 +10,7 @@ Below is a table of existing events that can be received and what are their purp
 | onAppAddedToConversation   | The App has been added to a conversation. This is a good opportunity to introduce the App and provide usage instructions to the users.    |
 | onConversationDeleted      | A conversation that the App was part of, was deleted.                                                                                     |
 | onAssetMessageReceived     | An Asset (file) was received.                                                                                                             |
-| onComposite                | A Composite message was received. Composite messages are a combination of text and buttons in a single message.                           |
+| onCompositeMessageReceived | A Composite message was received. Composite messages are a combination of text and buttons in a single message.                           |
 | onButtonAction             | A button action (button press/click) was received. From a composite message.                                                              |
 | onButtonActionConfirmation | Sent from the SDK that it received the button action.                                                                                     |
 | onKnock                    | Also known as `ping` (to call for attention in a conversation) was received.                                                              |
