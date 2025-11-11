@@ -196,8 +196,8 @@ For simplicity, you can simply forward the `AssetRemoteData` to downloadAssetSus
 actually return the asset in byte array format.
 
 ```kotlin
-override suspend fun onAssetSuspending(wireMessage: WireMessage.Asset) {
-    println("Asset received: $wireMessage")
+override suspend fun onAssetMessageReceived(wireMessage: WireMessage.Asset) {
+    println("Asset message received: $wireMessage")
     
     // Add your asset handling logic here, like downloading the asset,
     // sending a message or triggering some workflow
@@ -213,7 +213,7 @@ override suspend fun onAssetSuspending(wireMessage: WireMessage.Asset) {
     }
 }
 ```
-> **_Java:_** Use `override fun onAsset(wireMessage: WireMessage.Asset) { .. }`
+> **_Java:_** Use `override fun onAssetMessageReceived(wireMessage: WireMessage.Asset) { .. }`
 
 #### Creation of a Conversation
 
