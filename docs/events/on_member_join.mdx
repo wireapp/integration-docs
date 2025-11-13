@@ -1,3 +1,54 @@
 # `onMemberJoin` event
 
-When one or more users joined a conversation the App is part of.
+Triggered when one or more new people join a conversation your App is already in.
+
+:::warning
+
+Invoked also when App itself is added to a conversation. <!-- This behavior may be unexpected. -->
+
+:::
+
+## Received properties
+
+ - **`conversationId`** — Identifier of the conversation the people are added to.
+ - **`members`** — List of added members, represented by `ConversationMember` objects.  
+  Each member includes:
+   - `userId` — Unique user ID (`QualifiedId`).
+   - `role` — The user’s role in the conversation: `ADMIN` or `MEMBER`.
+
+## Sample usage
+
+### Greeting new joiners
+
+```mdx-code-block
+import ReactPlayer from 'react-player';
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+```
+
+<ReactPlayer width="100%" height="400px" controls src='/video/welcome_new_joiners.mov' />
+
+<Tabs groupId="programming-language">
+<TabItem value="kotlin" label="Kotlin">
+
+```kotlin
+override suspend fun onUserJoinedConversation(
+    conversationId: QualifiedId,
+    members: List<ConversationMember>
+) {
+    val users = members.map { manager.getUserSuspending(it.userId) }
+    val welcomeText = buildString {
+        append("Welcome ")
+        append(users.joinToString(" and ") { it.name })
+        append("!")
+    }
+    val message = WireMessage.Text.create(
+        conversationId = conversationId,
+        text = welcomeText
+    )
+    manager.sendMessageSuspending(message)
+}
+```
+
+</TabItem>
+</Tabs>
