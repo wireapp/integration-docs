@@ -1,4 +1,4 @@
-# Events
+# Handling Events
 
 When implementing the events handler `WireEventsHandler` your App will be notified when an event is received from the Websocket connection.
 
