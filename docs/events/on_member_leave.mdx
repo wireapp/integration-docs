@@ -1,3 +1,53 @@
 # `onMemberLeave` event
 
-When one or more members leave or are removed from a conversation, including cases where the app itself is removed from the conversation.
+Triggered when one or more members leave or are removed from a conversation the App is part of.
+
+:::warning
+
+Invoked also when the App itself is removed from a conversation. <!-- This behavior may be unexpected. -->
+
+:::
+
+## Received properties
+
+- **`conversationId`** — Identifier for the conversation the members no longer belong to.
+- **`members`** — List of identifiers for members who left or were removed from the conversation.
+
+## Sample usage
+
+### Send a farewell when members leave
+
+```mdx-code-block
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+```
+
+<Tabs groupId="programming-language">
+<TabItem value="kotlin" label="Kotlin">
+
+```kotlin
+override suspend fun onUserLeftConversation(
+    conversationId: QualifiedId,
+    members: List<QualifiedId>
+) {
+    val users = members.map { manager.getUserSuspending(it) }
+    val welcomeText = buildString {
+        append("Bye ")
+        append(users.joinToString(" and ") { it.name })
+        append("!")
+    }
+    val message = WireMessage.Text.create(
+        conversationId = conversationId,
+        text = welcomeText
+    )
+    manager.sendMessageSuspending(message)
+}
+```
+
+</TabItem>
+</Tabs>
+
+<!-- 
+There's an error when users leaves by themselves:
+"Can't create message because a pending proposal exists."
+-->
