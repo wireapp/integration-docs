@@ -28,7 +28,7 @@ import TabItem from '@theme/TabItem';
 <TabItem value="kotlin" label="Kotlin">
 
 ```kotlin
-override suspend fun onMessage(wireMessage: WireMessage.Text) {
+override suspend fun onTextMessageReceived(wireMessage: WireMessage.Text) {
     val message = WireMessage.Text.create(
         conversationId = wireMessage.conversationId,
         text = wireMessage.text
@@ -42,7 +42,7 @@ override suspend fun onMessage(wireMessage: WireMessage.Text) {
 
 ```java
 @Override
-public void onMessage(@NotNull WireMessage.Text wireMessage) {
+public void onTextMessageReceived(@NotNull WireMessage.Text wireMessage) {
     final WireMessage message = WireMessage.Text.create(
             wireMessage.conversationId(),
             wireMessage.text(),
