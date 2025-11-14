@@ -13,7 +13,7 @@ Below is a table of existing events that can be received and what are their purp
 | [`onCompositeMessageReceived`](on-composite-message-received.mdx) | A Composite message was received. Composite messages are a combination of text and buttons in a single message.                           |
 | [`onButtonClicked`](on-button-clicked.mdx)                        | A button action (button press/click) was received. From a composite message.                                                              |
 | [`onButtonClickConfirmed`](on-button-click-confirmed.mdx)         | Sent from the SDK that it received the button action.                                                                                     |
-| [`onPingReceived`](on-ping-received.mdx)                          | Also known as `ping` (to call for attention in a conversation) was received.                                                              |
+| [`onPingReceived`](on-ping-received.mdx)                          | Attention-getting message was received.                                                                                                   |
 | [`onLocationMessageReceived`](on-location-message-received.mdx)   | A message containing location details (longitude, latitude).                                                                              |
 | [`onMessageDeleted`](on-message-deleted.mdx)                      | When a message is deleted.                                                                                                                |
 | [`onMessageDelivered`](on-message-delivered.mdx)                  | When your message was `DELIVERED` or another user has read your message.                                                                  |
