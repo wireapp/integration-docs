@@ -110,6 +110,10 @@ const config = {
         additionalLanguages: ['java'],
       },
     }),
+  markdown: {
+    mermaid: true,
+  },
+  themes: ['@docusaurus/theme-mermaid'],
   headTags: [
     {
       tagName: "link",
