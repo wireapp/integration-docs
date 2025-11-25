@@ -1,5 +1,5 @@
 # This workflow generates a static website from the contents of this repository using Docusaurus,
-# and publishes it to the the origin-dev-wire-com-20251118130313061400000001 S3 bucket
+# and publishes it to the origin-dev-wire-com-20251118130313061400000001 S3 bucket
 # using AWS oidc for authentication.
 
 name: Publish to dev.wire.com
