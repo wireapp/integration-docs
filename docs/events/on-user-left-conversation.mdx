@@ -31,14 +31,14 @@ override suspend fun onUserLeftConversation(
     members: List<QualifiedId>
 ) {
     val users = members.map { manager.getUserSuspending(it) }
-    val welcomeText = buildString {
+    val goodbyeText = buildString {
         append("Bye ")
         append(users.joinToString(" and ") { it.name })
         append("!")
     }
     val message = WireMessage.Text.create(
         conversationId = conversationId,
-        text = welcomeText
+        text = goodbyeText
     )
     manager.sendMessageSuspending(message)
 }
