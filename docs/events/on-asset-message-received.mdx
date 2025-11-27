@@ -55,5 +55,32 @@ override suspend fun onAssetMessageReceived(wireMessage: WireMessage.Asset) {
 ```
 
 </TabItem>
-<!-- TODO: downloadAssetSuspending not accessible in java -->
+
+<TabItem value="java" label="Java">
+
+```java
+@Override
+public void onAssetMessageReceived(WireMessage.Asset wireMessage) {
+    WireMessage.Asset.RemoteData remoteData = wireMessage.remoteData();
+    if (remoteData != null) {
+        byte[] asset = getManager().downloadAsset(remoteData);
+
+        String fileName = wireMessage.name();
+        if (fileName == null || fileName.trim().isEmpty()) {
+            fileName = "unknown";
+        }
+
+        File outputDir = new File("build/downloaded_assets");
+        outputDir.mkdirs();
+
+        File outputFile = new File(outputDir, fileName);
+        try {
+            Files.write(outputFile.toPath(), asset);
+        } catch (IOException e) {
+            System.out.println("Failed to write asset to file: " + e);
+        }
+    }
+}
+```
+</TabItem>
 </Tabs>
