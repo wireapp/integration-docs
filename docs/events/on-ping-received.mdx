@@ -5,8 +5,7 @@ A ping is a way to get someone's attention with animation and sound.
 
 ## Received properties
 
-The `WireMessage.Knock` has [Base](../core-concepts/message-model.md#base-message-properties) and [Ephemeral](../core-concepts/message-model.md#ephemeral-message-properties) message properties.
-<!-- TODO: Should `WireMessage.Knock` be renamed to `WireMessage.Ping`? -->
+The `WireMessage.Ping` has [Base](../core-concepts/message-model.md#base-message-properties) and [Ephemeral](../core-concepts/message-model.md#ephemeral-message-properties) message properties.
 
 ## Sample usage
 
@@ -21,11 +20,11 @@ import TabItem from '@theme/TabItem';
 <TabItem value="kotlin" label="Kotlin">
 
 ```kotlin
-override suspend fun onPingReceived(wireMessage: WireMessage.Knock) {
-    val knock = WireMessage.Knock.create(
+override suspend fun onPingReceived(wireMessage: WireMessage.Ping) {
+    val ping = WireMessage.Ping.create(
         conversationId = wireMessage.conversationId,
     )
-    manager.sendMessageSuspending(message = knock)
+    manager.sendMessageSuspending(message = ping)
 }
 ```
 
@@ -34,12 +33,12 @@ override suspend fun onPingReceived(wireMessage: WireMessage.Knock) {
 
 ```java
 @Override
-public void onPingReceived(@NotNull WireMessage.Knock wireMessage) {
-    WireMessage.Knock knock = WireMessage.Knock.create(
+public void onPingReceived(@NotNull WireMessage.Ping wireMessage) {
+    WireMessage.Ping ping = WireMessage.Ping.create(
             wireMessage.conversationId(),
             null
     );
-    getManager().sendMessage(knock);
+    getManager().sendMessage(ping);
 }
 ```
 
