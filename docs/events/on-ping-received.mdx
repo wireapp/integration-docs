@@ -5,10 +5,8 @@ A ping is a way to get someone's attention with animation and sound.
 
 ## Received properties
 
-In addition to the [Base](../core-concepts/message-model.md#base-message-properties), and [Ephemeral](../core-concepts/message-model.md#ephemeral-message-properties) properties,
-a `WireMessage.Knock` object includes a `hotKnock` boolean.
+The `WireMessage.Knock` has [Base](../core-concepts/message-model.md#base-message-properties) and [Ephemeral](../core-concepts/message-model.md#ephemeral-message-properties) message properties.
 <!-- TODO: Should `WireMessage.Knock` be renamed to `WireMessage.Ping`? -->
-<!-- TODO: I think no one knows what is a hotKnock -->
 
 ## Sample usage
 
@@ -26,7 +24,6 @@ import TabItem from '@theme/TabItem';
 override suspend fun onPingReceived(wireMessage: WireMessage.Knock) {
     val knock = WireMessage.Knock.create(
         conversationId = wireMessage.conversationId,
-        hotKnock = true
     )
     manager.sendMessageSuspending(message = knock)
 }
@@ -40,7 +37,6 @@ override suspend fun onPingReceived(wireMessage: WireMessage.Knock) {
 public void onPingReceived(@NotNull WireMessage.Knock wireMessage) {
     WireMessage.Knock knock = WireMessage.Knock.create(
             wireMessage.conversationId(),
-            true,
             null
     );
     getManager().sendMessage(knock);
