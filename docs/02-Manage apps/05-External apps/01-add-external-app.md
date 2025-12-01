@@ -11,19 +11,19 @@ In the app:
 1. Select *Settings*, then select *Manage team* or go to [teams.wire.com](https://teams.wire.com/).
 2. Log in with your account credentials:
 
-![TM_log_in.png](../assets/team-management/log_in.png)
+![TM_log_in.png](../../assets/team-management/log_in.png)
 
 3. Select *Integrations*.
 
-![TM_empty_integrations_tab.png](../assets/team-management/empty_integrations_tab.png)
+![TM_empty_integrations_tab.png](../../assets/team-management/empty_integrations_tab.png)
 
 4. Select *Add App*.
 
-![add external app](../assets/team-management/add_external_app.png)
+![add external app](../../assets/team-management/add_external_app.png)
 
 5. Enter the app ID.
 
-![external app details](../assets/team-management/external_app_details.png)
+![external app details](../../assets/team-management/external_app_details.png)
 
 6. Review the app details.
 

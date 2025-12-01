@@ -5,7 +5,7 @@ Delete an app that your team owns and no longer needs.
 Deleting an app is permanent. 
 It invalidates the app’s credentials and cannot be undone and stops it from working on any team where it was shared.
 
-> Looking to remove an external app from your team instead? [Follow these steps](remove-external-app.md).
+> Looking to remove an external app from your team instead? [Follow these steps](05-External apps/02-remove-external-app.md).
 
 ## On desktop (macOS, Windows, or on Wire for web)
 
@@ -33,6 +33,6 @@ In the app:
 :::danger  
 Deleting an app is permanent. 
 The App ID and authentication token will be invalidated for **all teams** using the app and cannot be restored.  
-To continue using the integration, you’ll need to [create a new app](create-app.md)
+To continue using the integration, you’ll need to [create a new app](01-create-app.md)
 and update your code with the new credentials, and share the new App ID with any teams that need it.  
 :::

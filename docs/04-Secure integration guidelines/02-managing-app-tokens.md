@@ -1,7 +1,7 @@
 # Managing App Tokens
 
 The Wire SDK uses an App Token to authenticate itself against the Wire backend.
-Once an App Token [has been created](../manage-apps/create-app.md) it must be handled with the same care as any other sensitive credential.
+Once an App Token [has been created](<../Manage Apps/create-app>) it must be handled with the same care as any other sensitive credential.
 This section provides guidance on secure storage, exposure prevention, rotation, and revocation.
 
 ## Storage
@@ -36,7 +36,7 @@ If an App Token is compromised, suspected of misuse, or no longer needed, revoke
 
 You can do this by:
 
-* [Deleting the app](../manage-apps/delete-app.md), or
-* [Regenerating the associated app token](../manage-apps/regenerate-auth-token.md)
+* [Deleting the app](<../Manage Apps/delete-app>), or
+* [Regenerating the associated app token](<../Manage Apps/regenerate-auth-token>)
 
 In case you are decommissioning an app, you should as well revoke the app's token by deleting the app.

@@ -28,4 +28,4 @@ In the app:
 ## About authentication token editing
 
 You cannot edit or retrieve the authentication token because it’s securely generated for your app.
-If you need a new token, [regenerate it](./regenerate-auth-token.md).
+If you need a new token, [regenerate it](./03-regenerate-auth-token.md).

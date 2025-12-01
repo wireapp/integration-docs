@@ -1,5 +1,4 @@
-# Getting started creating a Wire Application with Wire JVM SDK
-
+# Developing App - JVM
 This guide will help you create and understand how to develop and deploy a Wire Application written
 in a JVM language (Java, Kotlin, Scala). The SDK you will be using will simplify encryption/decryption, and http client calls to the Wire backend, leaving you to care about your business logic.
 
@@ -252,14 +251,6 @@ val createdChannelConversationId = applicationManager.createChannelConversationS
 
 > **_Java:_** Use `createOneToOneConversation` for One to One Conversations
 
-## Deploy example
-
-After building your Application leveraging the SDK, you need to find a place to let it run. At its core, the SDK is working as a client for the Wire Backend, with some storage for crypto data and for conversations (local `SQLite` database). This means that generally it needs only to be able to reach the public internet, specifically the Wire backend host you chose.
-
-You can take the artifacts built from your Application and run it in any server, on-premise or in the cloud, or Dockerize the Application and do the same. Note that you want 1 instance of the Application running and it can run indefinitely.
-
-For example, giving that the app does not need HTTPS, DNS, CDN, simpler deployment processes are available, for example: [Heroku - Java](https://devcenter.heroku.com/articles/getting-started-with-java)
-
 ## Building Locally
 In case you need to build the SDK locally, you can skip the signing option by running:
 ```bash
@@ -277,5 +268,4 @@ In case you need to build the SDK locally, you can skip the signing option by ru
 
 ## Additional Resources
 
-- Check the [SDK README](../README.md) for more information
-- For any issue, requests or improvements, let us know by contacting us or creating a new issue on GitHub
+For any issue, requests or improvements, let us know by contacting us or creating a new issue on GitHub
