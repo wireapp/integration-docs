@@ -1,4 +1,4 @@
-# Understanding Apps Test
+# Understanding Apps
 
 Apps — sometimes called *integrations*, *services*, or *third-party applications* — are modular components that extend the platform without being part of its core codebase.
 
