@@ -4,7 +4,9 @@
 
 name: Publish to dev.wire.com
 on:
-  push: {}
+  push:
+    branches:
+      - main
 
 permissions:
   id-token: write  # Required for OIDC authentication
