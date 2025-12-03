@@ -1,0 +1,47 @@
+# This workflow generates a static website from the contents of this repository using Docusaurus,
+# and publishes it to the origin-dev-wire-com-20251118130313061400000001 S3 bucket
+# using AWS oidc for authentication.
+
+name: Publish to dev.wire.com
+on:
+  push:
+    branches:
+      - main
+
+permissions:
+  id-token: write  # Required for OIDC authentication
+  contents: read   # Read repository contents
+env:
+  AWS_ROLE_ARN: ${{ secrets.AWS_ROLE_ARN }}
+  AWS_REGION: eu-central-1
+  S3_BUCKET_NAME: ${{ secrets.S3_BUCKET_NAME }}
+  CF_DISTRIBUTION_ID: ${{ secrets.CF_DISTRIBUTION_ID }}
+
+jobs:
+  publish:
+    name: Publish Static Website to S3
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v6
+      - name: Configure AWS Credentials
+        uses: aws-actions/configure-aws-credentials@v5.1.1
+        with:
+          aws-region: ${{ env.AWS_REGION }}
+          role-to-assume: ${{ env.AWS_ROLE_ARN }}
+          role-session-name: gha-integration-docs-workflow-${{ github.run_id }}
+          audience: sts.amazonaws.com
+      - name: Set up Node.js
+        uses: actions/setup-node@v6
+        with:
+          node-version: '20'
+      - name: Install dependencies
+        run: npm ci
+      - name: Build Docusaurus site
+        run: npm run build
+      - name: Sync build artifacts to S3
+        run: aws s3 sync ./build/ s3://$S3_BUCKET_NAME --delete
+      - name: Invalidate CloudFront Cache
+        run: |
+          aws cloudfront create-invalidation --distribution-id ${CF_DISTRIBUTION_ID} --paths "/*"
