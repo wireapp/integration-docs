@@ -5,7 +5,7 @@ The SDK parses these events and then allows you to setup a "callback", triggerin
 
 For example, you might want to "react" to "text message received", and make a Rest call when the message contains a specific string, or you might want to track when a new users joins a conversation where the app is present.
 
-Practically, when you implement some of the events handler of `WireEventsHandler`, your App will be notified when an event is received from the Websocket connection.
+Practically, when you implement some of the events handler of `WireEventsHandler`, your App will be notified when an event is received from the WebSocket connection.
 
 Below is a table of existing events that can be received and what are their purpose:
 
