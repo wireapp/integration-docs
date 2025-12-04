@@ -1,0 +1,46 @@
+# `onPingReceived`
+
+Triggered when someone sends a ping in a conversation.  
+A ping is a way to get someone's attention with animation and sound.
+
+## Received properties
+
+The `WireMessage.Ping` has [Base](../core-concepts/message-model.md#base-message-properties) and [Ephemeral](../core-concepts/message-model.md#ephemeral-message-properties) message properties.
+
+## Sample usage
+
+### Ping back
+
+```mdx-code-block
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+```
+
+<Tabs groupId="programming-language">
+<TabItem value="kotlin" label="Kotlin">
+
+```kotlin
+override suspend fun onPingReceived(wireMessage: WireMessage.Ping) {
+    val ping = WireMessage.Ping.create(
+        conversationId = wireMessage.conversationId,
+    )
+    manager.sendMessageSuspending(message = ping)
+}
+```
+
+</TabItem>
+<TabItem value="java" label="Java">
+
+```java
+@Override
+public void onPingReceived(@NotNull WireMessage.Ping wireMessage) {
+    WireMessage.Ping ping = WireMessage.Ping.create(
+            wireMessage.conversationId(),
+            null
+    );
+    getManager().sendMessage(ping);
+}
+```
+
+</TabItem>
+</Tabs>

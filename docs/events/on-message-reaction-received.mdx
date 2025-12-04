@@ -1,0 +1,58 @@
+# `onMessageReactionReceived`
+
+Triggered when a user reacts to a message.    
+Reactions are usually emojis, following the current UI and UX design, but Apps can also use any string as a reaction.  
+Multiple reactions can be added to a message and removed from them at any time.
+
+## Received properties
+
+In addition to the [Base properties](../core-concepts/message-model.md#base-message-properties),
+a `WireMessage.Reaction` object includes:
+
+ - **`messageId`** — Identifier of the message the reactions apply to.  
+ - **`emojiSet`** — Set of strings representing the sender’s reactions to the message.  
+   If empty, all previously added reactions by the same sender are removed.
+
+## Sample usage
+
+### Mirror user’s reaction
+
+```mdx-code-block
+import ReactPlayer from 'react-player';
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+```
+
+<ReactPlayer width="100%" height="400px" controls src='/video/mirror_emojis.mov' />
+
+<Tabs groupId="programming-language">
+<TabItem value="kotlin" label="Kotlin">
+
+```kotlin
+override suspend fun onMessageReactionReceived(wireMessage: WireMessage.Reaction) {
+    val reaction = WireMessage.Reaction.create(
+        conversationId = wireMessage.conversationId,
+        messageId = wireMessage.messageId,
+        emojiSet = wireMessage.emojiSet
+    )
+    manager.sendMessageSuspending(reaction)
+}
+```
+
+</TabItem>
+<TabItem value="java" label="Java">
+
+```java
+@Override
+public void onMessageReactionReceived(@NotNull WireMessage.Reaction wireMessage) {
+    WireMessage.Reaction reaction = WireMessage.Reaction.create(
+            wireMessage.getConversationId(),
+            wireMessage.getMessageId(),
+            wireMessage.getEmojiSet()
+    );
+    getManager().sendMessage(reaction);
+}
+```
+
+</TabItem>
+</Tabs>

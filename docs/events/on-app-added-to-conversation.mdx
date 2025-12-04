@@ -1,0 +1,74 @@
+# `onAppAddedToConversation`
+
+The App has been added to a conversation.  
+Use this event to welcome participants and explain how the App works.
+
+## Received properties
+
+### `conversation`
+
+Details of the conversation the App joined, provided as a `Conversation` object:
+
+- **`id`** — Unique conversation ID (`QualifiedId`).
+- **`name`** — Conversation name. Null for 1:1 conversations.
+- **`teamId`** — Team ID the conversation belongs to. Null for 1:1 conversations.
+- **`type`** — Conversation type:
+    - `GROUP` — A group conversation or channel that can include one or more members.
+    - `ONE_TO_ONE` — A direct conversation between one user and the App.
+
+### `members`
+
+List of members in the conversation, represented by `ConversationMember` objects. Each member includes:
+
+- **`userId`** — Unique user ID (`QualifiedId`).
+- **`role`** — The user’s role in the conversation: `ADMIN` or `MEMBER`.
+
+## Sample usage
+
+### Send welcome message
+
+```mdx-code-block
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+```
+
+<Tabs groupId="programming-language">
+<TabItem value="kotlin" label="Kotlin">
+
+```kotlin
+override suspend fun onAppAddedToConversation(
+    conversation: Conversation,
+    members: List<ConversationMember>
+) {
+    val message = WireMessage.Text.create(
+        conversationId = conversation.id,
+        text = "👋 Hi there! You can use `/remind [text]` to set personal reminders."
+    )
+
+    manager.sendMessageSuspending(message = message)
+}
+```
+
+</TabItem>
+<TabItem value="java" label="Java">
+
+```java
+@Override
+public void onAppAddedToConversation(
+        @NotNull Conversation conversation,
+        @NotNull List<ConversationMember> members
+) {
+    final WireMessage message = WireMessage.Text.create(
+            conversation.id(),
+            "👋 Hi there! You can use `/remind [text]` to set personal reminders.",
+            List.of(),
+            List.of(),
+            null
+    );
+
+    getManager().sendMessage(message);
+}
+```
+
+</TabItem>
+</Tabs>

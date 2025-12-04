@@ -1,0 +1,77 @@
+# `onMessageDeleted`
+
+Triggered when a message is deleted in a conversation.
+
+## Received properties
+
+In addition to the [Base properties](../core-concepts/message-model.md#base-message-properties),
+a `WireMessage.Deleted` object provides `messageId` which is the identifier of the deleted message.
+
+## Sample usage
+
+### Log message deletion
+
+The example below creates a new text message that includes a **mention of the user** who performed the deletion.
+
+```mdx-code-block
+import ReactPlayer from 'react-player'
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+```
+
+<ReactPlayer width="100%" height="400px" controls src='/video/on_deleted_demo.mov' />
+
+<Tabs groupId="programming-language">
+<TabItem value="kotlin" label="Kotlin">
+
+```kotlin
+override suspend fun onMessageDeleted(wireMessage: WireMessage.Deleted) {
+    val username = manager.getUser(wireMessage.sender).name
+    val message = WireMessage.Text.create(
+        conversationId = wireMessage.conversationId,
+        text = "@$username deleted a message.",
+        mentions = listOf(
+            WireMessage.Mention(
+                userId = wireMessage.sender,
+                offset = 0,
+                length = username.length + 1 // +1 for @ handle
+            )
+        )
+    )
+    manager.sendMessageSuspending(message = message)
+}
+```
+
+</TabItem>
+<TabItem value="java" label="Java">
+
+```java
+@Override
+public void onMessageDeleted(@NotNull WireMessage.Deleted wireMessage) {
+    UserResponse user;
+    try {
+        user = getManager().getUser(wireMessage.sender());
+    } catch (WireException e) {
+        return;
+    }
+    String username = user.getName();
+    WireMessage.Text message = WireMessage.Text.create(
+            wireMessage.conversationId(),
+            "@" + username + " deleted a message.",
+            List.of(
+                    new WireMessage.Mention(
+                            wireMessage.sender(),
+                            0,
+                            username.length() + 1 // +1 for @ handle
+                    )
+            ),
+            List.of(),
+            null
+    );
+    getManager().sendMessage(message);
+}
+
+```
+
+</TabItem>
+</Tabs>
