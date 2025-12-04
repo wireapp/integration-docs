@@ -17,7 +17,7 @@ This documentation covers:
 - **App Management**: Creating, editing, and managing Wire apps
 - **Security Guidelines**: Best practices for secure integration development
 
-At it's core, Docusaurus takes some MD files and some stylistic rules and builds them into a website
+At its core, Docusaurus takes some MD files and some stylistic rules and builds them into a website
 
 ## Getting Started
 
@@ -36,7 +36,13 @@ npm ci
 
 ### Local Development
 
-Start a local development server with hot reload:
+Generate static content:
+
+```bash
+npm run build
+```
+
+Start a local development server with hot reload, displaying the static content generated:
 
 ```bash
 npm start
@@ -46,19 +52,14 @@ This command starts a local development server and opens up a browser window. Mo
 
 The documentation site will be available at `http://localhost:3000`.
 
-### Building for Production
+### Publishing
 
-Generate static content for production deployment:
-
-```bash
-npm run build
-```
-
-This command generates static content into the `build` directory that can be served using any static hosting service.
+GitHub actions take care of building and publishing the content to a public AWS S3 bucket, currently the website is https://dev.wire.com
 
 ## Resources
 
 - [Wire Official Website](https://wire.com/)
+- [Wire Official Core Documentation](https://docs.wire.com/latest)
 - [Wire GitHub Organization](https://github.com/wireapp/)
 - [Wire JVM SDK](https://github.com/wireapp/wire-apps-jvm-sdk)
 - [Wire TS/JS SDK](https://github.com/wireapp/wire-apps-js-sdk)

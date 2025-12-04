@@ -29,7 +29,7 @@ Please verify that the SDK is communicating with the correct backend. The backen
 
 ### Wire App Tokens
 
-If you are creating a new app from the Wire Team interface, as described [in the creation workflow](../02-Manage apps/01-create-app.md), you receive an **App ID** and an **App Token**.
+If you are creating a new app from the Wire Team interface, as described [in the creation workflow](../02-manage-apps/01-create-app.md), you receive an **App ID** and an **App Token**.
 
 The App ID is a unique UUID that identifies your application. It is not considered sensitive information and can be safely included in code or configuration.
 

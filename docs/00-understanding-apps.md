@@ -28,10 +28,10 @@ There are 2 main aspects:
 2. Developing your app using one of the Wire SDKs for Apps
 
 
-For the first point, check out [Onboarding apps](./02-Manage apps/01-create-app.md).
+For the first point, check out [Onboarding apps](./02-manage-apps/01-create-app.md).
 
 Then for the technical part, check out the tutorial/quickstart or a simple app example:
 
-➡️ [Check out the Quickstart guide](03-Quickstart/01-quickstart-advanced.md)
+➡️ [Check out the Quickstart guide](03-quickstart/01-quickstart-advanced.md)
 
-➡️ [Check out the "Echo" app example](03-Quickstart/02-demo-echo-app.mdx)
+➡️ [Check out the "Echo" app example](03-quickstart/02-demo-echo-app.mdx)

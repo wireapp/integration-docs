@@ -39,4 +39,4 @@ In the app:
 
 ## What’s next
 Now that you have the credentials, you’re ready to connect your app.
-Go to [Quickstart](../03-Quickstart/01-quickstart-advanced.md) to include the SDK in your project and continue setup.
+Go to [Quickstart](../03-quickstart/01-quickstart-advanced.md) to include the SDK in your project and continue setup.

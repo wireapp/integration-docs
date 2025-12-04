@@ -5,7 +5,7 @@ Delete an app that your team owns and no longer needs.
 Deleting an app is permanent. 
 It invalidates the app’s credentials and cannot be undone and stops it from working on any team where it was shared.
 
-> Looking to remove an external app from your team instead? [Follow these steps](05-External apps/02-remove-external-app.md).
+> Looking to remove an external app from your team instead? [Follow these steps](05-external-apps/02-remove-external-app.md).
 
 ## On desktop (macOS, Windows, or on Wire for web)
 
