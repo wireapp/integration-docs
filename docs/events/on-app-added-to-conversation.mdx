@@ -7,7 +7,7 @@ Use this event to welcome participants and explain how the App works.
 
 ### `conversation`
 
-Details of the conversation the App joined, provided as a `ConversationData` object:
+Details of the conversation the App joined, provided as a `Conversation` object:
 
 - **`id`** — Unique conversation ID (`QualifiedId`).
 - **`name`** — Conversation name. Null for 1:1 conversations.
@@ -15,7 +15,6 @@ Details of the conversation the App joined, provided as a `ConversationData` obj
 - **`type`** — Conversation type:
     - `GROUP` — A group conversation or channel that can include one or more members.
     - `ONE_TO_ONE` — A direct conversation between one user and the App.
-    - `SELF` — A conversation containing only the App. <!-- TODO: No real use case for this, I believe. -->
 
 ### `members`
 
@@ -38,7 +37,7 @@ import TabItem from '@theme/TabItem';
 
 ```kotlin
 override suspend fun onAppAddedToConversation(
-    conversation: ConversationData,
+    conversation: Conversation,
     members: List<ConversationMember>
 ) {
     val message = WireMessage.Text.create(
@@ -56,7 +55,7 @@ override suspend fun onAppAddedToConversation(
 ```java
 @Override
 public void onAppAddedToConversation(
-        @NotNull ConversationData conversation,
+        @NotNull Conversation conversation,
         @NotNull List<ConversationMember> members
 ) {
     final WireMessage message = WireMessage.Text.create(
