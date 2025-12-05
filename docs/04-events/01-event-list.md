@@ -9,23 +9,23 @@ Practically, when you implement some of the events handler of `WireEventsHandler
 
 Below is a table of existing events that can be received and what are their purpose:
 
-| Name                                                              | Description                                                                                                                               |
-|-------------------------------------------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------|
-| [`onTextMessageReceived`](on-text-message-received.mdx)           | A Text message was received.                                                                                                              |
-| [`onAppAddedToConversation`](on-app-added-to-conversation.mdx)    | The App has been added to a conversation.                                                                                                 |
-| [`onConversationDeleted`](on-conversation-deleted.mdx)            | A conversation that the App was part of, was deleted.                                                                                     |
-| [`onAssetMessageReceived`](on-asset-message-received.mdx)         | An Asset (file) was received.                                                                                                             |
-| [`onCompositeMessageReceived`](on-composite-message-received.mdx) | A Composite message was received. Composite messages are a combination of text and buttons in a single message.                           |
-| [`onButtonClicked`](on-button-clicked.mdx)                        | A button action (button press/click) was received. From a composite message.                                                              |
-| [`onButtonClickConfirmed`](on-button-click-confirmed.mdx)         | Sent from the SDK that it received the button action.                                                                                     |
-| [`onPingReceived`](on-ping-received.mdx)                          | Attention-getting message was received.                                                                                                   |
-| [`onLocationMessageReceived`](on-location-message-received.mdx)   | A message containing location details (longitude, latitude).                                                                              |
-| [`onMessageDeleted`](on-message-deleted.mdx)                      | When a message is deleted.                                                                                                                |
-| [`onMessageDelivered`](on-message-delivered.mdx)                  | When your message was `DELIVERED` or another user has read your message.                                                                  |
-| [`onTextMessageEdited`](on-text-message-edited.mdx)               | An existing message was edited.                                                                                                           |
-| [`onCompositeMessageEdited`](on-composite-message-edited.mdx)     | An existing Composite message was edited.                                                                                                 |
-| [`onMessageReactionReceived`](on-message-reaction-received.mdx)   | When a user has reacted to a message.                                                                                                     |
-| [`onInCallReactionReceived`](on-in-call-reaction-received.mdx)    | Received an emoji while in a call.                                                                                                        |
-| [`onInCallHandRaiseReceived`](on-in-call-hand-raise-received.mdx) | Received the Hand Raise emoji while in a call.                                                                                            |
-| [`onUserJoinedConversation`](on-user-joined-conversation.mdx)     | When one or more users joined a conversation the App is part of.                                                                          |
-| [`onUserLeftConversation`](on-user-left-conversation.mdx)         | When one or more members leave or are removed from a conversation, including cases where the app itself is removed from the conversation. |
+| Name                                                                 | Description                                                                                                                               |
+|----------------------------------------------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------|
+| [`onTextMessageReceived`](03-on-text-message-received.mdx)           | A Text message was received.                                                                                                              |
+| [`onAppAddedToConversation`](04-on-app-added-to-conversation.mdx)    | The App has been added to a conversation.                                                                                                 |
+| [`onConversationDeleted`](05-on-conversation-deleted.mdx)            | A conversation that the App was part of, was deleted.                                                                                     |
+| [`onAssetMessageReceived`](06-on-asset-message-received.mdx)         | An Asset (file) was received.                                                                                                             |
+| [`onCompositeMessageReceived`](07-on-composite-message-received.mdx) | A Composite message was received. Composite messages are a combination of text and buttons in a single message.                           |
+| [`onButtonClicked`](08-on-button-clicked.mdx)                        | A button action (button press/click) was received. From a composite message.                                                              |
+| [`onButtonClickConfirmed`](09-on-button-click-confirmed.mdx)         | Sent from the SDK that it received the button action.                                                                                     |
+| [`onPingReceived`](10-on-ping-received.mdx)                          | Attention-getting message was received.                                                                                                   |
+| [`onLocationMessageReceived`](11-on-location-message-received.mdx)   | A message containing location details (longitude, latitude).                                                                              |
+| [`onMessageDeleted`](12-on-message-deleted.mdx)                      | When a message is deleted.                                                                                                                |
+| [`onMessageDelivered`](13-on-message-delivered.mdx)                  | When your message was `DELIVERED` or another user has read your message.                                                                  |
+| [`onTextMessageEdited`](14-on-text-message-edited.mdx)               | An existing message was edited.                                                                                                           |
+| [`onCompositeMessageEdited`](15-on-composite-message-edited.mdx)     | An existing Composite message was edited.                                                                                                 |
+| [`onMessageReactionReceived`](16-on-message-reaction-received.mdx)   | When a user has reacted to a message.                                                                                                     |
+| [`onInCallReactionReceived`](17-on-in-call-reaction-received.mdx)    | Received an emoji while in a call.                                                                                                        |
+| [`onInCallHandRaiseReceived`](18-on-in-call-hand-raise-received.mdx) | Received the Hand Raise emoji while in a call.                                                                                            |
+| [`onUserJoinedConversation`](19-on-user-joined-conversation.mdx)     | When one or more users joined a conversation the App is part of.                                                                          |
+| [`onUserLeftConversation`](20-on-user-left-conversation.mdx)         | When one or more members leave or are removed from a conversation, including cases where the app itself is removed from the conversation. |
