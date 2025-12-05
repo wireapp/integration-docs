@@ -1,3 +1,7 @@
 {
-    "label": "Events"
+    "label": "Events",
+    "link": {
+        "type": "doc",
+        "id": "events/event-list"
+    }
 }
