@@ -66,7 +66,7 @@ The SDK handles all underlying processing, so you can focus on the logic that ma
 
 To receive events, implement `WireEventsHandler` and choose the event types you want to react to. 
 Each method in the handler corresponds to a specific event.  
-See the class reference<!-- TODO: update link after merge --> for details on all available callbacks.
+See [the class reference](@site/docs/events/README.md) for details on all available callbacks.
 
 Both `WireAppSdk` and `WireEventsHandler` give you access to `WireApplicationManager`.  
 This manager is your main entry point for working with app data and interactions. You can use it to:
