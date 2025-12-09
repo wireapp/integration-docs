@@ -109,6 +109,14 @@ const config = {
         darkTheme: prismThemes.dracula,
         additionalLanguages: ['java'],
       },
+      mermaid: {
+        theme: { light: 'neutral' },
+        options: {
+          themeVariables: {
+            fontFamily: '@site/static/fonts',
+          },
+        },
+      },
     }),
   markdown: {
     mermaid: true,
