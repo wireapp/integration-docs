@@ -1,0 +1,57 @@
+# `onButtonClicked`
+
+The onButtonAction event is triggered when someone selects a button in a Composite message.  
+A Composite message combines text and buttons into a single message.
+
+## Received properties
+
+In addition to the [Base properties](./02-message-model.md#base-message-properties),
+a `WireMessage.ButtonAction` object includes:
+ - `referencedMessageId` — The identifier of the Composite message that contains the selected button.
+ - `buttonId` — The identifier of the selected button.
+
+## Sample usage
+
+### Delete a message when a button is selected
+
+```mdx-code-block
+import ReactPlayer from 'react-player'
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+```
+
+<ReactPlayer width="100%" controls src='/video/button_demo.mov' />
+
+<Tabs groupId="programming-language">
+<TabItem value="kotlin" label="Kotlin">
+
+```kotlin
+override suspend fun onButtonClicked(wireMessage: WireMessage.ButtonAction) {
+    if (wireMessage.buttonId == "delete") {
+        val delete = WireMessage.Deleted.create(
+            conversationId = wireMessage.conversationId,
+            messageId = wireMessage.referencedMessageId
+        )
+        manager.sendMessageSuspending(delete)
+    }
+}
+```
+
+</TabItem>
+<TabItem value="java" label="Java">
+
+```java
+@Override
+public void onButtonClicked(@NotNull WireMessage.ButtonAction wireMessage) {
+    if (wireMessage.buttonId().equals("delete")) {
+        WireMessage.Deleted delete = WireMessage.Deleted.create(
+                wireMessage.conversationId(),
+                wireMessage.referencedMessageId()
+        );
+        getManager().sendMessage(delete);
+    }
+}
+```
+
+</TabItem>
+</Tabs>
