@@ -15,9 +15,14 @@ You can handle different events and perform any action you want. This is done in
 The manager allows you to interact with Wire, from creating conversations, fetching users to sending messages.
 You can use it while receiving events and/or directly use it directly in your code (e.g a scheduled job uses `WireApplicationManager` to fetch conversations, or a webhook you create triggers a message being sent in Wire).
 
+Check all the events in [Wire Events](../04-events/index.md)
+
 ---
 
 ## Functionalities of the SDK
+
+`WireApplicationManager` has two versions of each function, one "suspending" and the other in normal blocking fashion.
+If you are using Java just look at the non-suspending methods, while in Kotlin you can choose to leverage coroutines (with suspending functions) or not.
 
 Here are some example of things you can do via the SDK to interact with the Wire ecosystem with your App:
 
