@@ -27,10 +27,10 @@ There are 2 main aspects:
 1. Developing your app using one of the Wire SDKs for Apps
 2. Registering the App and getting credentials on Wire Team management
 
-For the technical part, check out the tutorial/quickstart or a simple app example:
+For the technical part, check out the tutorial/quickstart or the technical concepts explanation:
 
-➡️ [Check out the Quickstart guide](01-quickstart-advanced.md)
+➡️ [Check out the Quickstart guide](01-quickstart-advanced.mdx)
 
-➡️ [Check out the "Echo" app example](03-example/01-demo-echo-app.mdx)
+➡️ [Check out all the capabilities of the SDK](03-core-concepts/01-developer-interface.mdx)
 
 Then for the registration, check out [Onboarding apps](./02-manage-apps/01-create-app.md).
