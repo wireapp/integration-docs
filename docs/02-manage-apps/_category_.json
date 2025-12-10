@@ -1,3 +1,9 @@
 {
-    "label": "Manage Apps"
+    "label": "Manage Apps",
+    "link": {
+        "type": "generated-index",
+        "description":
+        "As a team owner or admin, you can manage your team’s apps in several ways:",
+        "slug": "manage-apps"
+    }
 }

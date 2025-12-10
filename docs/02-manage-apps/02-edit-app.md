@@ -1,6 +1,6 @@
 # Edit App
 
-You can update your app’s logo, name, category, or description at any time.
+You can update your app’s logo, name, category, or description
 
 ## On desktop (macOS, Windows, or on Wire for web)
 

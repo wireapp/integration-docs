@@ -1,3 +1,7 @@
 {
-    "label": "External Apps"
+    "label": "External Apps",
+    "link": {
+        "type": "generated-index",
+        "slug": "manage-apps/external-apps"
+    }
 }
