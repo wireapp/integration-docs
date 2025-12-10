@@ -2,9 +2,20 @@
 
 Create an app and get credentials for your integration
 
+:::note
+
+This feature isn’t available yet in the team settings page.
+Please follow the [manual process](00-create-app-manually.mdx).
+
+:::
+
+:::info
+
 Apps are available on paid plans.  
 Upgrade to unlock integrations that simplify workflows and connect Wire to your existing tools. 
 [See plans and pricing](https://wire.com/pricing).
+
+:::
 
 ## On desktop (macOS, Windows, or on Wire for web)
 

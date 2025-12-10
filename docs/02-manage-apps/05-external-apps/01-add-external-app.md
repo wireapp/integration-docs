@@ -4,6 +4,14 @@ You want to add an App built with the Wire SDK to your team
 
 <!-- TODO: add link to showcase section once added "Discover more apps in the showcase section." -->
 
+:::info
+
+Apps are available on paid plans.  
+Upgrade to unlock integrations that simplify workflows and connect Wire to your existing tools.
+[See plans and pricing](https://wire.com/pricing).
+
+:::
+
 The App ID is required for the following steps.
 
 ## On desktop (macOS, Windows, or on Wire for web)
