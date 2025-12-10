@@ -1,3 +1,6 @@
 {
-    "label": "External Apps"
+    "label": "External Apps",
+    "link": {
+        "type": "generated-index"
+    }
 }
