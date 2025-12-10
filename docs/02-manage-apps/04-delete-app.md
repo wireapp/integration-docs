@@ -1,6 +1,6 @@
 # Delete internal App
 
-Delete an app that your team owns and no longer needs.  
+Delete an app that your team owns and no longer needs
 
 Deleting an app is permanent. 
 It invalidates the app’s credentials and cannot be undone and stops it from working on any team where it was shared.

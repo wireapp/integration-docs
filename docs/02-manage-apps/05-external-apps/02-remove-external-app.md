@@ -1,6 +1,6 @@
 # Remove external App
 
-Stop using an external app that was added to your team.
+Disable an external app that was added to your team
 
 Removing an app disconnects it from **your team only**. Other teams using the app aren’t affected.
 

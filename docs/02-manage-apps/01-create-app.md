@@ -1,6 +1,8 @@
 # Create App
 
-Apps are available on paid plans.
+Create an app and get credentials for your integration
+
+Apps are available on paid plans.  
 Upgrade to unlock integrations that simplify workflows and connect Wire to your existing tools. 
 [See plans and pricing](https://wire.com/pricing).
 

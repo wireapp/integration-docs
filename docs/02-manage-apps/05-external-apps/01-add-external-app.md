@@ -1,7 +1,9 @@
 # Add external App
 
-You’ve found an app built with the Wire Integration SDK by another team,
-or discovered Wire-developed apps in the [showcase]().  
+You want to add an App built with the Wire SDK to your team
+
+<!-- TODO: add link to showcase section once added "Discover more apps in the showcase section." -->
+
 The App ID is required for the following steps.
 
 ## On desktop (macOS, Windows, or on Wire for web)

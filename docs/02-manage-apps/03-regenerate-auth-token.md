@@ -1,6 +1,6 @@
 # Regenerate authentication token
 
-If your authentication token is lost or compromised, you can generate a new one.
+If your token is lost or compromised, generate a new one
 
 ## On desktop (macOS, Windows, or on Wire for web)
 
