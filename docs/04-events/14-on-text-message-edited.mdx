@@ -1,0 +1,79 @@
+# `onTextMessageEdited`
+
+An existing message was edited.
+
+:::info
+
+If the edited message is a direct reply, you cannot delete nor change the quoted message.
+
+:::
+
+## Received properties
+
+Apart from [Base properties](./02-message-model.md#base-message-properties), 
+a `WireMessage.TextEdited` object contains the following fields:
+
+ - **`replacingMessageId`** — Identifier of the message being replaced.
+   - When sending, this is the ID of the message you’re updating.
+   - When received, this is the ID of the original message it replaces.
+ - **`newContent`** — The new message content.                                                                                                                                      
+ - **`newMentions`** — List of mentions in the message. Empty if none.                                                                                                          
+ - **`newLinkPreviews`** — List of link previews generated from URLs in the message. Empty if none.                                                                                
+
+
+## Sample usage
+
+### Count text message edits
+
+```mdx-code-block
+import ReactPlayer from 'react-player';
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+```
+
+<ReactPlayer width="100%" height="400px" controls src='/video/edit_demo.mov' />
+
+<Tabs groupId="programming-language">
+<TabItem value="kotlin" label="Kotlin">
+
+```kotlin
+private var editCount = 0
+
+override suspend fun onTextMessageEdited(wireMessage: WireMessage.TextEdited) {
+    editCount++
+
+    val indicator = "✏️ " + editCount + "x"
+
+    val message = WireMessage.Text.create(
+        conversationId = wireMessage.conversationId,
+        text = indicator
+    )
+    manager.sendMessageSuspending(message)
+}
+```
+
+</TabItem>
+<TabItem value="java" label="Java">
+
+```java
+private int editCount = 0;
+
+@Override
+public void onTextMessageEdited(@NotNull WireMessage.TextEdited wireMessage) {
+    editCount++;
+
+    String indicator = "✏️ " + editCount + "x";
+
+    WireMessage.Text message = WireMessage.Text.create(
+            wireMessage.conversationId(),
+            indicator,
+            List.of(),
+            List.of(),
+            null
+    );
+    getManager().sendMessage(message);
+}
+```
+
+</TabItem>
+</Tabs>

@@ -1,0 +1,17 @@
+# `onInCallReactionReceived`
+
+Triggered when received an emoji while in a call.
+
+:::warning
+
+Apps can’t join calls right now, so this event won’t fire.
+
+:::
+
+## Received properties
+
+Along with the [Base properties](./02-message-model.md#base-message-properties),
+a `WireMessage.InCallEmoji` object includes an `emoji` map.  
+The map uses the emoji’s string representation as the key and the number of times that emoji was selected as the value.
+
+Currently, end clients don’t support emoji bundling, so the value is always **1**. Each emoji is sent as its own message.
