@@ -25,8 +25,6 @@ architecture-beta
     group devApp(cloud)[Developer Application]
         service appLogic(disk)[App Logic] in devApp
 
-    junction storageRepository
-
     eventListener:L <--> R:webSocketAPI
     restClient:L <--> R:restAPI
 
@@ -34,10 +32,8 @@ architecture-beta
     crypto:B --> T:eventsRouter
     eventListener:B --> T:crypto
     storage:L <--> R:eventsRouter
-    eventsRouter:R -- R:devInterface
-    storageRepository:T --> B:devInterface
-    storageRepository:L --> R:crypto
-    storageRepository:T --> T:storage
+    eventsRouter:T --> B:devInterface
+    storage:T <--> B:devInterface
     devInterface:L --> R:eventListener
 
     appLogic:L <--> R:devInterface
