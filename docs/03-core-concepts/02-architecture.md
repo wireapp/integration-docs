@@ -9,34 +9,38 @@ event-driven interface that manages the heavy lifting in the background.
 ## High-level diagram
 
 ```mermaid
-flowchart TB
-    subgraph DevApp["Developer Application"]
-        AppLogic["App Logic"]
-    end
-    subgraph WireSDK["Wire SDK"]
-        DevInterface["Developer Interface"]
-        EventListener["Events Listener"]
-        RestClient["REST Client"]
-        EventsRouter["Events Router"]
-        Crypto["Crypto Module"]
-        Storage["Storage Layer"]
-    end
-    subgraph WireBackend["Wire Backend"]
-        WebSocketAPI["WebSocket API"]
-        RestAPI["REST API"]
-    end
-    AppLogic <--> DevInterface
-    DevInterface -- start listening --> EventListener
-    EventsRouter -- domain objects --> DevInterface
-    DevInterface -- domain objects --> Crypto
-    Crypto -- encrypted payloads --> RestClient
-    Crypto -- decrypted events --> EventsRouter
-    Storage <-- encrypted keys & state --> Crypto
-    Storage <-- save/get teams & conversations --> EventsRouter
-    DevInterface <-- retrieve stored data --> Storage
-    EventListener <--> WebSocketAPI
-    RestClient <--> RestAPI
-    EventListener --> Crypto
+architecture-beta
+    group wireBackend(server)[Wire Backend]
+        service webSocketAPI(internet)[WebSocket API] in wireBackend
+        service restAPI(internet)[REST API] in wireBackend
+    
+    group wireSDK(cloud)[Wire SDK]
+        service devInterface(server)[Developer Interface] in wireSDK
+        service eventListener(server)[Events Listener] in wireSDK
+        service restClient(server)[REST Client] in wireSDK
+        service eventsRouter(server)[Events Router] in wireSDK
+        service crypto(disk)[Crypto Module] in wireSDK
+        service storage(database)[Storage Layer] in wireSDK
+
+    group devApp(cloud)[Developer Application]
+        service appLogic(disk)[App Logic] in devApp
+
+    junction storageRepository
+
+    eventListener:L <--> R:webSocketAPI
+    restClient:L <--> R:restAPI
+
+    crypto:L --> R:restClient
+    crypto:B --> T:eventsRouter
+    eventListener:B --> T:crypto
+    storage:L <--> R:eventsRouter
+    eventsRouter:R -- R:devInterface
+    storageRepository:T --> B:devInterface
+    storageRepository:L --> R:crypto
+    storageRepository:T --> T:storage
+    devInterface:L --> R:eventListener
+
+    appLogic:L <--> R:devInterface
 ```
 
 ## Developer Application

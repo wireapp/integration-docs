@@ -110,7 +110,6 @@ const config = {
         additionalLanguages: ['java'],
       },
       mermaid: {
-        theme: { light: 'neutral' },
         options: {
           themeVariables: {
             fontFamily: '@site/static/fonts',
