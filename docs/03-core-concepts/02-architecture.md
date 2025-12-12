@@ -16,7 +16,7 @@ architecture-beta
     
     group wireSDK(wire:attachment)[Wire SDK]
         service devInterface(wire:desktop)[Developer Interface] in wireSDK
-        service eventListener(wire:sync)[Events Listener] in wireSDK
+        service eventsListener(wire:sync)[Events Listener] in wireSDK
         service restClient(wire:cloud)[REST Client] in wireSDK
         service eventsRouter(wire:sort)[Events Router] in wireSDK
         service crypto(wire:lock)[Crypto Module] in wireSDK
@@ -25,12 +25,12 @@ architecture-beta
     group devApp(wire:compliant-1)[Developer App]
         service appLogic(wire:bulb)[App Logic] in devApp
 
-    eventListener:L <--> R:webSocketAPI
+    eventsListener:L <--> R:webSocketAPI
     restClient:L <--> R:restAPI
 
     crypto:L --> R:restClient
     crypto:R --> L:eventsRouter
-    eventListener:B --> T:crypto
+    eventsListener:B --> T:crypto
     storage:L <--> R:eventsRouter
     junction devJunction in wireSDK
     eventsRouter:T -- B:devJunction
