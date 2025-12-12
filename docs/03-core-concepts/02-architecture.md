@@ -14,29 +14,47 @@ architecture-beta
         service webSocketAPI(wire:server)[WebSocket API] in wireBackend
         service restAPI(wire:server)[REST API] in wireBackend
     
+    webSocketAPI:R <--> L:eventListener
+    restAPI:R <--> L:restClient
+    
     group wireSDK(wire:attachment)[Wire SDK]
-        service devInterface(wire:desktop)[Developer Interface] in wireSDK
-        service eventsListener(wire:sync)[Events Listener] in wireSDK
+        service eventListener(wire:sync)[Events Listener] in wireSDK
         service restClient(wire:cloud)[REST Client] in wireSDK
-        service eventsRouter(wire:sort)[Events Router] in wireSDK
         service crypto(wire:lock)[Crypto Module] in wireSDK
-        service storage(wire:file)[Storage Layer] in wireSDK
-
-    group devApp(wire:compliant-1)[Developer App]
-        service appLogic(wire:bulb)[App Logic] in devApp
-
-    eventsListener:L <--> R:webSocketAPI
-    restClient:L <--> R:restAPI
-
-    crypto:L --> R:restClient
-    crypto:R --> L:eventsRouter
-    eventsListener:B --> T:crypto
-    storage:L <--> R:eventsRouter
-    junction devJunction in wireSDK
-    eventsRouter:T -- B:devJunction
-    devJunction:R --> L:devInterface
-    devInterface:B <--> T:storage
-    appLogic:L <--> R:devInterface
+    
+    junction junctionLeftUp in wireSDK
+    junction junctionLeftMid in wireSDK
+    junction junctionLeftDown in wireSDK
+    restClient:R <-- L:junctionLeftDown
+    eventListener:R -- L:junctionLeftUp
+    
+    junctionLeftDown:T -- B:junctionLeftMid
+    junctionLeftUp:B -- T:junctionLeftMid
+    
+    junctionLeftMid:R --> L:crypto
+    
+    group devInterface(wire:desktop)[Developer Interface] in wireSDK
+        service eventsRouter(wire:siren)[Events Handler] in devInterface
+        service appManager(wire:settings)[Application Manager] in devInterface
+    
+    junction junctionMidUp in wireSDK
+    junction junctionMidDown in wireSDK
+    
+    crypto:T -- B:junctionMidUp
+    junctionMidUp:R --> L:eventsRouter
+    
+    crypto:B <-- T:junctionMidDown
+    junctionMidDown:R -- L:appManager
+    
+    junction devInterfaceJunction in devInterface
+    
+    eventsRouter:B -- T:devInterfaceJunction
+    appManager:T -- B:devInterfaceJunction
+  
+    devInterfaceJunction:R -- L:appLogic
+    
+    group devApp(wire:service)[Developer App]
+      service appLogic(wire:compliant-1)[App Logic] in devApp
 ```
 
 ## Developer Application
