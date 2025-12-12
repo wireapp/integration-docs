@@ -121,6 +121,7 @@ const config = {
     mermaid: true,
   },
   themes: ['@docusaurus/theme-mermaid'],
+  clientModules: [require.resolve('./src/scripts/mermaid_icons.js')],
   headTags: [
     {
       tagName: "link",

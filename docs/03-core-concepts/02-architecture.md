@@ -10,20 +10,20 @@ event-driven interface that manages the heavy lifting in the background.
 
 ```mermaid
 architecture-beta
-    group wireBackend(server)[Wire Backend]
-        service webSocketAPI(internet)[WebSocket API] in wireBackend
-        service restAPI(internet)[REST API] in wireBackend
+    group wireBackend(wire:cloud)[Wire Backend]
+        service webSocketAPI(wire:server)[WebSocket API] in wireBackend
+        service restAPI(wire:server)[REST API] in wireBackend
     
-    group wireSDK(cloud)[Wire SDK]
-        service devInterface(server)[Developer Interface] in wireSDK
-        service eventListener(server)[Events Listener] in wireSDK
-        service restClient(server)[REST Client] in wireSDK
-        service eventsRouter(server)[Events Router] in wireSDK
-        service crypto(disk)[Crypto Module] in wireSDK
-        service storage(database)[Storage Layer] in wireSDK
+    group wireSDK(wire:attachment)[Wire SDK]
+        service devInterface(wire:desktop)[Developer Interface] in wireSDK
+        service eventListener(wire:sync)[Events Listener] in wireSDK
+        service restClient(wire:cloud)[REST Client] in wireSDK
+        service eventsRouter(wire:sort)[Events Router] in wireSDK
+        service crypto(wire:lock)[Crypto Module] in wireSDK
+        service storage(wire:file)[Storage Layer] in wireSDK
 
-    group devApp(cloud)[Developer Application]
-        service appLogic(disk)[App Logic] in devApp
+    group devApp(wire:compliant-1)[Developer Application]
+        service appLogic(wire:bulb)[App Logic] in devApp
 
     eventListener:L <--> R:webSocketAPI
     restClient:L <--> R:restAPI
