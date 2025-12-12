@@ -22,20 +22,20 @@ architecture-beta
         service crypto(wire:lock)[Crypto Module] in wireSDK
         service storage(wire:file)[Storage Layer] in wireSDK
 
-    group devApp(wire:compliant-1)[Developer Application]
+    group devApp(wire:compliant-1)[Developer App]
         service appLogic(wire:bulb)[App Logic] in devApp
 
     eventListener:L <--> R:webSocketAPI
     restClient:L <--> R:restAPI
 
     crypto:L --> R:restClient
-    crypto:B --> T:eventsRouter
+    crypto:R --> L:eventsRouter
     eventListener:B --> T:crypto
     storage:L <--> R:eventsRouter
-    eventsRouter:T --> B:devInterface
-    storage:T <--> B:devInterface
-    devInterface:L --> R:eventListener
-
+    junction devJunction in wireSDK
+    eventsRouter:T -- B:devJunction
+    devJunction:R --> L:devInterface
+    devInterface:B <--> T:storage
     appLogic:L <--> R:devInterface
 ```
 
