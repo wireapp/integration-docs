@@ -1,10 +1,15 @@
 # Architecture
 
-The SDK handles the complex work behind Wire: backend communication, encryption, and data storage.
-This lets you focus on what your application needs to do.
+Wire provides an official **SDK** to help you build applications quickly and safely. 
+While it’s technically possible to call the Wire backend APIs directly, 
+end-to-end encrypted clients must also set up and manage cryptographic material. 
+That makes them inherently stateful and complex to get right.
 
-Whether you’re building a chatbot, an integration, or custom workflow automation, the SDK gives you a clear, 
-event-driven interface that manages the heavy lifting in the background.
+The SDK handles the heavy lifting, including backend communication, encryption, and data storage. 
+It exposes a clear, event-driven interface so you can focus on your application’s logic instead of low-level details.
+
+Whether you’re building a chatbot, an integration, or custom workflow automation, 
+the SDK gives you a reliable foundation that works securely in the background.
 
 ## High-level diagram
 
