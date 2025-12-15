@@ -64,14 +64,17 @@ architecture-beta
 
 ## Developer Application
 
-Apps are independent software components that connect to Wire’s frontend and backend through a common protocol, 
-such as APIs or events. They run on your systems, but they work smoothly with Wire and the people who use them.
+Apps are independent software components that extend Wire. 
+They are not bundled into Wire’s frontend or backend codebase. 
+Instead, they live outside the core system and connect through a common protocol, such as APIs or events.
 
-An **App** helps you extend or automate how your team works in Wire. It can listen to messages, send replies, 
-and connect Wire to external services you already use.
+Apps run on your own systems, but work seamlessly with Wire and the people who use it. 
+They can read the messages, send replies, and connect Wire to external services. 
+Because apps are pluggable and flexible, they can be added, updated, 
+or removed without requiring a frontend or backend release.
 
-You’ll find basic examples in the `sample` directory at the root of the SDK repository.  
-For more advanced scenarios, see the Showcase section.
+You can find simple examples in the `sample` directory at the root of the SDK repository.  
+For more advanced use cases, see the Showcase section.
 
 <!-- TODO: add link once Showcase section is created -->
 
