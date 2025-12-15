@@ -6,8 +6,8 @@ There are two main ways to interact with Wire using the SDK:
 
 ---
 
-## Reacting to events
-The SDK receives events continuosly after you use `startListening()`. 
+## Receiving events
+The SDK receives events continuously after you use `startListening()`.
 The http connection, deserialization, authentication and decrypting are performed by the Application, so you will receive the event as a `WireMessage`.
 
 You can handle different events and perform any action you want. This is done inside the method override of `WireEventsHandler`. When you create a class to subclass the `WireEventsHandler`, inside each event you have access to a field called `manager` of type `WireApplicationManager`.
@@ -19,7 +19,7 @@ Check all the events in [Wire Events](../04-events/index.md)
 
 ---
 
-## Functionalities of the SDK
+## Interacting with Wire
 
 `WireApplicationManager` has two versions of each function, one "suspending" and the other in normal blocking fashion.
 If you are using Java just look at the non-suspending methods, while in Kotlin you can choose to leverage coroutines (with suspending functions) or not.
@@ -95,7 +95,7 @@ Here are an example for both on the standalone way:
 ```kotlin
 val applicationManager = wireAppSdk.getApplicationManager()
 
-// For Group Conversations there is no need to pass the App user Id as it will be added to the conversation by default.
+// For Group Conversations there is no need to pass the App user ID as it will be added to the conversation by default.
 val createdGroupConversationId = applicationManager.createGroupConversationSuspending(
     name = "Conversation Name",
     userIds = listOf(
@@ -109,7 +109,7 @@ val createdOneToOneConversationId = applicationManager.createOneToOneConversatio
     userId = QualifiedId(otherUserId, otherUserDomain)
 )
 
-// Channel Conversations are similar to Group Conversations, with the difference of passing the Team Id.
+// Channel Conversations are similar to Group Conversations, with the difference of passing the Team ID.
 val createdChannelConversationId = applicationManager.createChannelConversationSuspending(
     name = "Channel Name",
     userIds = listOf(

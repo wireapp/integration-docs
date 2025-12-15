@@ -94,6 +94,8 @@ This manager is your main entry point for working with app data and interactions
 - Fetch details about team members
 - Create new conversations
 
+See [how to interact with Wire](01-developer-interface.mdx#interacting-with-wire) for more practical examples.
+
 <!-- TODO: Add link to `WireApplicationManager` reference once created -->
 
 ### Event listener
