@@ -22,8 +22,3 @@ Therefore they work in a stateful manner. Our SDK takes care of these aspects, a
 
 - **Open for third parties**  
   Apps are not limited to our company’s developers — external teams and third parties can build and operate their own apps.
-
-### Future plans
-We currently support **Kotlin**, and plan to expand to more languages (JavaScript, Python, etc.) so every developer can build apps in the language they know best.
-
-For technical SDK usage and code examples, see the [Developer Documentation on GitHub](https://github.com/wireapp/wire-apps-jvm-sdk/blob/main/docs/APPLICATION.md).
