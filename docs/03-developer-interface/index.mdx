@@ -1,0 +1,31 @@
+# Developer interface
+
+There are two main ways to interact with Wire using the SDK:
+1. Reacting to received events by subclassing `WireEventsHandler`
+2. Triggering actions using the `WireApplicationManager`
+
+---
+
+## Receiving events
+The SDK receives events continuously after you use `startListening()`.
+The http connection, deserialization, authentication and decrypting are performed by the Application, so you will receive the event as a `WireMessage`.
+
+You can handle different events and perform any action you want. This is done inside the method override of `WireEventsHandler`. When you create a class to subclass the `WireEventsHandler`, inside each event you have access to a field called `manager` of type `WireApplicationManager`.
+
+The manager allows you to interact with Wire, from creating conversations, fetching users to sending messages.
+You can use it while receiving events and/or directly use it directly in your code (e.g a scheduled job uses `WireApplicationManager` to fetch conversations, or a webhook you create triggers a message being sent in Wire).
+
+Check all the events in [Wire Events](01-events/index.md)
+
+---
+
+## Interacting with Wire
+
+`WireApplicationManager` has two versions of each function, one "suspending" and the other in normal blocking fashion.
+If you are using Java just look at the non-suspending methods, while in Kotlin you can choose to leverage coroutines (with suspending functions) or not.
+
+Here are some example of things you can do via the SDK to interact with the Wire ecosystem with your App:
+
+ - [Sending messages](02-interactions/01-send-message.md)
+ - [Managing teams and conversations](02-interactions/02-teams-and-conversations.md)
+ - [Creating conversations](02-interactions/03-create-conversation.md)
