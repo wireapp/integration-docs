@@ -37,6 +37,6 @@ For the technical part, check out the tutorial/quickstart or the technical conce
 
 ➡️ [Check out the Quickstart guide](01-quickstart-advanced.mdx)
 
-➡️ [Check out all the capabilities of the SDK](03-core-concepts/01-developer-interface.mdx)
+➡️ [Check out all the capabilities of the SDK](03-developer-interface/index.mdx)
 
 Then for the registration, check out [Onboarding apps](./02-manage-apps/01-create-app.md).

@@ -92,7 +92,7 @@ The SDK handles all underlying processing, so you can focus on the logic that ma
 
 To receive events, implement `WireEventsHandler` and choose the event types you want to react to. 
 Each method in the handler corresponds to a specific event.  
-See [the class reference](@site/docs/04-events/index.md) for details on all available callbacks.
+See [the class reference](03-developer-interface/01-events/index.md) for details on all available callbacks.
 
 Both `WireAppSdk` and `WireEventsHandler` give you access to `WireApplicationManager`.  
 This manager is your main entry point for working with app data and interactions. You can use it to:
@@ -102,7 +102,7 @@ This manager is your main entry point for working with app data and interactions
 - Fetch details about team members
 - Create new conversations
 
-See [how to interact with Wire](01-developer-interface.mdx#interacting-with-wire) for more practical examples.
+See [how to interact with Wire](03-developer-interface/index.mdx#interacting-with-wire) for more practical examples.
 
 <!-- TODO: Add link to `WireApplicationManager` reference once created -->
 
