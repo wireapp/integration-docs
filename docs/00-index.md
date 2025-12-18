@@ -5,7 +5,7 @@ slug: /
 
 #### Apps bring your ideas to the [Wire secure communications platform](https://wire.com/)
 Automate workflows, connect with third-party services, and boost collaboration.  
-Customize Wire to fit your team's needs. All with Wire's end-to-end encryption and security intact.
+Customize Wire to fit your team's needs. All with Wire's end-to-end MLS encryption and security intact.
 
 ## How it works
 
@@ -33,5 +33,15 @@ The SDK at a glance:
 
 ### Register the App
 
-To securely connect to Wire, your App needs credentials.
-Please follow [steps to onboard your App](./02-manage-apps/01-create-app.md).
+For identification and secure connection to Wire, your App needs credentials.
+
+Follow the [steps to onboard your App](./02-manage-apps/01-create-app.md).
+
+### Deploy secure apps
+
+You own and host your app, with full control over your infrastructure and data.
+
+Wire never has access to the messages your App receives or sends.
+
+You need to secure your deployment and protect the data your App handles. 
+Follow the [secure integration guidelines](05-secure-integration-guidelines/01-security-privacy-basics.md) and review the [deployment tips](04-deployment-tips/index.md).
