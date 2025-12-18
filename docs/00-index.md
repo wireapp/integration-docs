@@ -3,7 +3,7 @@ slug: /
 ---
 # Extend Wire with secure Apps
 
-Apps bring your ideas to the [Wire secure communications platform](https://wire.com/).  
+#### Apps bring your ideas to the [Wire secure communications platform](https://wire.com/)
 Automate workflows, connect with third-party services, and boost collaboration.  
 Customize Wire to fit your team's needs. All with Wire's end-to-end encryption and security intact.
 
