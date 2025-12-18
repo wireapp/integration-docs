@@ -3,12 +3,9 @@ slug: /
 ---
 # Extend Wire with secure Apps
 
-Apps are modular components that extend the platform without being part of its core codebase.
-
-## Why Apps
-- **Automation**: Reduce manual tasks and streamline workflows.
-- **Integration**: Connect external systems (CRMs, support tools, monitoring).
-- **Customization**: Tailor the platform to your team’s needs.
+Apps bring your ideas to the [Wire secure communications platform](https://wire.com/).  
+Automate workflows, connect with third-party services, and boost collaboration.  
+Customize Wire to fit your team's needs. All with Wire's end-to-end encryption and security intact.
 
 ## How Apps Work
 Apps are separate pieces of software that communicate with the platform’s frontend and backend through a **common protocol** (such as APIs or events).  
