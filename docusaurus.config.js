@@ -34,7 +34,7 @@ const config = {
     defaultLocale: 'en',
     locales: ['en'],
   },
-
+  plugins: ["@docusaurus/plugin-ideal-image"],
   presets: [
     [
       'classic',
@@ -70,6 +70,7 @@ const config = {
             label: 'GitHub',
             position: 'right',
           },
+          { to: "/showcase", label: "Showcase", position: "left" },
         ],
       },
       footer: {
