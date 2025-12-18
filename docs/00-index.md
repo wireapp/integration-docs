@@ -9,13 +9,13 @@ Customize Wire to fit your team's needs. All with Wire's end-to-end encryption a
 
 ## How it works
 
-Apps are separate pieces of software that communicate with Wire through a **common protocol**.  
+Apps are separate pieces of software that communicate with Wire through a common protocol.  
 They remain independent, but can seamlessly interact with the system and its users.
 
-An **App** is a way to extend and automate your team’s experience on Wire.  
+An App is a way to extend and automate your team’s experience on Wire.  
 Apps can listen to messages, send responses, and integrate with external services.
 
-Apps are owned and managed at the **team level**. The administrator decides which Apps are installed.
+Apps are owned and managed at the team level. The administrator decides which Apps are installed.
 
 ## What's needed
 
