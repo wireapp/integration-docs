@@ -1,7 +1,7 @@
 ---
 slug: /
 ---
-# Understanding Apps
+# Extend Wire with secure Apps
 
 Apps are modular components that extend the platform without being part of its core codebase.
 
