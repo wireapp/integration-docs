@@ -3,7 +3,7 @@ slug: /
 ---
 # Understanding Apps
 
-Apps — sometimes called *integrations*, *services*, or *third-party applications* — are modular components that extend the platform without being part of its core codebase.
+Apps are modular components that extend the platform without being part of its core codebase.
 
 ## Why Apps
 - **Automation**: Reduce manual tasks and streamline workflows.
