@@ -7,33 +7,31 @@ Apps bring your ideas to the [Wire secure communications platform](https://wire.
 Automate workflows, connect with third-party services, and boost collaboration.  
 Customize Wire to fit your team's needs. All with Wire's end-to-end encryption and security intact.
 
-## How Apps Work
-Apps are separate pieces of software that communicate with the platform’s frontend and backend through a **common protocol** (such as APIs or events).  
+## How it works
+
+Apps are separate pieces of software that communicate with Wire through a **common protocol**.  
 They remain independent, but can seamlessly interact with the system and its users.
 
-An **App** is a way to extend and automate your team’s experience on Wire.
+An **App** is a way to extend and automate your team’s experience on Wire.  
 Apps can listen to messages, send responses, and integrate with external services.
 
-Apps are owned and managed at the **team level**, giving administrators control over:
-- Which Apps can be installed
-- What data Apps can access
+Apps are owned and managed at the **team level**. The administrator decides which Apps are installed.
 
-## How to create an App
+## What's needed
 
-There are 2 main aspects:
-1. Developing your app using one of the Wire SDKs for Apps
-2. Registering the App and getting credentials on Wire Team management
+### Develop your App using SDK
 
-### The SDK at a glance
+The SDK at a glance:
 - Handles authentication for you
 - Provides event handling
 - Makes sending and receiving messages easier
 - Strongly typed for Kotlin developers
 
-For the technical part, check out the tutorial/quickstart or the technical concepts' explanation:
+➡️ Start right away! [Follow the Quickstart guide](01-quickstart-advanced.mdx).
 
-➡️ [Check out the Quickstart guide](01-quickstart-advanced.mdx)
+➡️ Discover [all the ways of interacting with Wire](03-developer-interface/index.mdx).
 
-➡️ [Check out all the capabilities of the SDK](03-developer-interface/index.mdx)
+### Register the App
 
-Then for the registration, check out [Onboarding apps](./02-manage-apps/01-create-app.md).
+To securely connect to Wire, your App needs credentials.
+Please follow [steps to onboard your App](./02-manage-apps/01-create-app.md).
