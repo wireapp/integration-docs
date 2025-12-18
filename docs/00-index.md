@@ -21,11 +21,8 @@ Apps are owned and managed at the team level. The administrator decides which Ap
 
 ### Develop your App using SDK
 
-The SDK at a glance:
-- Handles authentication for you
-- Provides event handling
-- Makes sending and receiving messages easier
-- Strongly typed for Kotlin developers
+The SDK handles authentication for you, notifies about events, and makes sending and receiving messages straightforward.
+It’s strongly typed for Kotlin, helping you write safer, more predictable code with less overhead.
 
 ➡️ Start right away! [Follow the Quickstart guide](01-quickstart-advanced.mdx).
 
