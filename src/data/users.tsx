@@ -27,7 +27,7 @@ export type TagType =
 const Users: User[] = [
   {
     title: 'Remind App',
-    description: 'An app to remind you about important things.',
+    description: 'An app to remind you about important things',
     preview: null,
     source: 'https://github.com/wireapp/remind-app',
     tags: ['wire-developed', 'opensource'],
@@ -41,7 +41,7 @@ const Users: User[] = [
   },
   {
     title: 'QR App',
-    description: 'A utility bot. You ask for a deeplink, it will give you one.',
+    description: 'You ask for a Wire deeplink, it will give you one',
     preview: null,
     source: null,
     tags: ['wire-developed'],
@@ -100,16 +100,16 @@ export const Tags: {[type in TagType]: Tag} = {
     label: translate({message: 'Wire-developed'}),
     description: translate({
       message:
-        'Explore apps developed by Wire',
+        'Explore Apps developed by Wire',
       id: 'showcase.tag.wire-developed.description',
     }),
     color: 'currentColor',
   },
 
   opensource: {
-    label: translate({message: 'Open-Source'}),
+    label: translate({message: 'Open source'}),
     description: translate({
-      message: 'Open-Source Wire apps can be useful for inspiration!',
+      message: 'Open source Apps can be useful for inspiration',
       id: 'showcase.tag.opensource.description',
     }),
     color: '#39ca30',
@@ -118,7 +118,7 @@ export const Tags: {[type in TagType]: Tag} = {
   product: {
     label: translate({message: 'Product'}),
     description: translate({
-      message: 'Wire apps associated to a commercial product!',
+      message: 'Apps associated to a commercial product',
       id: 'showcase.tag.product.description',
     }),
     color: '#dfd545',
