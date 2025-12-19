@@ -103,7 +103,7 @@ export const Tags: {[type in TagType]: Tag} = {
         'Explore apps developed by Wire',
       id: 'showcase.tag.wire-developed.description',
     }),
-    color: '#e9669e',
+    color: 'currentColor',
   },
 
   opensource: {

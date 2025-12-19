@@ -74,7 +74,7 @@ function ShowcaseCard({user}: {user: User}) {
             </Link>
           )}
           {user.tags.includes('wire-developed') && (
-            <WireIcon size="large" style={{marginRight: '0.25rem'}} />
+            <WireIcon size="large" style={{marginLeft: '0.5rem'}} />
           )}
         </div>
         <p className={styles.showcaseCardBody}>{user.description}</p>
