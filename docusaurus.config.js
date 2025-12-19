@@ -66,8 +66,8 @@ const config = {
         },
         items: [
           {
-            href: 'https://github.com/wireapp/',
-            label: 'GitHub',
+            href: 'https://github.com/wireapp/wire-apps-jvm-sdk',
+            label: 'JVM SDK',
             position: 'right',
           },
           { to: "/showcase", label: "Showcase", position: "left" },
