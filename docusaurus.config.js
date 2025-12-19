@@ -97,7 +97,7 @@ const config = {
                 href: 'https://github.com/wireapp/',
               },
               {
-                label: '✏️ Contribute',
+                label: 'Contribute',
                 href: 'https://github.com/wireapp/integration-docs/tree/main/docs',
               },
             ],
