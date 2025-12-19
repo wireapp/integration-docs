@@ -20,6 +20,7 @@ export type TagType =
   // For open source Apps, a link to the source code is required.
   | 'opensource'
   | 'product'
+  | 'kotlin'
 
 // Add apps to this list
 // prettier-ignore
@@ -29,49 +30,49 @@ const Apps: App[] = [
     description: 'An app to remind you about important things',
     icon: null,
     source: 'https://github.com/wireapp/remind-app',
-    tags: ['wire-developed', 'opensource'],
+    tags: ['wire-developed', 'opensource', 'kotlin'],
   },
   {
     title: 'Poll App',
     description: 'Create polls directly in chat conversations',
     icon: null,
     source: 'https://github.com/wireapp/poll-app',
-    tags: ['wire-developed', 'opensource'],
+    tags: ['wire-developed', 'opensource', 'kotlin'],
   },
   {
     title: 'QR App',
     description: 'You ask for a Wire deeplink, it will give you one',
     icon: null,
     source: null,
-    tags: ['wire-developed'],
+    tags: ['wire-developed', 'kotlin'],
   },
   {
     title: 'GitHub App',
     description: 'Get GitHub notifications directly in Wire',
     icon: null,
     source: 'https://github.com/wireapp/github-app',
-    tags: ['wire-developed', 'product', 'opensource'],
+    tags: ['wire-developed', 'product', 'opensource', 'kotlin'],
   },
   {
     title: 'Debug App',
     description: 'A Wire app to debug clients',
     icon: null,
     source: null,
-    tags: ['wire-developed'],
+    tags: ['wire-developed', 'kotlin'],
   },
   {
     title: 'Broadcast App',
     description: 'Message multiple conversations simultaneously',
     icon: null,
     source: null,
-    tags: ['wire-developed'],
+    tags: ['wire-developed', 'kotlin'],
   },
   {
     title: 'Scribe App',
     description: 'Transcribe and summarize audio files in conversation',
     icon: null,
     source: null,
-    tags: ['wire-developed'],
+    tags: ['wire-developed', 'kotlin'],
   },
 
   /*
@@ -121,6 +122,15 @@ export const Tags: {[type in TagType]: Tag} = {
       id: 'showcase.tag.product.description',
     }),
     color: '#dfd545',
+  },
+
+  kotlin: {
+    label: translate({message: 'Kotlin'}),
+    description: translate({
+      message: 'Apps written in Kotlin programming language',
+      id: 'showcase.tag.kotlin.description',
+    }),
+    color: '#b125ea',
   },
 };
 
