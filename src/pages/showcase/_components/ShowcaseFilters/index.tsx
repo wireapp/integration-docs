@@ -14,7 +14,7 @@ import Heading from '@theme/Heading';
 import ShowcaseTagSelect from '../ShowcaseTagSelect';
 import OperatorButton from '../OperatorButton';
 import ClearAllButton from '../ClearAllButton';
-import {useFilteredApps, useSiteCountPlural} from '../../_utils';
+import {useFilteredApps, useAppCountPlural} from '../../_utils';
 
 import styles from './styles.module.css';
 
@@ -70,13 +70,13 @@ function ShowcaseTagList() {
 
 function HeadingText() {
   const filteredApps = useFilteredApps();
-  const siteCountPlural = useSiteCountPlural();
+  const appCountPlural = useAppCountPlural();
   return (
     <div className={styles.headingText}>
       <Heading as="h2">
         <Translate id="showcase.filters.title">Filters</Translate>
       </Heading>
-      <span>{siteCountPlural(filteredApps.length)}</span>
+      <span>{appCountPlural(filteredApps.length)}</span>
     </div>
   );
 }

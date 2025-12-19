@@ -23,7 +23,7 @@ function HeadingNoResult() {
   );
 }
 
-function HeadingAllSites() {
+function HeadingAllApps() {
   return (
     <Heading as="h2">
       <Translate id="showcase.appsList.allApps">All Apps</Translate>
@@ -66,7 +66,7 @@ export default function ShowcaseCards() {
       {filteredApps.length === sortedApps.length ? (
         <>
           <div className="margin-top--lg">
-            <CardList heading={<HeadingAllSites />} items={sortedApps} />
+            <CardList heading={<HeadingAllApps />} items={sortedApps} />
           </div>
         </>
       ) : (

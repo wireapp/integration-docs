@@ -59,9 +59,7 @@ function ShowcaseCard({app}: {app: App}) {
       <div className="card__body">
         <div className={clsx(styles.showcaseCardHeader)}>
           <Heading as="h4" className={styles.showcaseCardTitle}>
-            <Link href={app.website} className={styles.showcaseCardLink}>
-              {app.title}
-            </Link>
+            {app.title}
           </Heading>
           {app.source && (
             <Link
@@ -74,7 +72,7 @@ function ShowcaseCard({app}: {app: App}) {
             </Link>
           )}
           {app.tags.includes('wire-developed') && (
-            <WireIcon size="large" style={{marginLeft: '0.5rem'}} />
+            <WireIcon size="large" style={{marginLeft: '1rem'}} />
           )}
         </div>
         <p className={styles.showcaseCardBody}>{app.description}</p>
