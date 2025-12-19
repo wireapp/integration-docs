@@ -8,17 +8,17 @@
 import type {ReactNode} from 'react';
 import clsx from 'clsx';
 import Translate from '@docusaurus/Translate';
-import {sortedUsers, type User} from '@site/src/data/users';
+import {sortedApps, type App} from '@site/src/data/apps';
 import Heading from '@theme/Heading';
 import ShowcaseCard from '../ShowcaseCard';
-import {useFilteredUsers} from '../../_utils';
+import {useFilteredApps} from '../../_utils';
 
 import styles from './styles.module.css';
 
 function HeadingNoResult() {
   return (
     <Heading as="h2">
-      <Translate id="showcase.usersList.noResult">No result</Translate>
+      <Translate id="showcase.appsList.noResult">No result</Translate>
     </Heading>
   );
 }
@@ -26,18 +26,18 @@ function HeadingNoResult() {
 function HeadingAllSites() {
   return (
     <Heading as="h2">
-      <Translate id="showcase.usersList.allUsers">All Apps</Translate>
+      <Translate id="showcase.appsList.allApps">All Apps</Translate>
     </Heading>
   );
 }
 
-function CardList({heading, items}: {heading?: ReactNode; items: User[]}) {
+function CardList({heading, items}: {heading?: ReactNode; items: App[]}) {
   return (
     <div className="container">
       {heading}
       <ul className={clsx('clean-list', styles.cardList)}>
         {items.map((item) => (
-          <ShowcaseCard key={item.title} user={item} />
+          <ShowcaseCard key={item.title} app={item} />
         ))}
       </ul>
     </div>
@@ -55,22 +55,22 @@ function NoResultSection() {
 }
 
 export default function ShowcaseCards() {
-  const filteredUsers = useFilteredUsers();
+  const filteredApps = useFilteredApps();
 
-  if (filteredUsers.length === 0) {
+  if (filteredApps.length === 0) {
     return <NoResultSection />;
   }
 
   return (
     <section className="margin-top--lg margin-bottom--xl">
-      {filteredUsers.length === sortedUsers.length ? (
+      {filteredApps.length === sortedApps.length ? (
         <>
           <div className="margin-top--lg">
-            <CardList heading={<HeadingAllSites />} items={sortedUsers} />
+            <CardList heading={<HeadingAllSites />} items={sortedApps} />
           </div>
         </>
       ) : (
-        <CardList items={filteredUsers} />
+        <CardList items={filteredApps} />
       )}
     </section>
   );

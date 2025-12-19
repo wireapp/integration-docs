@@ -11,8 +11,8 @@ import {
   useQueryString,
   useQueryStringList,
 } from '@docusaurus/theme-common';
-import type {TagType, User} from '@site/src/data/users';
-import {sortedUsers} from '@site/src/data/users';
+import type {TagType, App} from '@site/src/data/apps';
+import {sortedApps} from '@site/src/data/apps';
 
 export function useSearchName() {
   return useQueryString('name');
@@ -34,45 +34,45 @@ export function useOperator() {
   return [operator, toggleOperator] as const;
 }
 
-function filterUsers({
-  users,
+function filterApps({
+  apps,
   tags,
   operator,
   searchName,
 }: {
-  users: User[];
+  apps: App[];
   tags: TagType[];
   operator: Operator;
   searchName: string | null;
 }) {
   if (searchName) {
     // eslint-disable-next-line no-param-reassign
-    users = users.filter((user) =>
-      user.title.toLowerCase().includes(searchName.toLowerCase()),
+    apps = apps.filter((app) =>
+      app.title.toLowerCase().includes(searchName.toLowerCase()),
     );
   }
   if (tags.length === 0) {
-    return users;
+    return apps;
   }
-  return users.filter((user) => {
-    if (user.tags.length === 0) {
+  return apps.filter((app) => {
+    if (app.tags.length === 0) {
       return false;
     }
     if (operator === 'AND') {
-      return tags.every((tag) => user.tags.includes(tag));
+      return tags.every((tag) => app.tags.includes(tag));
     }
-    return tags.some((tag) => user.tags.includes(tag));
+    return tags.some((tag) => app.tags.includes(tag));
   });
 }
 
-export function useFilteredUsers() {
+export function useFilteredApps() {
   const [tags] = useTags();
   const [searchName] = useSearchName();
   const [operator] = useOperator();
   return useMemo(
     () =>
-      filterUsers({
-        users: sortedUsers,
+      filterApps({
+        apps: sortedApps,
         tags: tags as TagType[],
         operator,
         searchName,

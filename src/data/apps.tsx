@@ -24,7 +24,7 @@ export type TagType =
 
 // Add sites to this list
 // prettier-ignore
-const Users: User[] = [
+const Apps: App[] = [
   {
     title: 'Remind App',
     description: 'An app to remind you about important things',
@@ -81,7 +81,7 @@ const Users: User[] = [
    */
 ];
 
-export type User = {
+export type App = {
   title: string;
   description: string;
   preview: string | null; // null = use our serverless screenshot service
@@ -126,13 +126,13 @@ export const Tags: {[type in TagType]: Tag} = {
 };
 
 export const TagList = Object.keys(Tags) as TagType[];
-function sortUsers() {
-  let result = Users;
+function sortApps() {
+  let result = Apps;
   // Sort by site name
-  result = sortBy(result, (user) => user.title.toLowerCase());
+  result = sortBy(result, (app) => app.title.toLowerCase());
   // wire-developed first
-  result = sortBy(result, (user) => !user.tags.includes('wire-developed'));
+  result = sortBy(result, (app) => !app.tags.includes('wire-developed'));
   return result;
 }
 
-export const sortedUsers = sortUsers();
+export const sortedApps = sortApps();
