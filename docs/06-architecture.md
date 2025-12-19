@@ -74,9 +74,7 @@ Because apps are pluggable and flexible, they can be added, updated,
 or removed without requiring a frontend or backend release.
 
 You can find simple examples in the `sample` directory at the root of the SDK repository.  
-For more advanced use cases, see the Showcase section.
-
-<!-- TODO: add link once Showcase section is created -->
+For more advanced use cases, see the [Showcase section](/showcase).
 
 ## Wire SDK
 

@@ -34,7 +34,6 @@ const config = {
     defaultLocale: 'en',
     locales: ['en'],
   },
-
   presets: [
     [
       'classic',
@@ -70,6 +69,7 @@ const config = {
             label: 'JVM SDK',
             position: 'right',
           },
+          { to: "/showcase", label: "Showcase", position: "left" },
         ],
       },
       footer: {
@@ -96,7 +96,7 @@ const config = {
                 href: 'https://github.com/wireapp/',
               },
               {
-                label: '✏️ Contribute',
+                label: 'Contribute',
                 href: 'https://github.com/wireapp/integration-docs/tree/main/docs',
               },
             ],
