@@ -34,7 +34,6 @@ const config = {
     defaultLocale: 'en',
     locales: ['en'],
   },
-  plugins: ["@docusaurus/plugin-ideal-image"],
   presets: [
     [
       'classic',
