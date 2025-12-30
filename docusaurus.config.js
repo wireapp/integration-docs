@@ -120,7 +120,21 @@ const config = {
   markdown: {
     mermaid: true,
   },
-  themes: ['@docusaurus/theme-mermaid'],
+  themes: [
+    '@docusaurus/theme-mermaid',
+    [
+      require.resolve("@easyops-cn/docusaurus-search-local"),
+      /** @type {import("@easyops-cn/docusaurus-search-local").PluginOptions} */
+      ({
+        // `hashed` is recommended as long-term-cache of index file is possible.
+        hashed: true,
+
+        // needed because we use docs-only mode
+        docsRouteBasePath: "/",
+        indexBlog: false
+      }),
+    ],
+  ],
   clientModules: [require.resolve('./src/scripts/mermaid_icons.js')],
   headTags: [
     {

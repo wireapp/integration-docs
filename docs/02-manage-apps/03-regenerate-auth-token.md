@@ -9,15 +9,15 @@ In the app:
 1. Select *Settings*, then select *Manage team* or go to [teams.wire.com](https://teams.wire.com/).
 2. Log in with your account credentials:
 
-![log in](../assets/team-management/log_in.png)
+![log in](/img/team-management/log_in.png)
 
 3. Select *Integrations*.
 
-![integrations tab](../assets/team-management/integrations_tab.png)
+![integrations tab](/img/team-management/integrations_tab.png)
 
 4. Select the three dots (•••) next to app name.
 
-![integrations tab dots](../assets/team-management/integrations_tab_three_dots.png)
+![integrations tab dots](/img/team-management/integrations_tab_three_dots.png)
 
 5. Select *Get new token*.
 
@@ -28,11 +28,11 @@ Your app won’t be able to connect until it uses the new token.
 
 :::
 
-![get new token](../assets/team-management/get_new_token.png)
+![get new token](/img/team-management/get_new_token.png)
 
 6. Enter your password.
 
-![copy new token](../assets/team-management/copy_new_token.png)
+![copy new token](/img/team-management/copy_new_token.png)
 
 7. Copy the new token. Keep it secure.
 
