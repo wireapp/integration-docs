@@ -9,19 +9,19 @@ In the app:
 1. Select *Settings*, then select *Manage team* or go to [teams.wire.com](https://teams.wire.com/).
 2. Log in with your account credentials:
 
-![log in](../assets/team-management/log_in.png)
+![log in](/img/team-management/log_in.png)
 
 3. Select *Integrations*.
 
-![integrations tab](../assets/team-management/integrations_tab.png)
+![integrations tab](/img/team-management/integrations_tab.png)
 
 4. Select the three dots (•••) next to app name.
 
-![integrations tab dots](../assets/team-management/integrations_tab_three_dots.png)
+![integrations tab dots](/img/team-management/integrations_tab_three_dots.png)
 
 5. Choose *Edit details*.
 
-![edit app](../assets/team-management/edit_app.png)
+![edit app](/img/team-management/edit_app.png)
 
 6. Update the fields as needed, then select *Save*.
 
