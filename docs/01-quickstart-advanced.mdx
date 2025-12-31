@@ -42,23 +42,42 @@ dependencies {
 
 ## Initializing the SDK
 
-The SDK needs to be initialized with your application's credentials, the backend host, a password for the cryptographic material and your event handler implementation:
+<!-- TODO(WPB-22289): delete this section – START -->
 
-| Parameter                     | Description                                                                                                                                                                                |
-|-------------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| `applicationId` + `apiToken`  | Retrieved from the backend during onboarding, when you register a new Application                                                                                                          |
-| `apiHost`                     | The target backend, should be production for normal operations: https://prod-nginz-https.wire.com                                                                                          |
-| `cryptographyStoragePassword` | The password you choose to let the SDK encrypt the cryptographic material at rest. It is recommended to be generated randomly and stored in a secure place. It must be 32 characters long. |
-| `wireEventsHandler`           | Your implementation (extending the `WireEventsHandler` abstract class)                                                                                                                     |
+App registration through Team Management isn’t available yet.
+For now, create an account manually for your app and configure the required environment variables.
 
-#### Environment Variables
-> For now (it will be changed in the future) the SDK also needs some environment variables of a User to act as the App
+### Environment Variables
 ```dotenv
-WIRE_SDK_USER_ID=abcd-1234-efgh-5678
+# Credentials for the Wire account you just created
 WIRE_SDK_EMAIL=your_email@domain.com
 WIRE_SDK_PASSWORD=dummyPassword
+
+# Open Settings, scroll to Profile link, and copy the user ID and domain
+# Example of Profile Link:
+# https://account.wire.com/user-profile/?id=abcd-1234-efgh-5678@my.domain.link
+WIRE_SDK_USER_ID=abcd-1234-efgh-5678
 WIRE_SDK_ENVIRONMENT=my.domain.link
 ```
+
+Since app registration is not implemented yet, set applicationId and apiToken to arbitrary values.
+
+For example:
+ - applicationId: `UUID.randomUUID()`
+ - apiToken: myApiToken
+
+<!-- TODO(WPB-22289): delete this section – END -->
+
+### Constructor parameters
+
+The SDK needs to be initialized with your application's credentials, the backend host, a password for the cryptographic material and your event handler implementation:
+
+| Parameter                     | Description                                                                                                                                                                                                |
+|-------------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| `applicationId` + `apiToken`  | Universally unique identifier (UUID) of the app and a token that allows access to Wire-server endpoints. <br /> Available in Team Management after [registering an app](./02-manage-apps/01-create-app.md) |
+| `apiHost`                     | URL of the backend that hosts Wire. <br /> For Wire Cloud, use `https://prod-nginz-https.wire.com`                                                                                                         |
+| `cryptographyStoragePassword` | Cryptographic key used to encrypt local storage. <br /> See how to [generate cryptographically secure key](./05-secure-integration-guidelines/01-security-privacy-basics.md#storage-encryption-password)   |
+| `wireEventsHandler`           | Your implementation of `WireEventsHandler` abstract class                                                                                                                                                  |
 
 Initializing an instance of WireAppSdk is enough to get access to local stored teams and conversations and to send messages or similar actions.
 
