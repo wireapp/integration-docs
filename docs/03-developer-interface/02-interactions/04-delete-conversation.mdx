@@ -1,0 +1,45 @@
+# Deleting conversations
+
+Through the WireApplicationManager you can delete group conversations.
+Here is an example for both on the standalone way:
+
+```mdx-code-block
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+```
+
+### Use Case: Remove latest group conversation
+<Tabs groupId="programming-language">
+<TabItem value="kotlin" label="Kotlin">
+
+```kotlin
+val applicationManager = wireAppSdk.getApplicationManager()
+val latestConversation = applicationManager.getStoredConversations().last {
+    it.type == Conversation.Type.GROUP
+}
+
+applicationManager.deleteConversationSuspending(conversationId = latestConversation.id)
+```
+
+</TabItem>
+<TabItem value="java" label="Java">
+
+```java
+ApplicationManager applicationManager = wireAppSdk.getApplicationManager();
+
+Conversation latestConversation = null;
+for (Conversation conversation : applicationManager.getStoredConversations()) {
+    if (conversation.getType() == Conversation.Type.GROUP) {
+        latestConversation = conversation;
+    }
+}
+
+if (latestConversation == null) {
+    throw new NoSuchElementException("No group conversation found");
+}
+
+applicationManager.deleteConversation(latestConversation.getId());
+```
+
+</TabItem>
+</Tabs>
