@@ -138,3 +138,60 @@ applicationManager.sendAsset(
 
 </TabItem>
 </Tabs>
+
+## Composite message
+
+Composite messages are a combination of text and buttons in a single message.
+
+:::note
+
+Only Apps can create Composite messages.
+End clients can receive and display them, but cannot send them.
+
+:::
+
+A `WireMessage.Composite` object has [Base properties](../01-events/02-message-model.md#base-message-properties) and  includes a list of `Item` objects.
+
+Each `Item` can be one of the following:
+- **`WireMessage.Text`** — A text element. See [how to create one](#text-message).
+- **`WireMessage.Button`** — An interactive element that lets users perform an action. Each button includes:
+  - `text` — the label shown on the button.
+  - `id` — a unique identifier for the button, automatically generated unless specified.
+
+#### Composite message on desktop
+![composite on desktop](/img/composite_on_desktop.png)
+
+<Tabs groupId="programming-language">
+<TabItem value="kotlin" label="Kotlin">
+
+```kotlin
+val compositeMessage = WireMessage.Composite.create(
+    conversationId = conversationId,
+    text = "What's the best JVM language?",
+    buttonList = listOf(
+        WireMessage.Button(text = "Java"),
+        WireMessage.Button(text = "Kotlin")
+    )
+)
+
+applicationManager.sendMessageSuspending(compositeMessage)
+```
+
+</TabItem>
+<TabItem value="java" label="Java">
+
+```java
+WireMessage.Composite compositeMessage = WireMessage.Composite.create(
+        conversationId,
+        "What's the best JVM language?",
+        List.of(
+                new WireMessage.Button("Java"),
+                new WireMessage.Button("Kotlin")
+        )
+);
+
+applicationManager.sendMessage(compositeMessage);
+```
+
+</TabItem>
+</Tabs>
