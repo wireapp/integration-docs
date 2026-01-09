@@ -25,11 +25,11 @@ applicationManager.leaveConversationSuspending(conversationId = latestConversati
 <TabItem value="java" label="Java">
 
 ```java
-ApplicationManager applicationManager = wireAppSdk.getApplicationManager();
+WireApplicationManager applicationManager = wireAppSdk.getApplicationManager();
 
 Conversation latestConversation = null;
 for (Conversation conversation : applicationManager.getStoredConversations()) {
-    if (conversation.getType() == Conversation.Type.GROUP) {
+    if (conversation.type() == Conversation.Type.GROUP) {
         latestConversation = conversation;
     }
 }
@@ -38,7 +38,7 @@ if (latestConversation == null) {
     throw new NoSuchElementException("No group conversation found");
 }
 
-applicationManager.leaveConversation(latestConversation.getId());
+applicationManager.leaveConversation(latestConversation.id());
 ```
 
 </TabItem>
