@@ -1,0 +1,197 @@
+# Sending messages
+
+Make your application send messages to specific conversations.
+
+```mdx-code-block
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+```
+
+The conversation identifier is required. You can get it from:
+ - [received message](../01-events/02-on-text-message-received.mdx#echo-received-message),
+ - [stored conversations](02-teams-and-conversations.md),
+ - or by constructing it manually:
+
+<Tabs groupId="programming-language">
+<TabItem value="kotlin" label="Kotlin">
+
+```kotlin
+val conversationId = QualifiedId(
+    id = UUID.fromString("f81d4fae-7dec-11d0-a765-00a0c91e6bf6"),
+    domain = "example.com"
+)
+```
+
+</TabItem>
+<TabItem value="java" label="Java">
+
+```java
+QualifiedId conversationId = new QualifiedId(
+        UUID.fromString("f81d4fae-7dec-11d0-a765-00a0c91e6bf6"),
+        "example.com"
+);
+```
+</TabItem>
+</Tabs>
+
+
+## Text message
+
+<Tabs groupId="programming-language">
+<TabItem value="kotlin" label="Kotlin">
+
+```kotlin
+val textMessage = WireMessage.Text.create(
+    conversationId = conversationId,
+    text = "Hello world!"
+)
+val applicationManager = wireAppSdk.getApplicationManager()
+
+applicationManager.sendMessageSuspending(textMessage)
+```
+
+</TabItem>
+<TabItem value="java" label="Java">
+
+```java
+WireMessage textMessage = WireMessage.Text.create(
+        conversationId,
+        "Hello world!",
+        List.of(),
+        List.of(),
+        null
+);
+WireApplicationManager applicationManager = wireAppSdk.getApplicationManager();
+
+applicationManager.sendMessage(textMessage);
+```
+
+</TabItem>
+</Tabs>
+
+## Asset message
+
+Upload and send an asset (file) to a conversation.
+
+:::note
+
+When sending an asset message, you need to provide the file, name and mime type, while we take
+care of the encryption and metadata based on mime type.
+
+:::
+
+<Tabs groupId="programming-language">
+<TabItem value="kotlin" label="Kotlin">
+
+```kotlin
+// Get local file from resources
+val filename = "my-file.png"
+val resourcePath = javaClass.classLoader.getResource(filename)?.path
+    ?: throw IllegalStateException("Resource '$filename' not found")
+val asset = File(resourcePath)
+
+// Read File data in ByteArray
+val originalData = asset.readBytes()
+
+// Send File with necessary parameters
+applicationManager.sendAssetSuspending(
+    conversationId = conversationId,
+    asset = AssetResource(originalData),
+    name = asset.name,
+    mimeType = "image/png",
+    retention = AssetRetention.ETERNAL
+)
+```
+
+</TabItem>
+<TabItem value="java" label="Java">
+
+```java
+// Get local file from resources
+String filename = "my-file.png";
+URL resourceUrl = getClass().getClassLoader().getResource(filename);
+
+if (resourceUrl == null) {
+        throw new IllegalStateException("Resource '" + filename + "' not found");
+}
+
+File asset = new File(resourceUrl.getPath());
+
+// Read file into byte[]
+byte[] originalData;
+try {
+originalData = Files.readAllBytes(asset.toPath());
+        } catch (IOException e) {
+        throw new RuntimeException("Failed to read file: " + asset.getName(), e);
+        }
+
+// Send file with necessary parameters
+applicationManager.sendAsset(
+        conversationId,
+        new AssetResource(originalData),
+        null,
+        asset.getName(),
+        "image/png",
+        AssetRetention.ETERNAL
+);
+```
+
+</TabItem>
+</Tabs>
+
+## Composite message
+
+Composite messages are a combination of text and buttons in a single message.
+
+:::note
+
+Only Apps can create Composite messages.
+End clients can receive and display them, but cannot send them.
+
+:::
+
+A `WireMessage.Composite` object has [Base properties](../01-events/01-message-model.md#base-message-properties) and  includes a list of `Item` objects.
+
+Each `Item` can be one of the following:
+- **`WireMessage.Text`** — A text element. See [how to create one](#text-message).
+- **`WireMessage.Button`** — An interactive element that lets users perform an action. Each button includes:
+  - `text` — the label shown on the button.
+  - `id` — a unique identifier for the button, automatically generated unless specified.
+
+#### Composite message on desktop
+![composite on desktop](/img/composite_on_desktop.png)
+
+<Tabs groupId="programming-language">
+<TabItem value="kotlin" label="Kotlin">
+
+```kotlin
+val compositeMessage = WireMessage.Composite.create(
+    conversationId = conversationId,
+    text = "What's the best JVM language?",
+    buttonList = listOf(
+        WireMessage.Button(text = "Java"),
+        WireMessage.Button(text = "Kotlin")
+    )
+)
+
+applicationManager.sendMessageSuspending(compositeMessage)
+```
+
+</TabItem>
+<TabItem value="java" label="Java">
+
+```java
+WireMessage.Composite compositeMessage = WireMessage.Composite.create(
+        conversationId,
+        "What's the best JVM language?",
+        List.of(
+                new WireMessage.Button("Java"),
+                new WireMessage.Button("Kotlin")
+        )
+);
+
+applicationManager.sendMessage(compositeMessage);
+```
+
+</TabItem>
+</Tabs>
