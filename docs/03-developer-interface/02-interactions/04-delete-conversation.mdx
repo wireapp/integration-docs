@@ -25,7 +25,7 @@ applicationManager.deleteConversationSuspending(conversationId = latestConversat
 <TabItem value="java" label="Java">
 
 ```java
-ApplicationManager applicationManager = wireAppSdk.getApplicationManager();
+WireApplicationManager applicationManager = wireAppSdk.getApplicationManager();
 
 Conversation latestConversation = null;
 for (Conversation conversation : applicationManager.getStoredConversations()) {
