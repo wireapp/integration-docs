@@ -1,0 +1,65 @@
+# Removing members from a conversation
+
+Through the WireApplicationManager you can remove members from a conversation.
+Here is an example for both on the standalone way:
+
+:::note
+To remove members, make sure the conversation is a <b>group</b> or <b>channel</b>, and that the app has <b>admin</b> permissions in the conversation.
+:::
+
+```mdx-code-block
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+```
+
+### Use Case: Remove a member from a conversation
+<Tabs groupId="programming-language">
+<TabItem value="kotlin" label="Kotlin">
+
+```kotlin
+val applicationManager = wireAppSdk.getApplicationManager()
+
+val myConversationId = QualifiedId(
+    id = UUID.fromString("conversation-id"),
+    domain = "conversation-domain.com"
+)
+
+val myListOfMembers = listOf(
+    QualifiedId(
+        id = UUID.fromString("member-user-id"),
+        domain = "member-domain.com"
+    )
+)
+
+applicationManager.removeMembersFromConversationSuspending(
+    conversationId = myConversationId,
+    members = myListOfMembers
+)
+```
+
+</TabItem>
+<TabItem value="java" label="Java">
+
+```java
+WireApplicationManager applicationManager = wireAppSdk.getApplicationManager();
+
+QualifiedId myConversationId = new QualifiedId(
+        UUID.fromString("conversation-id"),
+        "conversation-domain.com"
+);
+
+List<QualifiedId> myListOfMembers = List.of(
+    new QualifiedId(
+        UUID.fromString("member-user-id"),
+        "member-domain.com"
+    )
+);
+
+applicationManager.removeMembersFromConversation(
+    myConversationId,
+    myListOfMembers
+);
+```
+
+</TabItem>
+</Tabs>
