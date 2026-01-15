@@ -164,7 +164,7 @@ It builds on the [CoreCrypto library](https://github.com/wireapp/core-crypto) an
   Maintains the cryptographic state for each conversation so messages stay in sync.
 
 - **Secure storage**  
-  Stores all cryptographic material in encrypted form, protected by the `cryptographyStoragePassword` you provide.
+  Stores all cryptographic material in encrypted form, protected by the `cryptographyStorageKey` you provide.
 
 ### REST Client
 
