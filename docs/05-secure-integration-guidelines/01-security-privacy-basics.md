@@ -37,34 +37,31 @@ While the App ID allows Wire to recognize your application, it does not grant an
 
 Guidance on securely storing, rotating, and managing App Tokens is provided in the [Managing App Tokens](./02-managing-app-tokens.md) section.
 
-### Storage Encryption Password
+### Storage Encryption key
 
-The Wire SDK uses a password, the *cryptographyStoragePassword* to encrypt and decrypt the cryptographic material (used for message encryption) at rest.
+The Wire SDK uses a cryptographic key, the *cryptographyStorageKey* to encrypt and decrypt the cryptographic material (used for message encryption) at rest.
 
 As a developer, to ensure strong protection:
 
 * **Use a cryptographically secure random number generator (CSRNG).**
-Do not use fixed, human-readable passwords or predictable strings. Make sure that the random generator is **cryptographically secure**. When available, use hardware-backed encryption mechanisms to generate and securely store cryptographic keys. An example for the generation of a password using a CSRNG could look like this:
+Do not use fixed, human-readable passwords or predictable strings. Make sure that the random generator is **cryptographically secure**. When available, use hardware-backed encryption mechanisms to generate and securely store cryptographic keys. An example for the generation of a key using a CSRNG could look like this:
 
 ```kotlin
 import java.security.SecureRandom
 import java.util.Base64
 
-fun generateSecurePassword(length: Int = 32): String {
+fun generateSecureKey(length: Int = 32): ByteArray {
     val random = SecureRandom()
     val bytes = ByteArray(length)
-    random.nextBytes(bytes)
-    return Base64.getEncoder().encodeToString(bytes)
+    return random.nextBytes(bytes)
 }
 ```
 
-* **Enforce password length and format.**
-The password **must be exactly 32 characters** long to meet the SDK's requirements.
-* **Store the password securely.**
+* **Enforce key length and format.**
+The key **must be exactly 32 bytes** to meet the SDK's requirements.
+* **Store the key securely.**
 Ideally, store it in a hardware-backed secure storage provided by the platform.
-* **Do not log or transmit the password in plaintext** under any circumstances.
-
-Following these steps ensures that cryptographic material managed by the Wire SDK is encrypted-at-rest and remains protected even if the underlying storage is compromised.
+* **Do not log or transmit the key in plaintext** under any circumstances.
 
 ## Secure Local Storage of Conversation Content
 

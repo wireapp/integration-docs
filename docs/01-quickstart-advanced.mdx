@@ -69,13 +69,13 @@ For example:
 
 ### Constructor parameters
 
-The SDK needs to be initialized with your application's credentials, the backend host, a password for the cryptographic material and your event handler implementation:
+The SDK needs to be initialized with your application's credentials, the backend host, a key for the cryptographic material and your event handler implementation:
 
 | Parameter                     | Description                                                                                                                                                                                                |
 |-------------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | `applicationId` + `apiToken`  | Universally unique identifier (UUID) of the app and a token that allows access to Wire-server endpoints. <br /> Available in Team Management after [registering an app](./02-manage-apps/01-create-app.md) |
 | `apiHost`                     | URL of the backend that hosts Wire. <br /> For Wire Cloud, use `https://prod-nginz-https.wire.com`                                                                                                         |
-| `cryptographyStoragePassword` | Cryptographic key used to encrypt local storage. <br /> See how to [generate cryptographically secure key](./05-secure-integration-guidelines/01-security-privacy-basics.md#storage-encryption-password)   |
+| `cryptographyStorageKey`      | Cryptographic key used to encrypt local storage. <br /> See how to [generate cryptographically secure key](./05-secure-integration-guidelines/01-security-privacy-basics.md#storage-encryption-key)        |
 | `wireEventsHandler`           | Your implementation of `WireEventsHandler` abstract class                                                                                                                                                  |
 
 Initializing an instance of WireAppSdk is enough to get access to local stored teams and conversations and to send messages or similar actions.
@@ -97,7 +97,7 @@ fun main() {
         applicationId = UUID.fromString("YOUR_APPLICATION_ID"),
         apiToken = "YOUR_API_TOKEN",
         apiHost = "YOUR_API_HOST",
-        cryptographyStoragePassword = "YOUR_32_CHAR_STORAGE_PASSWORD",
+        cryptographyStorageKey = yourGeneratedSecureKeyByteArray, // Must be 32 bytes
         object : WireEventsHandlerSuspending() {
             override suspend fun onTextMessageReceived(wireMessage: WireMessage.Text) {
                 println("Text message received: $wireMessage")
@@ -123,7 +123,7 @@ public class Main {
             UUID.fromString("YOUR_APPLICATION_ID"),
             "YOUR_API_TOKEN",
             "YOUR_API_HOST",
-            "YOUR_32_CHAR_STORAGE_PASSWORD",
+            yourGeneratedSecureKeyByteArray,
             new WireEventsHandlerDefault() {
                 @Override
                 public void onTextMessageReceived(@NotNull WireMessage.Text wireMessage) {
@@ -234,8 +234,9 @@ You can check other events in [Wire Events](03-developer-interface/01-events/ind
 - Enable DEBUG logging on the SDK if you are developing an Application and want to test it in a safe environment. Set the log level to DEBUG in your logging framework for the package `com.wire.sdk` (e.g. for Logback `<logger name="com.wire.sdk" level="DEBUG" />`).
 - If you switch between different Wire environments, you may need to delete the `storage/apps.db` directory to avoid conflicts
 - For connection issues, verify your API token, host URL and if your deployed app has access to the public network (firewalls, docker ports, etc.)
-- When running into cryptography issues, ensure your storage password is consistent between app restarts
+- When running into cryptography issues, ensure your storage key is consistent between app restarts
 - The SDK is designed to be thread-safe. The `startListening()` and `stopListening()` methods are synchronized to prevent concurrent modifications to the SDK state. However at this moment, only using a single Wire Application instance has been tested.
+- If you are using Spring Boot or similar frameworks that force dependency versions, you might need to add explicit dependency management for the SDK dependencies to avoid version conflicts. For example you might force something like `implementation("org.jetbrains.kotlin:kotlin-stdlib:2.2.21")` if Spring forces an older version which is incompatible with the SDK.
 - In case you need to build the SDK locally, you can skip the signing option by running: `./gradlew publishToMavenLocal -PskipSigning=true` (**_Keep in mind_** to include `repositories { mavenCentral() }` in your `build.gradle.kts` file in the app where you use the locally built SDK)
 
 ## Additional Resources
