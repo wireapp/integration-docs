@@ -1,30 +1,62 @@
 # This workflow generates a static website from the contents of this repository using Docusaurus,
 # and publishes it to the origin-dev-wire-com-20251118130313061400000001 S3 bucket
 # using AWS oidc for authentication.
+#
+# It polls for new releases from wireapp/wire-apps-jvm-sdk and publishes when a new release is detected.
 
 name: Publish to dev.wire.com
 on:
-  push:
-    branches:
-      - main
+  schedule:
+    - cron: "0 0 * * *" # Check once per day at midnight UTC
+  workflow_dispatch: # Allow manual trigger
 
 permissions:
-  id-token: write  # Required for OIDC authentication
-  contents: read   # Read repository contents
+  id-token: write # Required for OIDC authentication
+  contents: write # Read repository contents and commit version file
+
 env:
   AWS_ROLE_ARN: ${{ secrets.AWS_ROLE_ARN }}
   AWS_REGION: eu-central-1
   S3_BUCKET_NAME: ${{ secrets.S3_BUCKET_NAME }}
   CF_DISTRIBUTION_ID: ${{ secrets.CF_DISTRIBUTION_ID }}
+  UPSTREAM_REPO: wireapp/wire-apps-jvm-sdk
 
 jobs:
-  publish:
-    name: Publish Static Website to S3
+  check:
+    name: Check for new release
     runs-on: ubuntu-latest
+    outputs:
+      publish: ${{ steps.check.outputs.publish }}
+      version: ${{ steps.check.outputs.version }}
+
+    steps:
+      - name: Compare versions
+        id: check
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          CACHED=$(curl -sf https://raw.githubusercontent.com/${{ github.repository }}/main/.last-published-version || echo "")
+          LATEST=$(gh release view --repo ${{ env.UPSTREAM_REPO }} --json tagName -q .tagName)
+          echo "version=$LATEST" >> $GITHUB_OUTPUT
+
+          if [ -z "$CACHED" ] || [ "$CACHED" != "$LATEST" ]; then
+            echo "publish=true" >> $GITHUB_OUTPUT
+            [ -z "$CACHED" ] && echo "No version file, publishing" || echo "New release: $CACHED -> $LATEST"
+          else
+            echo "publish=false" >> $GITHUB_OUTPUT
+            echo "No new release"
+          fi
+
+  publish:
+    name: Publish to S3
+    runs-on: ubuntu-latest
+    needs: check
+    if: needs.check.outputs.publish == 'true'
 
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v6
+
       - name: Configure AWS Credentials
         uses: aws-actions/configure-aws-credentials@v5.1.1
         with:
@@ -32,16 +64,39 @@ jobs:
           role-to-assume: ${{ env.AWS_ROLE_ARN }}
           role-session-name: gha-integration-docs-workflow-${{ github.run_id }}
           audience: sts.amazonaws.com
+
       - name: Set up Node.js
         uses: actions/setup-node@v6
         with:
-          node-version: '20'
+          node-version: "20"
+
       - name: Install dependencies
         run: npm ci
+
       - name: Build Docusaurus site
         run: npm run build
+
       - name: Sync build artifacts to S3
         run: aws s3 sync ./build/ s3://$S3_BUCKET_NAME --delete
+
       - name: Invalidate CloudFront Cache
         run: |
           aws cloudfront create-invalidation --distribution-id ${CF_DISTRIBUTION_ID} --paths "/*"
+
+  update-version:
+    name: Update version file
+    runs-on: ubuntu-latest
+    needs: [check, publish]
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Commit version file
+        run: |
+          echo "${{ needs.check.outputs.version }}" > .last-published-version
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add .last-published-version
+          git commit -m "Update last published version to ${{ needs.check.outputs.version }}"
+          git push
