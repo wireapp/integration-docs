@@ -1,0 +1,84 @@
+# Listing members of a conversation
+
+Through the WireApplicationManager you can retrieve the list of members in a conversation along with their roles.
+
+```mdx-code-block
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+```
+
+## ConversationMember
+
+Each member in the list is represented as a `ConversationMember` object containing:
+- **userId** — The `QualifiedId` of the member
+- **role** — The member's `ConversationRole` (ADMIN or MEMBER)
+
+### Use Case: Get all members of a conversation
+
+<Tabs groupId="programming-language">
+<TabItem value="kotlin" label="Kotlin">
+
+```kotlin
+val applicationManager = wireAppSdk.getApplicationManager()
+
+val myConversationId = QualifiedId(
+    id = UUID.fromString("conversation-id"),
+    domain = "conversation-domain.com"
+)
+
+val members: List<ConversationMember> = applicationManager.getStoredConversationMembers(
+    conversationId = myConversationId
+)
+
+// Iterate through members
+members.forEach { member ->
+    println("User: ${member.userId}, Role: ${member.role}")
+}
+```
+
+</TabItem>
+<TabItem value="java" label="Java">
+
+```java
+WireApplicationManager applicationManager = wireAppSdk.getApplicationManager();
+
+QualifiedId myConversationId = new QualifiedId(
+        UUID.fromString("conversation-id"),
+        "conversation-domain.com"
+);
+
+List<ConversationMember> members = applicationManager.getStoredConversationMembers(
+        myConversationId
+);
+
+// Iterate through members
+for (ConversationMember member : members) {
+    System.out.println("User: " + member.userId() + ", Role: " + member.role());
+}
+```
+
+</TabItem>
+</Tabs>
+
+### Use Case: Filter admins from a conversation
+
+<Tabs groupId="programming-language">
+<TabItem value="kotlin" label="Kotlin">
+
+```kotlin
+val admins = applicationManager.getStoredConversationMembers(myConversationId)
+    .filter { it.role == ConversationRole.ADMIN }
+```
+
+</TabItem>
+<TabItem value="java" label="Java">
+
+```java
+List<ConversationMember> admins = applicationManager.getStoredConversationMembers(myConversationId)
+        .stream()
+        .filter(member -> member.role() == ConversationRole.ADMIN)
+        .toList();
+```
+
+</TabItem>
+</Tabs>

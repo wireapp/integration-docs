@@ -1,0 +1,87 @@
+# Getting user information
+
+Through the WireApplicationManager you can retrieve user information based on their `QualifiedId`.
+
+```mdx-code-block
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+```
+
+## UserResponse
+
+The `getUser` method returns a `UserResponse` object containing:
+- **id** — The user's `QualifiedId`
+- **name** — The user's display name
+- **handle** — The user's unique handle (username)
+- **email** — The user's email address (if available)
+- **teamId** — The UUID of the team the user belongs to (if any)
+- **accentId** — The user's accent color ID
+- **supportedProtocols** — List of cryptographic protocols supported by the user
+- **deleted** — Whether the user has been deleted
+
+### Use Case: Get a user's display name and handle
+
+<Tabs groupId="programming-language">
+<TabItem value="kotlin" label="Kotlin">
+
+```kotlin
+val applicationManager = wireAppSdk.getApplicationManager()
+
+val userId = QualifiedId(
+    id = UUID.fromString("user-id"),
+    domain = "user-domain.com"
+)
+
+val user: UserResponse = applicationManager.getUserSuspending(userId)
+
+println("Display name: ${user.name}")
+println("Handle: @${user.handle}")
+```
+
+</TabItem>
+<TabItem value="java" label="Java">
+
+```java
+WireApplicationManager applicationManager = wireAppSdk.getApplicationManager();
+
+QualifiedId userId = new QualifiedId(
+        UUID.fromString("user-id"),
+        "user-domain.com"
+);
+
+UserResponse user = applicationManager.getUser(userId);
+
+System.out.println("Display name: " + user.name());
+System.out.println("Handle: @" + user.handle());
+```
+
+</TabItem>
+</Tabs>
+
+### Use Case: Get user info from a received message
+
+When you receive a message, you can use the sender's `QualifiedId` to fetch their information:
+
+<Tabs groupId="programming-language">
+<TabItem value="kotlin" label="Kotlin">
+
+```kotlin
+override suspend fun onTextMessageSuspending(message: WireMessage.Text) {
+    val senderInfo = manager.getUserSuspending(message.sender)
+    println("Message from ${senderInfo.name}: ${message.text}")
+}
+```
+
+</TabItem>
+<TabItem value="java" label="Java">
+
+```java
+@Override
+public void onTextMessageReceived(WireMessage.Text message) {
+    UserResponse senderInfo = manager.getUser(message.sender());
+    System.out.println("Message from " + senderInfo.name() + ": " + message.text());
+}
+```
+
+</TabItem>
+</Tabs>
