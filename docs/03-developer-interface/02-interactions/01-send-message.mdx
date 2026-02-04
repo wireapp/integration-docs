@@ -139,6 +139,234 @@ applicationManager.sendAsset(
 </TabItem>
 </Tabs>
 
+## Text message with mentions
+
+Mentions allow you to tag users in a message. The `Mention` object requires the user's `QualifiedId`, and the `offset` and `length` indicating where the mention appears in the text.
+
+<Tabs groupId="programming-language">
+<TabItem value="kotlin" label="Kotlin">
+
+```kotlin
+val mention = WireMessage.Mention(
+    userId = targetUserId,
+    offset = 0,  // Position in text where mention starts
+    length = 5   // Length of the mention text including '@' character
+)
+
+val textMessage = WireMessage.Text.create(
+    conversationId = conversationId,
+    text = "@John check this out!",
+    mentions = listOf(mention)
+)
+
+applicationManager.sendMessageSuspending(textMessage)
+```
+
+</TabItem>
+<TabItem value="java" label="Java">
+
+```java
+WireMessage.Mention mention = new WireMessage.Mention(
+        targetUserId,
+        0,  // Position in text where mention starts
+        5   // Length of the mention text including '@' character
+);
+
+WireMessage textMessage = WireMessage.Text.create(
+        conversationId,
+        "@John check this out!",
+        List.of(mention),
+        List.of(),
+        null
+);
+
+applicationManager.sendMessage(textMessage);
+```
+
+</TabItem>
+</Tabs>
+
+## Reply message
+
+Reply to an existing message by referencing the original message. The original message must implement the `Replyable` interface (Text, Asset, or Location messages).
+
+A Reply is a special case of Text.
+
+<Tabs groupId="programming-language">
+<TabItem value="kotlin" label="Kotlin">
+
+```kotlin
+val replyMessage = WireMessage.Text.createReply(
+    conversationId = conversationId,
+    text = "This is my reply!",
+    originalMessage = originalMessage  // The message you're replying to
+)
+
+applicationManager.sendMessageSuspending(replyMessage)
+```
+
+</TabItem>
+<TabItem value="java" label="Java">
+
+```java
+WireMessage replyMessage = WireMessage.Text.createReply(
+        conversationId,
+        "This is my reply!",
+        List.of(),  // mentions
+        List.of(),  // linkPreviews
+        originalMessage,  // The message you're replying to
+        null  // expiresAfterMillis
+);
+
+applicationManager.sendMessage(replyMessage);
+```
+
+</TabItem>
+</Tabs>
+
+## Ephemeral message
+
+Ephemeral messages automatically expire after a specified duration. The `expiresAfterMillis` parameter defines the lifetime in milliseconds.
+
+Only message of type Asset, Location, Ping, and Text can be Ephemeral.
+
+<Tabs groupId="programming-language">
+<TabItem value="kotlin" label="Kotlin">
+
+```kotlin
+val ephemeralMessage = WireMessage.Text.create(
+    conversationId = conversationId,
+    text = "This message will self-destruct!",
+    expiresAfterMillis = 30_000L  // Expires after 30 seconds
+)
+
+applicationManager.sendMessageSuspending(ephemeralMessage)
+```
+
+</TabItem>
+<TabItem value="java" label="Java">
+
+```java
+WireMessage ephemeralMessage = WireMessage.Text.create(
+        conversationId,
+        "This message will self-destruct!",
+        List.of(),
+        List.of(),
+        30000L  // Expires after 30 seconds
+);
+
+applicationManager.sendMessage(ephemeralMessage);
+```
+
+</TabItem>
+</Tabs>
+
+## Reaction
+
+Send emoji reactions to existing messages. The `emojiSet` contains the emojis to react with. Send an empty set to remove all reactions.
+
+Techninally you can send any UTF-8 String as a Reaction, but other clients only use it with emojis.
+
+<Tabs groupId="programming-language">
+<TabItem value="kotlin" label="Kotlin">
+
+```kotlin
+val reaction = WireMessage.Reaction.create(
+    conversationId = conversationId,
+    messageId = targetMessageId.toString(),
+    emojiSet = setOf("👍", "❤️")
+)
+
+applicationManager.sendMessageSuspending(reaction)
+```
+
+</TabItem>
+<TabItem value="java" label="Java">
+
+```java
+WireMessage reaction = WireMessage.Reaction.create(
+        conversationId,
+        targetMessageId.toString(),
+        Set.of("👍", "❤️")
+);
+
+applicationManager.sendMessage(reaction);
+```
+
+</TabItem>
+</Tabs>
+
+## Edit message
+
+Edit a previously sent text message by referencing its ID.
+
+:::note
+
+Each time a message is edited, its ID changes. Therefore it cannot be edited sequentially referencing same ID.
+
+:::
+
+<Tabs groupId="programming-language">
+<TabItem value="kotlin" label="Kotlin">
+
+```kotlin
+val editedMessage = WireMessage.TextEdited.create(
+    replacingMessageId = originalMessageId,
+    conversationId = conversationId,
+    text = "This is the corrected text"
+)
+
+applicationManager.sendMessageSuspending(editedMessage)
+```
+
+</TabItem>
+<TabItem value="java" label="Java">
+
+```java
+WireMessage editedMessage = WireMessage.TextEdited.create(
+        originalMessageId,
+        conversationId,
+        "This is the corrected text",
+        List.of()  // mentions
+);
+
+applicationManager.sendMessage(editedMessage);
+```
+
+</TabItem>
+</Tabs>
+
+## Delete message
+
+Delete a previously sent message by referencing its ID.
+
+<Tabs groupId="programming-language">
+<TabItem value="kotlin" label="Kotlin">
+
+```kotlin
+val deleteMessage = WireMessage.Deleted.create(
+    conversationId = conversationId,
+    messageId = originalMessageId
+)
+
+applicationManager.sendMessageSuspending(deleteMessage)
+```
+
+</TabItem>
+<TabItem value="java" label="Java">
+
+```java
+WireMessage deleteMessage = WireMessage.Deleted.create(
+        conversationId,
+        originalMessageId
+);
+
+applicationManager.sendMessage(deleteMessage);
+```
+
+</TabItem>
+</Tabs>
+
 ## Composite message
 
 Composite messages are a combination of text and buttons in a single message.
