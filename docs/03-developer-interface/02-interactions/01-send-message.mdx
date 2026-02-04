@@ -150,7 +150,7 @@ Mentions allow you to tag users in a message. The `Mention` object requires the 
 val mention = WireMessage.Mention(
     userId = targetUserId,
     offset = 0,  // Position in text where mention starts
-    length = 5   // Length of the mention text
+    length = 5   // Length of the mention text including '@' character
 )
 
 val textMessage = WireMessage.Text.create(
@@ -169,7 +169,7 @@ applicationManager.sendMessageSuspending(textMessage)
 WireMessage.Mention mention = new WireMessage.Mention(
         targetUserId,
         0,  // Position in text where mention starts
-        5   // Length of the mention text
+        5   // Length of the mention text including '@' character
 );
 
 WireMessage textMessage = WireMessage.Text.create(
@@ -189,6 +189,8 @@ applicationManager.sendMessage(textMessage);
 ## Reply message
 
 Reply to an existing message by referencing the original message. The original message must implement the `Replyable` interface (Text, Asset, or Location messages).
+
+A Reply is a special case of Text.
 
 <Tabs groupId="programming-language">
 <TabItem value="kotlin" label="Kotlin">
@@ -226,6 +228,8 @@ applicationManager.sendMessage(replyMessage);
 
 Ephemeral messages automatically expire after a specified duration. The `expiresAfterMillis` parameter defines the lifetime in milliseconds.
 
+Only message type Asset, Location, Ping, and Text can be Ephemeral.
+
 <Tabs groupId="programming-language">
 <TabItem value="kotlin" label="Kotlin">
 
@@ -261,6 +265,8 @@ applicationManager.sendMessage(ephemeralMessage);
 
 Send emoji reactions to existing messages. The `emojiSet` contains the emojis to react with. Send an empty set to remove all reactions.
 
+Techninally you can send any UTF-8 String as a Reaction, but other clients only use it with emojis.
+
 <Tabs groupId="programming-language">
 <TabItem value="kotlin" label="Kotlin">
 
@@ -293,6 +299,12 @@ applicationManager.sendMessage(reaction);
 ## Edit message
 
 Edit a previously sent text message by referencing its ID.
+
+:::note
+
+Each time a message is edited, its ID changes. Therefore it cannot be edited sequentially referencing same ID.
+
+:::
 
 <Tabs groupId="programming-language">
 <TabItem value="kotlin" label="Kotlin">
