@@ -15,6 +15,14 @@ import {useFilteredApps} from '../../_utils';
 
 import styles from './styles.module.css';
 
+const approvedApps = sortedApps.filter((user) =>
+  user.tags.includes('wire-approved'),
+);
+
+const otherApps = sortedApps.filter(
+  (user) => !user.tags.includes('wire-approved'),
+);
+
 function HeadingNoResult() {
   return (
     <Heading as="h2">
@@ -23,10 +31,18 @@ function HeadingNoResult() {
   );
 }
 
-function HeadingAllApps() {
+function HeadingApproved() {
+  return (
+    <Heading as="h2" className={styles.headingApproved}>
+      <Translate id="showcase.approvedList.title">Wire-approved Apps</Translate>
+    </Heading>
+  );
+}
+
+function HeadingSample() {
   return (
     <Heading as="h2">
-      <Translate id="showcase.appsList.allApps">All Apps</Translate>
+      <Translate id="showcase.appsList.allApps">Sample Apps</Translate>
     </Heading>
   );
 }
@@ -65,8 +81,11 @@ export default function ShowcaseCards() {
     <section className="margin-top--lg margin-bottom--xl">
       {filteredApps.length === sortedApps.length ? (
         <>
+          <div className={styles.showcaseApproved}>
+            <CardList heading={<HeadingApproved />} items={approvedApps} />
+          </div>
           <div className="margin-top--lg">
-            <CardList heading={<HeadingAllApps />} items={sortedApps} />
+            <CardList heading={<HeadingSample />} items={otherApps} />
           </div>
         </>
       ) : (
