@@ -41,7 +41,7 @@ function ShowcaseTagListItem({tag}: {tag: TagType}) {
         label={label}
         description={description}
         icon={
-          tag === 'wire-developed' ? (
+          tag === 'wire-approved' ? (
             <WireIcon size="small" style={{marginLeft: 8}} />
           ) : (
             <TagCircleIcon

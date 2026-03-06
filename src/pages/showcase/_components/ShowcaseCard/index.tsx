@@ -71,7 +71,7 @@ function ShowcaseCard({app}: {app: App}) {
               <Translate id="showcase.card.sourceLink">source</Translate>
             </Link>
           )}
-          {app.tags.includes('wire-developed') && (
+          {app.tags.includes('wire-approved') && (
             <WireIcon size="large" style={{marginLeft: '1rem'}} />
           )}
         </div>
