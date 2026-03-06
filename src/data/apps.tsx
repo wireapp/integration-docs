@@ -18,61 +18,40 @@ export type TagType =
   // DO NOT USE THIS TAG: only we introduce Wire-approved Apps
   | 'wire-approved'
   // For open source Apps, a link to the source code is required.
-  | 'opensource'
   | 'product'
   | 'kotlin'
 
 // Add apps to this list
 // prettier-ignore
 const Apps: App[] = [
+  // TODO: Uncomment once repository is public
+  // {
+  //   title: 'Broadcast App',
+  //   description: 'Message multiple conversations simultaneously',
+  //   icon: null,
+  //   source: 'https://github.com/wireapp/broadcast-app',
+  //   tags: ['kotlin'],
+  // },
   {
-    title: 'Remind App',
-    description: 'An app to remind you about important things',
+    title: 'GitHub App',
+    description: 'Get GitHub notifications directly in Wire',
     icon: null,
-    source: 'https://github.com/wireapp/remind-app',
-    tags: ['wire-approved', 'opensource', 'kotlin'],
+    source: 'https://github.com/wireapp/github-app',
+    tags: ['product', 'kotlin'],
   },
   {
     title: 'Poll App',
     description: 'Create polls directly in chat conversations',
     icon: null,
     source: 'https://github.com/wireapp/poll-app',
-    tags: ['wire-approved', 'opensource', 'kotlin'],
+    tags: ['wire-approved', 'kotlin'],
   },
   {
-    title: 'QR App',
-    description: 'You ask for a Wire deeplink, it will give you one',
+    title: 'Remind App',
+    description: 'An app to remind you about important things',
     icon: null,
-    source: null,
-    tags: ['kotlin'],
-  },
-  {
-    title: 'GitHub App',
-    description: 'Get GitHub notifications directly in Wire',
-    icon: null,
-    source: 'https://github.com/wireapp/github-app',
-    tags: ['product', 'opensource', 'kotlin'],
-  },
-  {
-    title: 'Debug App',
-    description: 'A Wire app to debug clients',
-    icon: null,
-    source: null,
-    tags: ['kotlin'],
-  },
-  {
-    title: 'Broadcast App',
-    description: 'Message multiple conversations simultaneously',
-    icon: null,
-    source: null,
-    tags: ['kotlin'],
-  },
-  {
-    title: 'Scribe App',
-    description: 'Transcribe and summarize audio files in conversation',
-    icon: null,
-    source: null,
-    tags: ['kotlin'],
+    source: 'https://github.com/wireapp/remind-app',
+    tags: ['wire-approved', 'kotlin'],
   },
 
   /*
@@ -104,15 +83,6 @@ export const Tags: {[type in TagType]: Tag} = {
       id: 'showcase.tag.wire-approved.description',
     }),
     color: 'currentColor',
-  },
-
-  opensource: {
-    label: translate({message: 'Open source'}),
-    description: translate({
-      message: 'Open source Apps can be useful for inspiration',
-      id: 'showcase.tag.opensource.description',
-    }),
-    color: '#39ca30',
   },
 
   product: {
