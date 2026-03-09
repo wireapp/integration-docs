@@ -43,14 +43,14 @@ const Apps: App[] = [
   },
   {
     title: 'Poll App',
-    description: 'Create polls directly in chat conversations',
+    description: 'Create polls directly in conversations',
     icon: <PollIcon />,
     source: 'https://github.com/wireapp/poll-app',
     tags: ['wire-approved', 'kotlin'],
   },
   {
     title: 'Remind App',
-    description: 'An app to remind you about important things',
+    description: 'Set reminders from your conversations',
     icon: null,
     source: 'https://github.com/wireapp/remind-app',
     tags: ['wire-approved', 'kotlin'],
