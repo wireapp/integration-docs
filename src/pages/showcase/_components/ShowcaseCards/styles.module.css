@@ -10,3 +10,18 @@
   grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
   gap: 24px;
 }
+
+.showcaseApproved {
+  padding-top: 2rem;
+  padding-bottom: 2rem;
+  background-color: #f0f7ff;
+}
+
+html[data-theme='dark'] .showcaseApproved {
+  background-color: #1e252e;
+}
+
+.headingApproved {
+  display: flex;
+  align-items: center;
+}

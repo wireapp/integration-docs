@@ -9,70 +9,51 @@
 
 import {translate} from '@docusaurus/Translate';
 import {sortBy} from '@site/src/utils/jsUtils';
+import PollIcon from './app-icons/poll.svg';
+import GithubIcon from './app-icons/github.svg';
 
 // LIST OF AVAILABLE TAGS
 // Available tags to assign to a showcase App
 // Please choose all tags that you think might apply.
 // We'll remove inappropriate tags, but it's less likely that we add tags.
 export type TagType =
-  // DO NOT USE THIS TAG: only we introduce Wire-developed Apps
-  | 'wire-developed'
+  // DO NOT USE THIS TAG: only we introduce Wire-approved Apps
+  | 'wire-approved'
   // For open source Apps, a link to the source code is required.
-  | 'opensource'
   | 'product'
   | 'kotlin'
 
 // Add apps to this list
 // prettier-ignore
 const Apps: App[] = [
-  {
-    title: 'Remind App',
-    description: 'An app to remind you about important things',
-    icon: null,
-    source: 'https://github.com/wireapp/remind-app',
-    tags: ['wire-developed', 'opensource', 'kotlin'],
-  },
-  {
-    title: 'Poll App',
-    description: 'Create polls directly in chat conversations',
-    icon: null,
-    source: 'https://github.com/wireapp/poll-app',
-    tags: ['wire-developed', 'opensource', 'kotlin'],
-  },
-  {
-    title: 'QR App',
-    description: 'You ask for a Wire deeplink, it will give you one',
-    icon: null,
-    source: null,
-    tags: ['wire-developed', 'kotlin'],
-  },
+  // TODO: Uncomment once repository is public
+  // {
+  //   title: 'Broadcast App',
+  //   description: 'Message multiple conversations simultaneously',
+  //   icon: null,
+  //   source: 'https://github.com/wireapp/broadcast-app',
+  //   tags: ['kotlin'],
+  // },
   {
     title: 'GitHub App',
     description: 'Get GitHub notifications directly in Wire',
-    icon: null,
+    icon: <GithubIcon />,
     source: 'https://github.com/wireapp/github-app',
-    tags: ['wire-developed', 'product', 'opensource', 'kotlin'],
+    tags: ['product', 'kotlin'],
   },
   {
-    title: 'Debug App',
-    description: 'A Wire app to debug clients',
-    icon: null,
-    source: null,
-    tags: ['wire-developed', 'kotlin'],
+    title: 'Poll App',
+    description: 'Create polls directly in conversations',
+    icon: <PollIcon />,
+    source: 'https://github.com/wireapp/poll-app',
+    tags: ['wire-approved', 'kotlin'],
   },
   {
-    title: 'Broadcast App',
-    description: 'Message multiple conversations simultaneously',
+    title: 'Remind App',
+    description: 'Set reminders from your conversations',
     icon: null,
-    source: null,
-    tags: ['wire-developed', 'kotlin'],
-  },
-  {
-    title: 'Scribe App',
-    description: 'Transcribe and summarize audio files in conversation',
-    icon: null,
-    source: null,
-    tags: ['wire-developed', 'kotlin'],
+    source: 'https://github.com/wireapp/remind-app',
+    tags: ['wire-approved', 'kotlin'],
   },
 
   /*
@@ -84,7 +65,7 @@ const Apps: App[] = [
 export type App = {
   title: string;
   description: string;
-  icon: string | null; // null = use default App icon
+  icon: React.ReactNode | null; // null = use default App icon
   source: string | null;
   tags: TagType[];
 };
@@ -96,23 +77,14 @@ export type Tag = {
 };
 
 export const Tags: {[type in TagType]: Tag} = {
-  "wire-developed": {
-    label: translate({message: 'Wire-developed'}),
+  "wire-approved": {
+    label: translate({message: 'Wire-approved'}),
     description: translate({
       message:
-        'Explore Apps developed by Wire',
-      id: 'showcase.tag.wire-developed.description',
+        'Explore Apps approved by Wire',
+      id: 'showcase.tag.wire-approved.description',
     }),
     color: 'currentColor',
-  },
-
-  opensource: {
-    label: translate({message: 'Open source'}),
-    description: translate({
-      message: 'Open source Apps can be useful for inspiration',
-      id: 'showcase.tag.opensource.description',
-    }),
-    color: '#39ca30',
   },
 
   product: {
@@ -139,8 +111,8 @@ function sortApps() {
   let result = Apps;
   // Sort by app name
   result = sortBy(result, (app) => app.title.toLowerCase());
-  // wire-developed first
-  result = sortBy(result, (app) => !app.tags.includes('wire-developed'));
+  // wire-approved first
+  result = sortBy(result, (app) => !app.tags.includes('wire-approved'));
   return result;
 }
 
