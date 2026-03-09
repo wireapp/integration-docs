@@ -9,7 +9,7 @@ import React from 'react';
 import clsx from 'clsx';
 import Link from '@docusaurus/Link';
 import Translate from '@docusaurus/Translate';
-import CodeIcon from '@site/static/img/code.svg';
+import DefaultIcon from '@site/src/data/app-icons/default.svg';
 import {Tags, TagList, type TagType, type App} from '@site/src/data/apps';
 import {sortBy} from '@site/src/utils/jsUtils';
 import Heading from '@theme/Heading';
@@ -50,11 +50,16 @@ function ShowcaseCardTag({tags}: {tags: TagType[]}) {
   );
 }
 
+function getCardImage(app: App): React.ReactNode {
+  return app.icon ?? <DefaultIcon />;
+}
+
 function ShowcaseCard({app}: {app: App}) {
+  const image = getCardImage(app);
   return (
     <li key={app.title} className="card shadow--md">
       <div className={clsx('card__image', styles.showcaseCardImage)}>
-        <CodeIcon />
+        {image}
       </div>
       <div className="card__body">
         <div className={clsx(styles.showcaseCardHeader)}>

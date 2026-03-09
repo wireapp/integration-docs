@@ -9,6 +9,8 @@
 
 import {translate} from '@docusaurus/Translate';
 import {sortBy} from '@site/src/utils/jsUtils';
+import PollIcon from './app-icons/poll.svg';
+import GithubIcon from './app-icons/github.svg';
 
 // LIST OF AVAILABLE TAGS
 // Available tags to assign to a showcase App
@@ -35,14 +37,14 @@ const Apps: App[] = [
   {
     title: 'GitHub App',
     description: 'Get GitHub notifications directly in Wire',
-    icon: null,
+    icon: <GithubIcon />,
     source: 'https://github.com/wireapp/github-app',
     tags: ['product', 'kotlin'],
   },
   {
     title: 'Poll App',
     description: 'Create polls directly in chat conversations',
-    icon: null,
+    icon: <PollIcon />,
     source: 'https://github.com/wireapp/poll-app',
     tags: ['wire-approved', 'kotlin'],
   },
@@ -63,7 +65,7 @@ const Apps: App[] = [
 export type App = {
   title: string;
   description: string;
-  icon: string | null; // null = use default App icon
+  icon: React.ReactNode | null; // null = use default App icon
   source: string | null;
   tags: TagType[];
 };
