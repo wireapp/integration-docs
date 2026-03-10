@@ -70,6 +70,7 @@ const config = {
             position: 'right',
           },
           { to: "/showcase", label: "Showcase", position: "left" },
+          { to: "/support", label: "Support", position: "left" },
         ],
       },
       footer: {
