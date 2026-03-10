@@ -18,7 +18,7 @@ To help us understand your idea, please include:
 
 After we receive your email:
 
- - The integrations team reviews the request.
+ - The Integrations Team reviews the request.
  - We may follow up with questions.
  - The idea may be shared with product and engineering teams for evaluation.
 
