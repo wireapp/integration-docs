@@ -27,4 +27,3 @@ There are two ways to report an issue.
 * **[Create a free form issue](https://github.com/wireapp/wire-apps-jvm-sdk/issues/new)** if the template does not fit your case.
 
 Clear reports help us understand the problem faster and respond more quickly.
-
