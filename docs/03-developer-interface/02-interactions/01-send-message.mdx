@@ -197,7 +197,6 @@ A Reply is a special case of Text.
 
 ```kotlin
 val replyMessage = WireMessage.Text.createReply(
-    conversationId = conversationId,
     text = "This is my reply!",
     originalMessage = originalMessage  // The message you're replying to
 )
@@ -210,7 +209,6 @@ applicationManager.sendMessageSuspending(replyMessage)
 
 ```java
 WireMessage replyMessage = WireMessage.Text.createReply(
-        conversationId,
         "This is my reply!",
         List.of(),  // mentions
         List.of(),  // linkPreviews
