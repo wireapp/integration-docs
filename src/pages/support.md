@@ -23,7 +23,7 @@ If you find a related issue, feel free to add details or context there.
 
 There are two ways to report an issue.
 
-* **[Submit a bug report](https://github.com/wireapp/wire-apps-jvm-sdk/issues/new&template=bug_report.md)** – template guides you through the information we need to understand and reproduce the problem.
+* **[Submit a bug report](https://github.com/wireapp/wire-apps-jvm-sdk/issues/new?template=bug_report.md)** – template guides you through the information we need to understand and reproduce the problem.
 * **[Create a free form issue](https://github.com/wireapp/wire-apps-jvm-sdk/issues/new)** if the template does not fit your case.
 
 Clear reports help us understand the problem faster and respond more quickly.
