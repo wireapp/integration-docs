@@ -9,7 +9,7 @@ Multiple reactions can be added to a message and removed from them at any time.
 In addition to the [Base properties](01-message-model.md#base-message-properties),
 a `WireMessage.Reaction` object includes:
 
- - **`messageId`** — Identifier of the message the reactions apply to.  
+ - **`messageId`** — Identifier of the message the reactions apply to.
  - **`emojiSet`** — Set of strings representing the sender’s reactions to the message.  
    If empty, all previously added reactions by the same sender are removed.
 
@@ -31,8 +31,7 @@ import TabItem from '@theme/TabItem';
 ```kotlin
 override suspend fun onMessageReactionReceived(wireMessage: WireMessage.Reaction) {
     val reaction = WireMessage.Reaction.create(
-        conversationId = wireMessage.conversationId,
-        messageId = wireMessage.messageId,
+        originalMessage = wireMessage
         emojiSet = wireMessage.emojiSet
     )
     manager.sendMessageSuspending(reaction)
@@ -46,8 +45,7 @@ override suspend fun onMessageReactionReceived(wireMessage: WireMessage.Reaction
 @Override
 public void onMessageReactionReceived(@NotNull WireMessage.Reaction wireMessage) {
     WireMessage.Reaction reaction = WireMessage.Reaction.create(
-            wireMessage.getConversationId(),
-            wireMessage.getMessageId(),
+            wireMessage
             wireMessage.getEmojiSet()
     );
     getManager().sendMessage(reaction);

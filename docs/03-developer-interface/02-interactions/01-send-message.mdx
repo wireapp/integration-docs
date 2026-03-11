@@ -270,8 +270,7 @@ Techninally you can send any UTF-8 String as a Reaction, but other clients only 
 
 ```kotlin
 val reaction = WireMessage.Reaction.create(
-    conversationId = conversationId,
-    messageId = targetMessageId.toString(),
+    originalMessage = targetMessage
     emojiSet = setOf("👍", "❤️")
 )
 
@@ -283,8 +282,7 @@ applicationManager.sendMessageSuspending(reaction)
 
 ```java
 WireMessage reaction = WireMessage.Reaction.create(
-        conversationId,
-        targetMessageId.toString(),
+        targetMessage,
         Set.of("👍", "❤️")
 );
 
