@@ -189,7 +189,6 @@ In your `onTextMessageReceived` implementation from `MyWireEventsHandler` you ca
 ```kotlin
 override suspend fun onTextMessageReceived(wireMessage: WireMessage.Text) {
     val message = WireMessage.Text.createReply(
-        conversationId = wireMessage.conversationId,
         text = "${wireMessage.text} -- Sent from the SDK",
         mentions = wireMessage.mentions,
         originalMessage = wireMessage
@@ -208,7 +207,6 @@ override suspend fun onTextMessageReceived(wireMessage: WireMessage.Text) {
 @Override
 public void onTextMessageReceived(@NotNull WireMessage.Text wireMessage) {
     final WireMessage reply = WireMessage.Text.createReply(
-            wireMessage.conversationId(),
             wireMessage.text() + " -- Sent from the SDK",
             wireMessage.mentions(),
             wireMessage.linkPreviews(),

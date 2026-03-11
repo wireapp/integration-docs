@@ -128,7 +128,6 @@ fun main() {
 class SampleEventsHandler : WireEventsHandlerSuspending() {
     override suspend fun onMessage(wireMessage: WireMessage.Text) {
         val message = WireMessage.Text.createReply(
-            conversationId = wireMessage.conversationId,
             text = "echoing ${wireMessage.text}",
             originalMessage = wireMessage,
             mentions = wireMessage.mentions

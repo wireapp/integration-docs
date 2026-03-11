@@ -38,7 +38,6 @@ override suspend fun onLocationMessageReceived(wireMessage: WireMessage.Location
     val distanceKm = kotlin.math.sqrt(latDiff * latDiff + lonDiff * lonDiff) * 111.0
 
     val message = WireMessage.Text.createReply(
-        conversationId = wireMessage.conversationId,
         text = "You are $distanceKm km away from Wire GmbH headquarters.",
         originalMessage = wireMessage
     )
@@ -66,7 +65,6 @@ public void onLocationMessageReceived(@NotNull WireMessage.Location wireMessage)
     double distanceKm = Math.sqrt(latDiff * latDiff + lonDiff * lonDiff) * 111.0;
 
     WireMessage.Text message = WireMessage.Text.createReply(
-            wireMessage.conversationId(),
             "You are " + distanceKm + " km away from Wire GmbH headquarters.",
             List.of(),
             List.of(),
