@@ -192,6 +192,12 @@ Reply to an existing message by referencing the original message. The original m
 
 A Reply is a special case of Text.
 
+:::note
+
+Can’t reply to [ephemeral messages](../01-events/01-message-model.md#ephemeral-message-properties).
+
+:::
+
 <Tabs groupId="programming-language">
 <TabItem value="kotlin" label="Kotlin">
 
@@ -217,6 +223,45 @@ WireMessage replyMessage = WireMessage.Text.createReply(
 );
 
 applicationManager.sendMessage(replyMessage);
+```
+
+</TabItem>
+</Tabs>
+
+## Reaction
+
+Send emoji reactions to existing messages. The `emojiSet` contains the emojis to react with. Send an empty set to remove all reactions.
+
+Techninally you can send any UTF-8 String as a Reaction, but other clients only use it with emojis.
+
+:::note
+
+Can’t react to [ephemeral messages](../01-events/01-message-model.md#ephemeral-message-properties).
+
+:::
+
+<Tabs groupId="programming-language">
+<TabItem value="kotlin" label="Kotlin">
+
+```kotlin
+val reaction = WireMessage.Reaction.create(
+    originalMessage = targetMessage
+    emojiSet = setOf("👍", "❤️")
+)
+
+applicationManager.sendMessageSuspending(reaction)
+```
+
+</TabItem>
+<TabItem value="java" label="Java">
+
+```java
+WireMessage reaction = WireMessage.Reaction.create(
+        targetMessage,
+        Set.of("👍", "❤️")
+);
+
+applicationManager.sendMessage(reaction);
 ```
 
 </TabItem>
@@ -254,39 +299,6 @@ WireMessage ephemeralMessage = WireMessage.Text.create(
 );
 
 applicationManager.sendMessage(ephemeralMessage);
-```
-
-</TabItem>
-</Tabs>
-
-## Reaction
-
-Send emoji reactions to existing messages. The `emojiSet` contains the emojis to react with. Send an empty set to remove all reactions.
-
-Techninally you can send any UTF-8 String as a Reaction, but other clients only use it with emojis.
-
-<Tabs groupId="programming-language">
-<TabItem value="kotlin" label="Kotlin">
-
-```kotlin
-val reaction = WireMessage.Reaction.create(
-    originalMessage = targetMessage
-    emojiSet = setOf("👍", "❤️")
-)
-
-applicationManager.sendMessageSuspending(reaction)
-```
-
-</TabItem>
-<TabItem value="java" label="Java">
-
-```java
-WireMessage reaction = WireMessage.Reaction.create(
-        targetMessage,
-        Set.of("👍", "❤️")
-);
-
-applicationManager.sendMessage(reaction);
 ```
 
 </TabItem>
