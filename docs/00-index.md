@@ -1,11 +1,21 @@
 ---
 slug: /
 ---
-# Extend Wire with secure Apps
+# Wire Apps
 
 #### Apps bring your ideas to the [Wire secure communications platform](https://wire.com/)
 Automate workflows, connect with third-party services, and boost collaboration.  
 Customize Wire to fit your team's needs. All with Wire's end-to-end MLS encryption and security intact.
+
+## What is the Wire SDK?
+The Wire SDK is a developer toolkit that allows developers to build Apps(Integrations) for their team, working inside Wire's encrypted environment. Unlike most collaboration platforms where Apps run on server infrastructure outside the encrypted client boundary, Wire applications participate directly in encrypted conversations.
+
+What does it mean? - In Wire, an App behaves like a real participant in the conversation and receives the encryption keys needed to read and send messages.
+
+## What can you do with it?
+Essentially Apps satisfy two possible needs:
+1. **Extend Wire functionality**, by writing your own automations, for example an App that sends scheduled reminders or can summarize a message
+2. **Connect and external system to wire**. Build an App to accept events from an API and then send a message inside Wire, like alerts or updates. Or the other way around, have actions performed inside Wire be propagated to an external software -> [Webhook](001-webhook.mdx)
 
 ## How it works
 
