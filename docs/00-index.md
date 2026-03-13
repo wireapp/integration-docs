@@ -13,11 +13,10 @@ The Wire SDK is a developer toolkit that allows developers to build Apps(Integra
 What does it mean? - In Wire, an App behaves like a real participant in the conversation and receives the encryption keys needed to read and send messages.
 
 ## What can you do with it?
-Essentially Apps satisfy two possible needs:
 1. **Extend Wire functionality**, by writing your own automations, for example an App that sends scheduled reminders or can summarize a message
 2. **Connect and external system to wire**. Build an App to accept events from an API and then send a message inside Wire, like alerts or updates. Or the other way around, have actions performed inside Wire be propagated to an external software -> [Webhook](001-webhook.mdx)
 
-## How it works
+## How Apps works
 
 Apps are separate pieces of software that communicate with Wire through a common protocol.  
 They remain independent, but can seamlessly interact with the system and its users.
@@ -27,7 +26,7 @@ Send and receive messages — including assets, emojis, and interactive buttons 
 
 Apps are owned and managed at the team level. The administrator decides which Apps are installed.
 
-## What's needed
+## Get started
 
 ### Develop your App using SDK
 

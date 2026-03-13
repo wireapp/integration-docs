@@ -4,12 +4,12 @@ Many business tools, monitoring platforms, ticketing systems, CI/CD pipelines or
 
 Common examples include:
 
-- A **Jira or ServiceNow** webhook that posts a notification when a ticket opens or changes priority.
-- A **CI/CD pipeline** (GitHub Actions, Jenkins, GitLab) that alerts a team channel on a build failure or deployment.
-- A **monitoring tool** (PagerDuty, Grafana, Datadog) that fires an alert when a service degrades.
-- A **Zendesk or Salesforce** event that routes a new support request to the right Wire conversation.
+- **Jira or ServiceNow** webhook that posts a notification when a ticket opens or changes priority.
+- **CI/CD pipeline** (GitHub Actions, Jenkins, GitLab) that alerts a team channel on a build failure or deployment.
+- **monitoring tool** (PagerDuty, Grafana, Datadog) that fires an alert when a service degrades.
+- **Zendesk or Salesforce** event that routes a new support request to the right Wire conversation.
 
-## Why Wire for this
+## Encryption by default
 
 On most collaboration platforms like Slack and Microsoft Teams, bots and integrations run on server infrastructure _outside_ the encrypted client boundary. The platform server can see message content before it reaches users.
 
@@ -31,9 +31,9 @@ sequenceDiagram
     participant Wire as Wire Backend
 
     Ext->>App: POST /webhook (HTTP)
-    App->>App: Parse and format payload
+    Note over App: Parse and format payload
     App->>Wire: Send encrypted message (via SDK)
-    Wire-->>App: Confirmed
+    Wire-->>App: Confirmation
 ```
 
 Your app decides what to send. The raw webhook payload stays with you while Wire only receives the message you compose from it.
@@ -42,7 +42,7 @@ Your app decides what to send. The raw webhook payload stays with you while Wire
 
 ### Notification pipeline
 
-The simplest pattern: when an event fires, post a formatted message to a known conversation. Otherwise, set the conversationId as part of the webhook URL or data to also have routing.
+When an external event fires, post a formatted message to a known conversation. To make it more flexible, set the conversationId as part of the webhook URL or data to also have routing.
 
 ```mermaid
 flowchart LR
@@ -53,6 +53,9 @@ flowchart LR
 
 This covers most alerting and reporting scenarios: deployment notifications, monitoring alerts, daily summaries, ticket updates.
 
+<!--
+Use @site/showcase?tags=webhook when more webhook apps are present
+-->
 A good example of this is the **[GitHub App](https://github.com/wireapp/github-app)**:
 1. the App exposes 1 endpoint and your GitHub org is configured with a web-hook to send events on every pull request being closed
 2. The App receives the event via Rest and then uses the SDK to send an encrypted message in a Wire conversation. 
@@ -89,7 +92,7 @@ sequenceDiagram
     App->>Ext: Trigger next workflow step
 ```
 
-See [sending messages](./03-developer-interface/02-interactions/01-send-message.mdx) for how to compose composite messages with action buttons, and [on button clicked](./03-developer-interface/01-events/06-on-button-clicked.mdx) for handling the response.
+Learn how to [compose a message with buttons](./03-developer-interface/02-interactions/01-send-message.mdx#composite-message), and react [on buttons being clicked](./03-developer-interface/01-events/06-on-button-clicked.mdx).
 
 ## Securing your webhook endpoint
 
