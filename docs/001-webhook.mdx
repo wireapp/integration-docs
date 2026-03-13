@@ -53,6 +53,10 @@ flowchart LR
 
 This covers most alerting and reporting scenarios: deployment notifications, monitoring alerts, daily summaries, ticket updates.
 
+A good example of this is the **[GitHub App](https://github.com/wireapp/github-app)**:
+1. the App exposes 1 endpoint and your GitHub org is configured with a web-hook to send events on every pull request being closed
+2. The App receives the event via Rest and then uses the SDK to send an encrypted message in a Wire conversation. 
+
 ### Conversation per event
 
 For events that need focused attention like a new incident, a critical ticket, a compliance request, your app can create a fresh conversation and add the relevant people to it. Each event gets its own thread, keeping discussions organised and searchable.
