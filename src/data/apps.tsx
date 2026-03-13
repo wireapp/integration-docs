@@ -7,8 +7,8 @@
 
 /* eslint-disable global-require */
 
-import {translate} from '@docusaurus/Translate';
-import {sortBy} from '@site/src/utils/jsUtils';
+import { translate } from '@docusaurus/Translate';
+import { sortBy } from '@site/src/utils/jsUtils';
 import PollIcon from './app-icons/poll.svg';
 import GithubIcon from './app-icons/github.svg';
 
@@ -22,6 +22,7 @@ export type TagType =
   // For open source Apps, a link to the source code is required.
   | 'product'
   | 'kotlin'
+  | 'webhook'
 
 // Add apps to this list
 // prettier-ignore
@@ -39,7 +40,7 @@ const Apps: App[] = [
     description: 'Get GitHub notifications directly in Wire',
     icon: <GithubIcon />,
     source: 'https://github.com/wireapp/github-app',
-    tags: ['product', 'kotlin'],
+    tags: ['product', 'kotlin', 'webhook'],
   },
   {
     title: 'Poll App',
@@ -76,9 +77,9 @@ export type Tag = {
   color: string;
 };
 
-export const Tags: {[type in TagType]: Tag} = {
+export const Tags: { [type in TagType]: Tag } = {
   "wire-approved": {
-    label: translate({message: 'Wire-approved'}),
+    label: translate({ message: 'Wire-approved' }),
     description: translate({
       message:
         'Explore Apps approved by Wire',
@@ -88,7 +89,7 @@ export const Tags: {[type in TagType]: Tag} = {
   },
 
   product: {
-    label: translate({message: 'Product'}),
+    label: translate({ message: 'Product' }),
     description: translate({
       message: 'Apps associated to a commercial product',
       id: 'showcase.tag.product.description',
@@ -97,12 +98,21 @@ export const Tags: {[type in TagType]: Tag} = {
   },
 
   kotlin: {
-    label: translate({message: 'Kotlin'}),
+    label: translate({ message: 'Kotlin' }),
     description: translate({
       message: 'Apps written in Kotlin programming language',
       id: 'showcase.tag.kotlin.description',
     }),
     color: '#b125ea',
+  },
+
+  webhook: {
+    label: translate({ message: 'Webhook' }),
+    description: translate({
+      message: 'Apps exposing a Rest API, forwarding events inside Wire',
+      id: 'showcase.tag.webhook.description',
+    }),
+    color: '#25ea81',
   },
 };
 
