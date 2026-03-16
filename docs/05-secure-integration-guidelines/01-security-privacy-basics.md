@@ -1,6 +1,6 @@
 # Security and Privacy Practices
 
-The Wire App SDK independently handles **authentication**, **transport encryption**, **end-to-end encryption (E2EE)**, and certain aspects of **storage encryption**.
+The Wire Integrations SDK independently handles **authentication**, **transport encryption**, **end-to-end encryption (E2EE)**, and certain aspects of **storage encryption**.
 
 However, some responsibilities remain with the **application developer** to maintain the same security and privacy guarantees when building Wire Apps.
 
@@ -16,12 +16,12 @@ to ensure your integration upholds Wire’s overall security standards.
 
 ## End-to-End Encryption Awareness
 
-End-to-end encryption is completely handled by the Wire SDK.
-All conversation data sent through the Wire SDK is end-to-end encrypted (E2EE).
+End-to-end encryption is completely handled by the Wire Integrations SDK.
+All conversation data sent through the Wire Integrations SDK is end-to-end encrypted (E2EE).
 
 ## Transport Encryption
 
-The Wire SDK automatically establishes and manages TLS connections, so developers don’t need to manually configure encryption for data in transit, ensuring data between the SDK and the Wire server is encrypted.
+The Wire Integrations SDK automatically establishes and manages TLS connections, so developers don’t need to manually configure encryption for data in transit, ensuring data between the SDK and the Wire server is encrypted.
 
 Please verify that the SDK is communicating with the correct backend. The hostname can be set using the apiHost variable when initializing `WireAppSdk`.
 
@@ -39,7 +39,7 @@ Guidance on securely storing, rotating, and managing App Tokens is provided in t
 
 ### Storage Encryption key
 
-The Wire SDK uses a cryptographic key, the *cryptographyStorageKey* to encrypt and decrypt the cryptographic material (used for message encryption) at rest.
+The Wire Integrations SDK uses a cryptographic key, the *cryptographyStorageKey* to encrypt and decrypt the cryptographic material (used for message encryption) at rest.
 
 As a developer, to ensure strong protection:
 
@@ -65,7 +65,7 @@ Ideally, store it in a hardware-backed secure storage provided by the platform.
 
 ## Secure Local Storage of Conversation Content
 
-The Wire SDK enables developers to have access to decrypted messages and identifiers of conversations and teams, the app is added to. If there is a need to store some of that information, it is your responsibility to protect this data by making sure it is securely stored. Such measures include the **encryption-at-rest** using industry standards such as AES-256, as well as **securely generating** and **storing** the **encryption key**.
+The Wire Integrations SDK enables developers to have access to decrypted messages and identifiers of conversations and teams, the app is added to. If there is a need to store some of that information, it is your responsibility to protect this data by making sure it is securely stored. Such measures include the **encryption-at-rest** using industry standards such as AES-256, as well as **securely generating** and **storing** the **encryption key**.
 
 Make sure that any data collection and storage is in accordance with the [Data Minimization & Privacy Principles](#data-minimization--privacy-principles).
 
@@ -112,8 +112,8 @@ Focus on only logging information that is needed for troubleshooting.
 
 ## Secure coding practices
 
-Ensure that the integration of the Wire SDK adheres to secure coding practices.
+Ensure that the integration of the Wire Integrations SDK adheres to secure coding practices.
 
-Since the Wire SDK has the capability to read messages, always consider sanitizing user input by enforcing strict validation, canonicalization, and output encoding to prevent injection and data corruption.
+Since the Wire Integrations SDK has the capability to read messages, always consider sanitizing user input by enforcing strict validation, canonicalization, and output encoding to prevent injection and data corruption.
 
 For further reference on secure coding best practices, have a look at the [OWASP Secure Coding Practices Guidance](https://cheatsheetseries.owasp.org/index.html).
