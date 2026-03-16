@@ -76,7 +76,7 @@ or removed without requiring a frontend or backend release.
 You can find simple examples in the `sample` directory at the root of the SDK repository.  
 For more advanced use cases, see the [Showcase section](/showcase).
 
-## Wire SDK
+## Wire Integrations SDK
 
 ### Developer Interface
 
