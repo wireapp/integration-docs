@@ -19,7 +19,7 @@ Apps are owned and managed at the team level. The administrator decides which Ap
 
 ## What's needed
 
-### Develop your App using SDK
+### Develop your App using Wire Integrations SDK
 
 The SDK handles authentication for you, notifies about events, and makes sending and receiving messages straightforward.
 It’s strongly typed for Kotlin, helping you write safer, more predictable code with less overhead.
