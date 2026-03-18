@@ -1,3 +1,10 @@
+# Contact
+
+Apps are not yet a finalized product, you can create one with the SDK but you need a "demo" team to test.
+In order to get one, please fill out: **[Demo team request](https://docs.google.com/forms/d/e/1FAIpQLSf2CvAxSLrfD_Mia1DD9WH_SV5iusVES5kjF84y2wExTMAuXg/viewform?usp=dialog)**
+
+If you are trying out the SDK or have already built one/multiple Apps, you feedback is greatly appreciated: **[SDK Feedback](https://docs.google.com/forms/d/e/1FAIpQLSeopiYlbfMMhBXb4A78xe1i9pX2HO7bYwAi48WS2qowQX8uyw/viewform?usp=dialog)**
+
 # Support
 
 :::info
@@ -14,7 +21,7 @@ Other developers can also join the conversation, which helps the whole community
 
 ## Before opening an issue
 
-Please take a quick look at existing issues first: [https://github.com/wireapp/wire-apps-jvm-sdk/issues](https://github.com/wireapp/wire-apps-jvm-sdk/issues)  
+Please take a quick look at existing issues first: [Issues](https://github.com/wireapp/wire-apps-jvm-sdk/issues)  
 Someone might already have asked the same question or shared a solution.
 
 If you find a related issue, feel free to add details or context there.
