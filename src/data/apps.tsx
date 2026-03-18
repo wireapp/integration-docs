@@ -27,14 +27,13 @@ export type TagType =
 // Add apps to this list
 // prettier-ignore
 const Apps: App[] = [
-  // TODO: Uncomment once repository is public
-  // {
-  //   title: 'Broadcast App',
-  //   description: 'Message multiple conversations simultaneously',
-  //   icon: null,
-  //   source: 'https://github.com/wireapp/broadcast-app',
-  //   tags: ['kotlin'],
-  // },
+  {
+    title: 'Broadcast App',
+    description: 'Message multiple conversations simultaneously',
+    icon: null,
+    source: 'https://github.com/wireapp/broadcast-app',
+    tags: ['kotlin'],
+  },
   {
     title: 'GitHub App',
     description: 'Get GitHub notifications directly in Wire',
