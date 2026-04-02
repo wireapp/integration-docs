@@ -22,6 +22,7 @@ export type TagType =
   // For open source Apps, a link to the source code is required.
   | 'product'
   | 'kotlin'
+  | 'java'
   | 'webhook'
 
 // Add apps to this list
@@ -33,6 +34,13 @@ const Apps: App[] = [
     icon: null,
     source: 'https://github.com/wireapp/broadcast-app',
     tags: ['kotlin'],
+  },
+  {
+    title: 'Callback and Standalone Code Examples',
+    description: 'Example code snippets demonstrating how to use the Wire SDK across various scenarios.',
+    icon: null,
+    source: 'https://github.com/wireapp/wire-apps-jvm-sdk/tree/main/sample/sample-java/src/main/java/com/wire/sdk/sample/examples',
+    tags: ['java'],
   },
   {
     title: 'GitHub App',
@@ -103,6 +111,15 @@ export const Tags: { [type in TagType]: Tag } = {
       id: 'showcase.tag.kotlin.description',
     }),
     color: '#b125ea',
+  },
+
+  java: {
+    label: translate({ message: 'Java' }),
+    description: translate({
+      message: 'Apps written in Java programming language',
+      id: 'showcase.tag.java.description',
+    }),
+    color: '#2a66d0',
   },
 
   webhook: {
