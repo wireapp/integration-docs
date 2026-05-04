@@ -2,13 +2,6 @@
 
 Create an app and get credentials for your integration
 
-:::note
-
-This feature isn’t available yet in the team settings page.
-Please follow the [manual process](00-create-app-manually.mdx).
-
-:::
-
 :::info
 
 Apps are available on paid plans.  
