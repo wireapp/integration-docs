@@ -2,18 +2,13 @@
 
 Create an app and get credentials for your integration
 
-:::note
-
-This feature isn’t available yet in the team settings page.
-Please follow the [manual process](00-create-app-manually.mdx).
-
-:::
-
 :::info
 
 Apps are available on paid plans.  
 Upgrade to unlock integrations that simplify workflows and connect Wire to your existing tools. 
-[See plans and pricing](https://wire.com/pricing).
+[See plans and pricing](https://wire.com/pricing). 
+If you're on a paid plan and want to enable Apps, reach out to our [sales](https://wire.com/en/contact-sales) team or 
+raise a [support ticket](https://support.wire.com/hc/en-us/requests/new) with your Team ID, and we'll help you migrate.
 
 :::
 
@@ -39,9 +34,9 @@ In the app:
 
 ![authentication token](/img/team-management/authentication_token.png)
 
-6. You’ll see the token once. 
-    Save it now, then set it as the `APP_TOKEN` environmental variable.   
-   **You won’t be able to view it again.**
+6. You’ll see the token once. Save it now.   
+   **You won’t be able to view it again.**  
+   Both ID and token are required when constructing an SDK instance.   
 
 ![integrations tab](/img/team-management/integrations_tab_three_dots.png)
 

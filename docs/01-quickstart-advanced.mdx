@@ -8,7 +8,6 @@ Note that the SDK takes care of security in transit and partially for securing c
 
 - Java 17 or higher
 - Kotlin 2.x.x if you are using Kotlin
-- An application registered with Wire (to obtain an API token)
 - File system access for storing cryptographic keys and data
 
 ## Adding the SDK to Your Project
@@ -23,7 +22,7 @@ import TabItem from '@theme/TabItem';
 
 ```kotlin
 dependencies {
-    implementation("com.wire:wire-apps-jvm-sdk:0.0.1")
+    implementation("com.wire:wire-apps-jvm-sdk:0.1.0")
 }
 ```
 
@@ -34,7 +33,7 @@ dependencies {
 <dependency>
     <groupId>com.wire</groupId>
     <artifactId>wire-apps-jvm-sdk</artifactId>
-    <version>0.0.1</version>
+    <version>0.1.0</version>
 </dependency>
 ```
 </TabItem>
@@ -42,32 +41,11 @@ dependencies {
 
 ## Initializing the SDK
 
-<!-- TODO(WPB-22289): delete this section – START -->
+### Create app
 
-App registration through Team Management isn’t available yet.
-For now, create an account manually for your app and configure the required environment variables.
+Follow [the app creation guide](02-manage-apps/01-create-app.md) and get application ID and API Token to identify and authenticate your app.
 
-### Environment Variables
-```dotenv
-# Credentials for the Wire account you just created
-WIRE_SDK_EMAIL=your_email@domain.com
-WIRE_SDK_PASSWORD=dummyPassword
-
-# Open Settings, scroll to Profile link, and copy the user ID and domain
-# Example of Profile Link:
-# https://account.wire.com/user-profile/?id=abcd-1234-efgh-5678@my.domain.link
-WIRE_SDK_USER_ID=abcd-1234-efgh-5678
-```
-
-Since app registration is not implemented yet, set applicationId and apiToken to arbitrary values.
-
-For example:
- - applicationId: `UUID.randomUUID()`
- - apiToken: myApiToken
-
-<!-- TODO(WPB-22289): delete this section – END -->
-
-### Constructor parameters
+### Set constructor parameters
 
 The SDK needs to be initialized with your application's credentials, the backend host, a key for the cryptographic material and your event handler implementation:
 
@@ -97,7 +75,7 @@ fun main() {
         applicationId = UUID.fromString("YOUR_APPLICATION_ID"),
         apiToken = "YOUR_API_TOKEN",
         apiHost = "YOUR_API_HOST",
-        cryptographyStorageKey = yourGeneratedSecureKeyByteArray, // Must be 32 bytes
+        cryptographyStorageKey = "yourGeneratedSecureKeyByteArray!".encodeToByteArray(), // Must be 32 bytes
         object : WireEventsHandlerSuspending() {
             override suspend fun onTextMessageReceived(wireMessage: WireMessage.Text) {
                 println("Text message received: $wireMessage")
@@ -123,7 +101,7 @@ public class Main {
             UUID.fromString("YOUR_APPLICATION_ID"),
             "YOUR_API_TOKEN",
             "YOUR_API_HOST",
-            yourGeneratedSecureKeyByteArray,
+            "yourGeneratedSecureKeyByteArray!".getBytes(),
             new WireEventsHandlerDefault() {
                 @Override
                 public void onTextMessageReceived(@NotNull WireMessage.Text wireMessage) {
