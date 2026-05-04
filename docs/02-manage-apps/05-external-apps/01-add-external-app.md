@@ -9,6 +9,8 @@ You want to add an App built with the Wire SDK to your team
 Apps are available on paid plans.  
 Upgrade to unlock integrations that simplify workflows and connect Wire to your existing tools.
 [See plans and pricing](https://wire.com/pricing).
+If you're on a paid plan and want to enable Apps, reach out to our [sales](https://wire.com/en/contact-sales) team or
+raise a [support ticket](https://support.wire.com/hc/en-us/requests/new) with your Team ID, and we'll help you migrate.
 
 :::
 
