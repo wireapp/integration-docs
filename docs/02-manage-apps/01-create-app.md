@@ -34,9 +34,9 @@ In the app:
 
 ![authentication token](/img/team-management/authentication_token.png)
 
-6. You’ll see the token once. 
-    Save it now, then set it as the `APP_TOKEN` environmental variable.   
-   **You won’t be able to view it again.**
+6. You’ll see the token once. Save it now.   
+   **You won’t be able to view it again.**  
+   Both ID and token are required when constructing an SDK instance.   
 
 ![integrations tab](/img/team-management/integrations_tab_three_dots.png)
 
