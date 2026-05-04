@@ -1,20 +1,18 @@
-# Create App manually
+# Demo for App creation
 
-:::info
-
-In the actual production scenario, you do not need to do this
-You will be able to Create an App from [Team management](./01-create-app.md),
-and you only need App id and App token
-
-:::
+Walkthrough video for enabling apps
 
 ```mdx-code-block
 import ReactPlayer from 'react-player'
 ```
 
 <iframe
-  src="https://drive.google.com/file/d/1ssrPVGFAXUmaq7CjDeZJDyXnGPcwlwgo/preview"
-  style={{ aspectRatio: "16 / 9" }}
+  src="https://drive.google.com/file/d/1ECOH8lPTByZHKYT2LtDAYACWQSq-1rC1/preview"
+  style={{
+    aspectRatio: "16 / 9",
+    width: "100%",
+    height: "auto"
+  }}
 />
 
 ## 1. Prerequisites
@@ -48,15 +46,9 @@ Download IntelliJ IDEA Community Edition from: 👉https://www.jetbrains.com/ide
 IntelliJ is used for Kotlin/Gradle development and to run the bot easily. This demo uses this tool
 Or You can use any other equivalent
 
-#### ✅ Create a Team and User
+#### ✅ Create App
 
-Enter Team settings: https://wire-teams-dev.zinfra.io/
-
-And get the following details
-Wire Email
-Wire Password
-Wire User ID
-Staging Domain : staging.zinfra.io
+Follow [the app creation guide](01-create-app.md)
 
 ----
 
@@ -79,7 +71,7 @@ Open `build.gradle.kts` and replace everything with:
 
 ```kotlin
 plugins {
-    kotlin("jvm") version "2.2.20"
+    kotlin("jvm") version "2.3.10"
 }
 
 group = "org.example"
@@ -90,7 +82,7 @@ repositories {
 }
 
 dependencies {
-    implementation("com.wire:wire-apps-jvm-sdk:0.0.17")
+    implementation("com.wire:wire-apps-jvm-sdk:0.1.0")
 }
 
 tasks.test {
@@ -108,7 +100,8 @@ Then click the *"Load Gradle Changes"* popup
 In IntelliJ:
  - Navigate to: `src/main/kotlin`
  - Right click -> New -> Kotlin Class file - Name as Main.kt
-Go to `main.kt` and the copy the below Kotlin code for the simple echo app 
+
+Go to `Main.kt` and the copy the below Kotlin code for the simple echo app
 
 ```kotlin
 import com.wire.sdk.WireAppSdk
@@ -117,10 +110,10 @@ import com.wire.sdk.model.WireMessage
 import java.util.UUID
 fun main() {
     val wireAppSdk = WireAppSdk(
-        applicationId = UUID.randomUUID(),
-        apiToken = "myApiToken",
-        apiHost = "https://staging-nginz-https.zinfra.io",
-        cryptographyStorageKey = yourGeneratedSecureKeyByteArray, // Must be 32 bytes,
+        applicationId = UUID.fromString("YOUR_APPLICATION_ID"),
+        apiToken = "YOUR_API_TOKEN",
+        apiHost = "YOUR_API_HOST",
+        cryptographyStorageKey = "yourGeneratedSecureKeyByteArray!".encodeToByteArray(), // Must be 32 bytes,
         wireEventsHandler = SampleEventsHandler()
     )
     wireAppSdk.startListening()
@@ -137,29 +130,13 @@ class SampleEventsHandler : WireEventsHandlerSuspending() {
 }
 ```
 
-Run this to create `main.kt` configuration file
+Run this to create `Main.kt` configuration file
 
-## 5. Configure Environment Variables
-
-Go to:
- - Current File on the top
- - Click on the 3 dots
- - Run with parameter
- - Click on Edit environment variables
-
-```.env
-WIRE_SDK_USER_ID=abcd-1234-efgh-5678
-WIRE_SDK_EMAIL=your_email@domain.com
-WIRE_SDK_PASSWORD=dummyPassword
-```
-
-![img_1.png](/img/team-management/run_configuration.png)
-
-## 6. Run the App
+## 5. Run the App
 
 Click the green play ▶️ button beside `fun main()` in IntelliJ
 
-## 7. Use the App
+## 6. Use the App
 
  - Log in as a different user https://wire-webapp-dev.zinfra.io/
  - Create a Group
@@ -168,4 +145,4 @@ Click the green play ▶️ button beside `fun main()` in IntelliJ
 
 #### Your First Echo App should Echo the message back!
 
-![img_2.png](/img/team-management/echo_diagram.png)
+![echo_diagram](/img/team-management/echo_diagram.png)
