@@ -67,4 +67,4 @@ GitHub actions take care of building and publishing the content to a public AWS 
 
 ## License
 
-Copyright � 2025 Wire Swiss GmbH
+Copyright © 2026 Wire Swiss GmbH
