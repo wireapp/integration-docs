@@ -9,8 +9,10 @@
 
 import { translate } from '@docusaurus/Translate';
 import { sortBy } from '@site/src/utils/jsUtils';
-import PollIcon from './app-icons/poll.svg';
+import BroadcastIcon from './app-icons/broadcast.svg';
 import GithubIcon from './app-icons/github.svg';
+import PollIcon from './app-icons/poll.svg';
+import RemindIcon from './app-icons/remind.svg';
 
 // LIST OF AVAILABLE TAGS
 // Available tags to assign to a showcase App
@@ -31,7 +33,7 @@ const Apps: App[] = [
   {
     title: 'Broadcast App',
     description: 'Message multiple conversations simultaneously',
-    icon: null,
+    icon: <BroadcastIcon />,
     source: 'https://github.com/wireapp/broadcast-app',
     tags: ['kotlin'],
   },
@@ -59,7 +61,7 @@ const Apps: App[] = [
   {
     title: 'Remind App',
     description: 'Set reminders from your conversations',
-    icon: null,
+    icon: <RemindIcon />,
     source: 'https://github.com/wireapp/remind-app',
     tags: ['wire-approved', 'kotlin'],
   },
