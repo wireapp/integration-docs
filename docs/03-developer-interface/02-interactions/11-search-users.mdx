@@ -1,0 +1,64 @@
+# Searching users
+
+Through the `WireApplicationManager` you can search for Wire users by name or handle.
+
+```mdx-code-block
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+```
+
+## SearchContactsResponse
+
+The `searchUsers` method returns a `SearchContactsResponse` object containing:
+- **documents** — List of `ContactDocument` objects matching the search query
+- **found** — Total number of users found on the backend
+
+### ContactDocument
+
+Each entry in `documents` contains:
+- **id** — The user's UUID
+- **qualifiedId** — The user's `QualifiedId` (id + domain)
+- **name** — The user's display name
+- **handle** — The user's unique handle (username)
+- **accentId** — The user's accent color ID (if available)
+- **team** — The UUID of the team the user belongs to (if any)
+- **type** — The user type (`regular`, `bot`, `external`, `federated`, `guest`)
+
+### Use Case: Search for a user by name
+
+<Tabs groupId="programming-language">
+<TabItem value="kotlin" label="Kotlin">
+
+```kotlin
+val applicationManager = wireAppSdk.getApplicationManager()
+
+val results: SearchContactsResponse = applicationManager.searchUsersSuspending(
+    query = "Alice",
+    domain = "wire.com",
+    numberOfResults = 25
+)
+
+results.documents.forEach { contact ->
+    println("Found: ${contact.name} (@${contact.handle})")
+}
+```
+
+</TabItem>
+<TabItem value="java" label="Java">
+
+```java
+WireApplicationManager applicationManager = wireAppSdk.getApplicationManager();
+
+SearchContactsResponse results = applicationManager.searchUsers(
+        "Alice",
+        "wire.com",
+        25
+);
+
+for (ContactDocument contact : results.getDocuments()) {
+    System.out.println("Found: " + contact.name() + " (@" + contact.handle() + ")");
+}
+```
+
+</TabItem>
+</Tabs>
