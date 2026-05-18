@@ -62,3 +62,26 @@ for (ContactDocument contact : results.getDocuments()) {
 
 </TabItem>
 </Tabs>
+
+## Notes
+
+The search query is automatically normalized before matching. This means that:
+
+- All characters are converted to lowercase
+- Diacritical marks (accents) are removed
+
+For example:
+
+- `"Björn"` → `"bjorn"`
+- `"Álice"` → `"alice"`
+
+This makes searches more flexible and user-friendly, especially for international names and handles.
+
+Matching users are returned in the following priority order:
+
+1. Users whose normalized full handle exactly matches the query
+2. Users whose normalized full display name exactly matches the query
+3. Users whose normalized handle starts with the query
+4. Users whose normalized display name starts with the query
+
+This ranking helps ensure that the most relevant results appear first.
