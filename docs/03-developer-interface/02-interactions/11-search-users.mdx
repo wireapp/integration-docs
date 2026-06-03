@@ -7,22 +7,15 @@ import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 ```
 
-## SearchContactsResponse
+## WireUser
 
-The `searchUsers` method returns a `SearchContactsResponse` object containing:
-- **documents** — List of `ContactDocument` objects matching the search query
-- **found** — Total number of users found on the backend
-
-### ContactDocument
-
-Each entry in `documents` contains:
-- **id** — The user's UUID
-- **qualifiedId** — The user's `QualifiedId` (id + domain)
+The `searchUsers` method returns a `List<WireUser>` where each `WireUser` contains:
+- **id** — The user's qualified identity (`QualifiedId` with UUID + domain)
 - **name** — The user's display name
-- **handle** — The user's unique handle (username)
-- **accentId** — The user's accent color ID (if available)
-- **team** — The UUID of the team the user belongs to (if any)
-- **type** — The user type (`regular`, `bot`, `external`, `federated`, `guest`)
+- **handle** — The user's unique handle/username (if available)
+- **teamId** — The UUID of the team the user belongs to (if available)
+- **email** — Not populated in search results
+- **deleted** — Not populated in search results
 
 ### Use Case: Search for a user by name
 
@@ -32,14 +25,14 @@ Each entry in `documents` contains:
 ```kotlin
 val applicationManager = wireAppSdk.getApplicationManager()
 
-val results: SearchContactsResponse = applicationManager.searchUsersSuspending(
+val results: List<WireUser> = applicationManager.searchUsersSuspending(
     query = "Alice",
     domain = "wire.com",
     numberOfResults = 25
 )
 
-results.documents.forEach { contact ->
-    println("Found: ${contact.name} (@${contact.handle})")
+results.forEach { user ->
+    println("Found: ${user.name} (@${user.handle})")
 }
 ```
 
@@ -49,14 +42,14 @@ results.documents.forEach { contact ->
 ```java
 WireApplicationManager applicationManager = wireAppSdk.getApplicationManager();
 
-SearchContactsResponse results = applicationManager.searchUsers(
+List<WireUser> results = applicationManager.searchUsers(
         "Alice",
         "wire.com",
         25
 );
 
-for (ContactDocument contact : results.getDocuments()) {
-    System.out.println("Found: " + contact.name() + " (@" + contact.handle() + ")");
+for (WireUser user : results) {
+    System.out.println("Found: " + user.name() + " (@" + user.handle() + ")");
 }
 ```
 
