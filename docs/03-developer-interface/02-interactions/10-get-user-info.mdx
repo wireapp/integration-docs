@@ -7,16 +7,14 @@ import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 ```
 
-## UserResponse
+## WireUser
 
-The `getUser` method returns a `UserResponse` object containing:
+The `getUser` method returns a `WireUser` object containing:
 - **id** — The user's `QualifiedId`
 - **name** — The user's display name
-- **handle** — The user's unique handle (username)
+- **handle** — The user's unique handle/username (if available)
 - **email** — The user's email address (if available)
 - **teamId** — The UUID of the team the user belongs to (if any)
-- **accentId** — The user's accent color ID
-- **supportedProtocols** — List of cryptographic protocols supported by the user
 - **deleted** — Whether the user has been deleted
 
 ### Use Case: Get a user's display name and handle
@@ -32,7 +30,7 @@ val userId = QualifiedId(
     domain = "user-domain.com"
 )
 
-val user: UserResponse = applicationManager.getUserSuspending(userId)
+val user: WireUser = applicationManager.getUserSuspending(userId)
 
 println("Display name: ${user.name}")
 println("Handle: @${user.handle}")
@@ -49,7 +47,7 @@ QualifiedId userId = new QualifiedId(
         "user-domain.com"
 );
 
-UserResponse user = applicationManager.getUser(userId);
+WireUser user = applicationManager.getUser(userId);
 
 System.out.println("Display name: " + user.name());
 System.out.println("Handle: @" + user.handle());
@@ -78,7 +76,7 @@ override suspend fun onTextMessageSuspending(message: WireMessage.Text) {
 ```java
 @Override
 public void onTextMessageReceived(WireMessage.Text message) {
-    UserResponse senderInfo = manager.getUser(message.sender());
+    WireUser senderInfo = manager.getUser(message.sender());
     System.out.println("Message from " + senderInfo.name() + ": " + message.text());
 }
 ```
