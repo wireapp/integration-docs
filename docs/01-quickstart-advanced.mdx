@@ -52,7 +52,7 @@ The SDK needs to be initialized with your application's credentials, the backend
 | Parameter                     | Description                                                                                                                                                                                                |
 |-------------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | `applicationId` + `apiToken`  | Universally unique identifier (UUID) of the app and a token that allows access to Wire-server endpoints. <br /> Available in Team Management after [registering an app](./02-manage-apps/01-create-app.md) |
-| `apiHost`                     | URL of the backend that hosts Wire. <br /> For Wire Cloud, use `https://prod-nginz-https.wire.com`                                                                                                         |
+| `apiHost`                     | URL of the backend that hosts Wire. <br /> For Wire Cloud, use `https://prod-nginz-https.wire.com` <br /> For Wire On-Premise, use `https://nginz-https.<your-domain>`                                     |
 | `cryptographyStorageKey`      | Cryptographic key used to encrypt local storage. <br /> See how to [generate cryptographically secure key](./05-secure-integration-guidelines/01-security-privacy-basics.md#storage-encryption-key)        |
 | `wireEventsHandler`           | Your implementation of `WireEventsHandler` abstract class                                                                                                                                                  |
 
