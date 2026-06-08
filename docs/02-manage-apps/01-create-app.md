@@ -29,7 +29,7 @@ in values.yaml file in Team Settings and redeploy it.
 
 ## On desktop (macOS, Windows, or on Wire for web)
 
-In the app:
+In the app as team owner or admin:
 
 1. Select *Settings*, then select *Manage team* or go to [teams.wire.com](https://teams.wire.com/).
 2. Log in with your account credentials:
