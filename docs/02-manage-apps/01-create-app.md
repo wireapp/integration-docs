@@ -2,15 +2,30 @@
 
 Create an app and get credentials for your integration
 
-:::info
+## Team requirements
 
-Apps are available on paid plans.  
-Upgrade to unlock integrations that simplify workflows and connect Wire to your existing tools. 
-[See plans and pricing](https://wire.com/pricing). 
-If you're on a paid plan and want to enable Apps, reach out to our [sales](https://wire.com/en/contact-sales) team or 
-raise a [support ticket](https://support.wire.com/hc/en-us/requests/new) with your Team ID, and we'll help you migrate.
+- Team is on paid plan → see [plans and pricing](https://wire.com/pricing) 
+- MLS is the default protocol → raise a [support ticket](https://support.wire.com/hc/en-us/requests/new)
+- Apps feature flag is enabled → 
+  - Cloud: raise a [support ticket](https://support.wire.com/hc/en-us/requests/new)
+  - On-Premise: via backoffice
+     ```
+     https://backoffice.<ENVIRONMENT>.ops.wire.link/swagger-ui/index.html#/default/put-route-apps-config
+     ```  
+     if you have it installed or by making curl request on Galley pod:
+     ```shell
+     curl -X 'PUT' \
+        'http://localhost:9085/i/teams/<team-id>/features/apps' \
+        -H 'accept: application/json;charset=utf-8' \
+        -H 'Content-Type: application/json;charset=utf-8' \
+        -d '{
+           "status": "enabled",
+           "ttl": "unlimited"
+        }'
+     ```
 
-:::
+For On-Premise installations, you’ll also need to set `FEATURE_ENABLE_APP_CREATION` variable to true 
+in values.yaml file in Team Settings and redeploy it.
 
 ## On desktop (macOS, Windows, or on Wire for web)
 
