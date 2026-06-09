@@ -36,7 +36,7 @@ It’s strongly typed for Kotlin, helping you write safer, more predictable code
 
 For identification and secure connection to Wire, your App needs credentials.
 
-Follow the [steps to onboard your App](./02-manage-apps/01-create-app.md).
+Follow the [steps to onboard your App](02-manage-apps/01-create-app.mdx).
 
 ### Deploy secure apps
 

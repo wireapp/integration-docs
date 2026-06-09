@@ -2,19 +2,43 @@
 
 Create an app and get credentials for your integration
 
-:::info
+## Team requirements
 
-Apps are available on paid plans.  
-Upgrade to unlock integrations that simplify workflows and connect Wire to your existing tools. 
-[See plans and pricing](https://wire.com/pricing). 
-If you're on a paid plan and want to enable Apps, reach out to our [sales](https://wire.com/en/contact-sales) team or 
-raise a [support ticket](https://support.wire.com/hc/en-us/requests/new) with your Team ID, and we'll help you migrate.
+```mdx-code-block
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+```
 
-:::
+<Tabs>
+<TabItem value="on-premise" label="Wire On-Premise">
+- MLS is the default protocol → raise a [support ticket](https://support.wire.com/hc/en-us/requests/new)
+- Apps feature flag is enabled → 
+  -  via backoffice
+     ```
+     https://backoffice.<ENVIRONMENT>.ops.wire.link/swagger-ui/index.html#/default/put-route-apps-config
+     ```  
+  - or by making curl request on Galley pod:
+     ```shell
+     curl -X 'PUT' \
+        'http://localhost:9085/i/teams/<team-id>/features/apps' \
+        -H 'accept: application/json;charset=utf-8' \
+        -H 'Content-Type: application/json;charset=utf-8' \
+        -d '{
+           "status": "enabled",
+           "ttl": "unlimited"
+        }'
+     ```
+- Creating apps feature is enabled in Team Management → set `FEATURE_ENABLE_APP_CREATION` variable to true in values.yaml file in Team Settings and redeploy it.
+</TabItem>
+<TabItem value="cloud" label="Wire Cloud">
+- Team is on paid plan → see [plans and pricing](https://wire.com/pricing)
+- MLS is the default protocol and apps feature flag is enabled → raise a [support ticket](https://support.wire.com/hc/en-us/requests/new)
+</TabItem>
+</Tabs>
 
 ## On desktop (macOS, Windows, or on Wire for web)
 
-In the app:
+In the app as team owner or admin:
 
 1. Select *Settings*, then select *Manage team* or go to [teams.wire.com](https://teams.wire.com/).
 2. Log in with your account credentials:

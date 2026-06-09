@@ -33,6 +33,6 @@ In the app:
 :::danger  
 Deleting an app is permanent. 
 The App ID and authentication token will be invalidated for **all teams** using the app and cannot be restored.  
-To continue using the integration, you’ll need to [create a new app](01-create-app.md)
+To continue using the integration, you’ll need to [create a new app](01-create-app.mdx)
 and update your code with the new credentials, and share the new App ID with any teams that need it.  
 :::
