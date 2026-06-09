@@ -4,15 +4,20 @@ Create an app and get credentials for your integration
 
 ## Team requirements
 
-- Team is on paid plan → see [plans and pricing](https://wire.com/pricing) 
+```mdx-code-block
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+```
+
+<Tabs>
+<TabItem value="on-premise" label="Wire On-Premise">
 - MLS is the default protocol → raise a [support ticket](https://support.wire.com/hc/en-us/requests/new)
 - Apps feature flag is enabled → 
-  - Cloud: raise a [support ticket](https://support.wire.com/hc/en-us/requests/new)
-  - On-Premise: via backoffice
+  -  via backoffice
      ```
      https://backoffice.<ENVIRONMENT>.ops.wire.link/swagger-ui/index.html#/default/put-route-apps-config
      ```  
-     if you have it installed or by making curl request on Galley pod:
+  - or by making curl request on Galley pod:
      ```shell
      curl -X 'PUT' \
         'http://localhost:9085/i/teams/<team-id>/features/apps' \
@@ -23,9 +28,13 @@ Create an app and get credentials for your integration
            "ttl": "unlimited"
         }'
      ```
-
-For On-Premise installations, you’ll also need to set `FEATURE_ENABLE_APP_CREATION` variable to true 
-in values.yaml file in Team Settings and redeploy it.
+- Creating apps feature is enabled in Team Management → set `FEATURE_ENABLE_APP_CREATION` variable to true in values.yaml file in Team Settings and redeploy it.
+</TabItem>
+<TabItem value="cloud" label="Wire Cloud">
+- Team is on paid plan → see [plans and pricing](https://wire.com/pricing)
+- MLS is the default protocol and apps feature flag is enabled → raise a [support ticket](https://support.wire.com/hc/en-us/requests/new)
+</TabItem>
+</Tabs>
 
 ## On desktop (macOS, Windows, or on Wire for web)
 
