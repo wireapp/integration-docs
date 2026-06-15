@@ -213,7 +213,7 @@ You can check other events in [Wire Events](03-developer-interface/01-events/ind
 - When running into cryptography issues, ensure your storage key is consistent between app restarts
 - The SDK is designed to be thread-safe. The `startListening()` and `stopListening()` methods are synchronized to prevent concurrent modifications to the SDK state. However at this moment, only using a single Wire Application instance has been tested.
 - If you are using Spring Boot or similar frameworks that force dependency versions, you might need to add explicit dependency management for the SDK dependencies to avoid version conflicts. For example you might force something like `implementation("org.jetbrains.kotlin:kotlin-stdlib:2.2.21")` if Spring forces an older version which is incompatible with the SDK.
-- In case you need to build the SDK locally, you can skip the signing option by running: `./gradlew publishToMavenLocal -PskipSigning=true` (**_Keep in mind_** to include `repositories { mavenCentral() }` in your `build.gradle.kts` file in the app where you use the locally built SDK)
+- In case you need to build the SDK locally, you can skip the signing option by running: `./gradlew publishToMavenLocal -PskipSigning=true` (**_Keep in mind_** to include `repositories { mavenLocal() }` in your `build.gradle.kts` file in the app where you use the locally built SDK)
 
 ## Additional Resources
 
