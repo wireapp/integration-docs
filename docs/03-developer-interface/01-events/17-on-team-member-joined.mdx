@@ -1,0 +1,47 @@
+# `onTeamMemberJoined`
+
+Triggered when a user joins a team where the App is registered.
+
+This is a team-level event forwarded from Wire's `team.member-join` event. It is not tied to a conversation. Use [`onUserJoinedConversation`](15-on-user-joined-conversation.mdx) when you need to react to members being added to a conversation.
+
+## Received properties
+
+- **`userId`** — Qualified identifier of the user who joined the team.
+- **`teamId`** — Identifier of the team the user joined, provided as a `TeamId`.
+
+## Sample usage
+
+### Track new team members
+
+```mdx-code-block
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+```
+
+<Tabs groupId="programming-language">
+<TabItem value="kotlin" label="Kotlin">
+
+```kotlin
+override suspend fun onTeamMemberJoined(
+    userId: QualifiedId,
+    teamId: TeamId
+) {
+    println("Team member joined: $userId in team $teamId")
+}
+```
+
+</TabItem>
+<TabItem value="java" label="Java">
+
+```java
+@Override
+public void onTeamMemberJoined(
+        @NotNull QualifiedId userId,
+        @NotNull TeamId teamId
+) {
+    System.out.println("Team member joined: " + userId + " in team " + teamId);
+}
+```
+
+</TabItem>
+</Tabs>
