@@ -83,6 +83,7 @@ For more advanced use cases, see the [Showcase section](/showcase).
 Create a `WireAppSdk` object to connect your app to Wire and listen for WebSocket events.  
 These events include:
 - Invitations to add your app to a Wire team
+- New members joining a Wire team
 - Updates to user or app membership in a conversation
 - Messages sent in a conversation
 
@@ -123,7 +124,7 @@ It gives you simple callbacks when a connection is established or closed.
 The `EventsRouter` receives incoming events and passes them to your `WireEventsHandler` implementation.  
 It keeps conversations and memberships up to date, decrypts messages, and updates local storage automatically.
 
-The router works with many event types such as team invitations, conversation updates, and encrypted messages, 
+The router works with many event types such as team invitations, team member joins, conversation updates, and encrypted messages, 
 and sends each one to the right handler method.
 
 ### Storage layer

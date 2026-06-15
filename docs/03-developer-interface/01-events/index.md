@@ -26,3 +26,4 @@ Below is a table of existing events that can be received and what are their purp
 | [`onInCallHandRaiseReceived`](14-on-in-call-hand-raise-received.mdx) | Received the Hand Raise emoji while in a call.                                                                                            |
 | [`onUserJoinedConversation`](15-on-user-joined-conversation.mdx)     | When one or more users joined a conversation the App is part of.                                                                          |
 | [`onUserLeftConversation`](16-on-user-left-conversation.mdx)         | When one or more members leave or are removed from a conversation, including cases where the app itself is removed from the conversation. |
+| [`onTeamMemberJoined`](17-on-team-member-joined.mdx)                 | When a user joins a team where the App is registered.                                                                                     |
