@@ -53,7 +53,8 @@ import java.util.Base64
 fun generateSecureKey(length: Int = 32): ByteArray {
     val random = SecureRandom()
     val bytes = ByteArray(length)
-    return random.nextBytes(bytes)
+    random.nextBytes(bytes)
+    return bytes
 }
 ```
 
