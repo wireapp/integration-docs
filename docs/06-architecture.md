@@ -103,7 +103,7 @@ This manager is your main entry point for working with app data and interactions
 
 See [how to interact with Wire](03-developer-interface/index.mdx#interacting-with-wire) for more practical examples.
 
-<!-- TODO: Add link to `WireApplicationManager` reference once created -->
+{/* TODO: Add link to `WireApplicationManager` reference once created */}
 
 ### Event listener
 
