@@ -23,7 +23,8 @@
     "prism-react-renderer": "^2.3.0",
     "react": "^19.2.7",
     "react-dom": "^19.2.7",
-    "react-player": "^3.3.3"
+    "react-player": "^3.3.3",
+    "vanilla-cookieconsent": "^3.1.0"
   },
   "devDependencies": {
     "@docusaurus/module-type-aliases": "^3.10.1",
