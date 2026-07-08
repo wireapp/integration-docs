@@ -1,0 +1,12 @@
+import React from 'react';
+import CookieConsentBanner from "../scripts/cookie_consent";
+import BrowserOnly from "@docusaurus/BrowserOnly";
+
+export default function Root({children}) {
+  return <>
+    <BrowserOnly>
+      {() => <CookieConsentBanner />}
+    </BrowserOnly>
+    {children}
+  </>;
+}
