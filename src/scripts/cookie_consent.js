@@ -2,14 +2,15 @@ import { useEffect } from "react";
 
 import "vanilla-cookieconsent/dist/cookieconsent.css";
 import * as CookieConsent from "vanilla-cookieconsent";
+import { useColorMode } from '@docusaurus/theme-common';
 
 export default function CookieConsentBanner() {
-  console.log("module is executed")
+  const { colorMode } = useColorMode();
+
   useEffect(() => {
-    /**
-     * All config. options available here:
-     * https://cookieconsent.orestbida.com/reference/configuration-reference.html
-     */
+    if (colorMode === "dark")
+      document.documentElement.classList.add('cc--darkmode');
+
     CookieConsent.run({
       guiOptions: {
         consentModal: {
