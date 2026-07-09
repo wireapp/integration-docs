@@ -96,6 +96,14 @@ const config = {
             ],
           },
           {
+            title: "Legal",
+            items: [
+              {
+                html: '<button type="button" data-cc="show-preferencesModal">Cookie Preferences</button>',
+              }
+            ],
+          },
+          {
             title: 'More',
             items: [
               {
