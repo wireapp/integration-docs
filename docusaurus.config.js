@@ -94,6 +94,10 @@ const config = {
             title: "Legal",
             items: [
               {
+                label: "Privacy Policy",
+                href: "/privacy-policy",
+              },
+              {
                 html: '<button type="button" data-cc="show-preferencesModal">Cookie Preferences</button>',
               }
             ],
