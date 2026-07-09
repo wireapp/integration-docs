@@ -46,3 +46,7 @@
   width: 1px;
   white-space: nowrap;
 }
+
+#cc-main .cm__desc {
+  white-space: pre-line;
+}
