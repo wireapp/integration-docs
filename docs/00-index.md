@@ -47,7 +47,7 @@ Apps are owned and managed at the team level. The administrator decides which Ap
 Wire never has access to the messages your App receives or sends.
 
 You need to secure your deployment and protect the data your App handles. 
-Follow the [secure integration guidelines](05-secure-integration-guidelines/01-security-privacy-basics.md) and review the [deployment tips](04-deployment-tips/index.md).
+Follow the [secure integration guidelines](05-secure-integration-guidelines/01-security-privacy-basics.mdx) and review the [deployment tips](04-deployment-tips/index.md).
 
 ## See Apps in action
 
