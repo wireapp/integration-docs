@@ -10,6 +10,9 @@ You can take the artifacts built from your Application and run them on any serve
 
 * **Node.js v22** (see `engines` in `package.json`).
 
+Note: Do not run more than one instance against the same credentials/storage. SQLite and the crypto store are single-writer, and the backend expects one client. Scale by running additional, separate Apps, not replicas of the same one.
+
+
 ### Persistent storage
 
 The SDK manages its own local storage under `./storage`, relative to the process working directory:
