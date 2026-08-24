@@ -46,9 +46,16 @@ As a developer, to ensure strong protection:
 * **Use a cryptographically secure random number generator (CSRNG).**
 Do not use fixed, human-readable passwords or predictable strings. Make sure that the random generator is **cryptographically secure**. When available, use hardware-backed encryption mechanisms to generate and securely store cryptographic keys. An example for the generation of a key using a CSRNG could look like this:
 
+```mdx-code-block
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+```
+
+<Tabs groupId="cryptography-key-generation">
+<TabItem value="kotlin" label="Kotlin">
+
 ```kotlin
 import java.security.SecureRandom
-import java.util.Base64
 
 fun generateSecureKey(length: Int = 32): ByteArray {
     val random = SecureRandom()
@@ -56,6 +63,20 @@ fun generateSecureKey(length: Int = 32): ByteArray {
     return random.nextBytes(bytes)
 }
 ```
+
+</TabItem>
+<TabItem value="typescript" label="Typescript">
+
+```typescript
+import { randomBytes } from "crypto";
+
+function generateSecureKey(length: number = 32): Buffer {
+  return randomBytes(length);
+}
+```
+
+</TabItem>
+</Tabs>
 
 * **Enforce key length and format.**
 The key **must be exactly 32 bytes** to meet the SDK's requirements.
