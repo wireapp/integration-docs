@@ -1,0 +1,128 @@
+# Developing App - Typescript
+This guide will help you create and understand how to develop and deploy a simple Wire Application written in Typescript. The SDK you will be using will simplify encryption/decryption and HTTP client calls to the Wire backend, leaving you to care about your business logic.
+
+Note that the SDK takes care of security in transit and partially for securing cryptographic data stored by the SDK in the filesystem. However, as you will have access to decrypted messages and identifiers of conversations and teams, it is up to you to secure them.
+
+## Prerequisites
+
+- Node v22
+- Access to the file system to store cryptographic keys and data
+
+## Adding the SDK to Your Project
+
+```mdx-code-block
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+```
+
+<Tabs>
+<TabItem value="npm" label="npm">
+
+```kotlin
+"dependencies": {
+  "@wireapp/wire-apps-js-sdk": "latest"
+}
+```
+
+</TabItem>
+</Tabs>
+
+## Initializing the SDK
+
+### Create app
+
+Follow [the app creation guide](02-manage-apps/01-create-app.mdx) and the `apiToken` to identify and authenticate your app.
+
+### Set constructor parameters
+
+The SDK needs to be initialized with your application's credentials, the backend host, a key for the cryptographic material and your event handler implementation:
+
+| Parameter                     | Description                                                                                                                                                                                                |
+|-------------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| `apiToken`                    | Token that allows access to Wire-server endpoints. <br /> Available in Team Management after [registering an app](./02-manage-apps/01-create-app.mdx)                                                     |
+| `apiHost`                     | URL of the backend that hosts Wire. <br /> For Wire Cloud, use `https://prod-nginz-https.wire.com` <br /> For Wire On-Premise, use `https://nginz-https.<your-domain>`                                     |
+| `cryptographyStorageKey`      | Cryptographic key used to encrypt local storage. <br /> See how to [generate cryptographically secure key](./05-secure-integration-guidelines/01-security-privacy-basics.mdx#storage-encryption-key)        |
+| `wireEventsHandler`           | Your implementation of `WireEventsHandler` abstract class                                                                                                                                                  |
+
+Initializing an instance of WireAppSdk is enough to get access to local stored teams and conversations and to send messages or similar actions.
+
+However, to establish a long-lasting connection with the backend and receive all the events targeted to you Application, you need to call the `startListening()` method.
+The `startListening()` method keeps a background thread running until explicitly stopped or the application terminates.
+
+## Complete Example
+
+Here's a complete example showing how to initialize the SDK and handle basic received events:
+
+```
+class MyWireEventsHandler extends WireEventsHandler {
+  public appLogger?: PinoLogger
+
+  public override async onTextMessageReceived(wireMessage: TextMessage): Promise<void> {
+    // Add your message handling logic here, like storing the message,
+    //   sending back another message, or triggering some workflow
+  }
+}
+
+const myWireEventsHandler = new MyWireEventsHandler()
+myWireEventsHandler.appLogger = new PinoLogger()
+const cryptographyStorageKey = new Uint8Array(32).fill(1) // Add your real cryptography storage key
+
+const sdk = await WireAppSdk.create(
+  apiToken,
+  apiHost,
+  cryptographyStorageKey,
+  myWireEventsHandler,
+  myWireEventsHandler.appLogger
+)
+
+sdk.startListening()
+```
+
+**NOTE**: Your application can simply call `startListening()` and a new thread is created and will keep the Application running and receiving events. To stop it, just close the Application (Ctrl+C/Cmd+C) or call `stopListening()`
+
+## Echoing a received message
+
+In your `onTextMessageReceived` implementation from `MyWireEventsHandler` you can echo a message as:
+
+<Tabs groupId="programming-language">
+<TabItem value="typescript" label="Typescript">
+
+```typescript
+public override async onTextMessageReceived(wireMessage: TextMessage): Promise<void> {
+  this.appLogger?.info(`Received message: ${wireMessage.text}`)
+
+  const message = TextMessage.createReply(
+    {
+      conversationId: wireMessage.conversationId,
+      text: `${wireMessage.text} -- Sent from the SDK`,
+      mentions: wireMessage.mentions,
+      linkPreviews: wireMessage.linkPreviews
+    }
+  )
+
+  // The manager is accessible through the inherited WireEventsHandler class.
+  // It is used to manage the Wire application's lifecycle and communication with the backend.
+  this.manager.sendMessage(message)
+}
+```
+
+</TabItem>
+</Tabs>
+
+## Conclusion
+
+With this basic setup you now have a simple Wire App.
+
+You can check other events in [Wire Events](03-developer-interface/01-events/index.md)
+
+## Troubleshooting
+
+- Enable DEBUG logging on the SDK if you are developing an Application and want to test it in a safe environment. Set the log level to DEBUG in your logging framework for the package `com.wire.sdk`.
+- If you switch between different Wire environments, you may need to delete the `storage/apps.db` directory to avoid conflicts.
+- For connection issues, verify your `apiToken`, `apiHost`` and if your deployed app has access to the public network (firewalls, docker ports, etc.)
+- When running into cryptography issues, ensure your storage key is consistent between app restarts.
+- The SDK is designed to be thread-safe. The `startListening()` and `stopListening()` methods are synchronized to prevent concurrent modifications to the SDK state. However at this moment, only using a single Wire Application instance has been tested.
+
+## Additional Resources
+
+For any issue, requests or improvements, let us know by contacting us or creating a new issue on GitHub
