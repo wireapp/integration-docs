@@ -6,7 +6,7 @@ Use it to process, reply to, or analyze incoming messages.
 ## Received properties
 
 Apart from [Base, Ephemeral, and Replyable properties](01-message-model.md),
-a `WireMessage.Text` object contains the following fields:
+a `WireMessage.Text` (JVM) / `TextMessage` (Typescript) object contains the following fields:
 
 | Name                  | Description                                                                   |
 |-----------------------|-------------------------------------------------------------------------------|
@@ -52,6 +52,19 @@ public void onTextMessageReceived(@NotNull WireMessage.Text wireMessage) {
             null
         );
     getManager().sendMessage(message);
+}
+```
+
+</TabItem>
+<TabItem value="typescript" label="Typescript">
+
+```typescript
+public override async onTextMessageReceived(wireMessage: TextMessage): Promise<void> {
+    const message = TextMessage.create({
+        conversationId: wireMessage.conversationId,
+        text: wireMessage.text
+    })
+    await this.manager.sendMessage(message)
 }
 ```
 

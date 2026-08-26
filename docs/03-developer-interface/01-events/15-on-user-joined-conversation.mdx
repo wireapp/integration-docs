@@ -51,4 +51,23 @@ override suspend fun onUserJoinedConversation(
 ```
 
 </TabItem>
+<TabItem value="typescript" label="Typescript">
+
+```typescript
+public override async onUserJoinedConversation(
+    conversationId: QualifiedId,
+    members: ConversationMember[]
+): Promise<void> {
+    const users = await this.manager.getUsers(members.map((member) => member.userId))
+    const welcomeText = `Welcome ${users.map((user) => user.name).join(' and ')}!`
+
+    const message = TextMessage.create({
+        conversationId: conversationId,
+        text: welcomeText
+    })
+    await this.manager.sendMessage(message)
+}
+```
+
+</TabItem>
 </Tabs>

@@ -71,4 +71,21 @@ public void onAppAddedToConversation(
 ```
 
 </TabItem>
+<TabItem value="typescript" label="Typescript">
+
+```typescript
+public override async onAppAddedToConversation(
+    conversation: Conversation,
+    members: ConversationMember[]
+): Promise<void> {
+    const message = TextMessage.create({
+        conversationId: new QualifiedId(conversation.id, conversation.domain),
+        text: '👋 Hi there! You can use `/remind [text]` to set personal reminders.'
+    })
+
+    await this.manager.sendMessage(message)
+}
+```
+
+</TabItem>
 </Tabs>

@@ -43,4 +43,16 @@ public void onPingReceived(@NotNull WireMessage.Ping wireMessage) {
 ```
 
 </TabItem>
+<TabItem value="typescript" label="Typescript">
+
+```typescript
+public override async onPingReceived(wireMessage: Ping): Promise<void> {
+    const ping = Ping.create({
+        conversationId: wireMessage.conversationId
+    })
+    await this.manager.sendMessage(ping)
+}
+```
+
+</TabItem>
 </Tabs>

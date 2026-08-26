@@ -74,4 +74,29 @@ public void onMessageDeleted(@NotNull WireMessage.Deleted wireMessage) {
 ```
 
 </TabItem>
+<TabItem value="typescript" label="Typescript">
+
+```typescript
+public override async onMessageDeleted(wireMessage: DeletedMessage): Promise<void> {
+    if (!wireMessage.sender) return
+
+    const user = await this.manager.getUser(wireMessage.sender)
+    const username = user.name
+
+    const message = TextMessage.create({
+        conversationId: wireMessage.conversationId,
+        text: `@${username} deleted a message.`,
+        mentions: [
+            {
+                userId: wireMessage.sender,
+                offset: 0,
+                length: username.length + 1 // +1 for @ handle
+            }
+        ]
+    })
+    await this.manager.sendMessage(message)
+}
+```
+
+</TabItem>
 </Tabs>
