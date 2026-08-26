@@ -54,4 +54,19 @@ public void onButtonClicked(@NotNull WireMessage.ButtonAction wireMessage) {
 ```
 
 </TabItem>
+<TabItem value="typescript" label="Typescript">
+
+```typescript
+public override async onButtonClicked(wireMessage: CompositeButtonAction): Promise<void> {
+    if (wireMessage.buttonId === 'delete') {
+        const deleted = DeletedMessage.create({
+            conversationId: wireMessage.conversationId,
+            messageId: wireMessage.referenceMessageId
+        })
+        await this.manager.sendMessage(deleted)
+    }
+}
+```
+
+</TabItem>
 </Tabs>

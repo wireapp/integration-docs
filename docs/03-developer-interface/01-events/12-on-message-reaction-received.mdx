@@ -53,4 +53,18 @@ public void onMessageReactionReceived(@NotNull WireMessage.Reaction wireMessage)
 ```
 
 </TabItem>
+<TabItem value="typescript" label="Typescript">
+
+```typescript
+public override async onMessageReactionReceived(wireMessage: Reaction): Promise<void> {
+    const reaction = Reaction.create({
+        conversationId: wireMessage.conversationId,
+        messageId: wireMessage.messageId,
+        emojiSet: wireMessage.emojiSet
+    })
+    await this.manager.sendMessage(reaction)
+}
+```
+
+</TabItem>
 </Tabs>

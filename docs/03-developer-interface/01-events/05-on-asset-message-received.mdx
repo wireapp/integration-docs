@@ -83,4 +83,21 @@ public void onAssetMessageReceived(WireMessage.Asset wireMessage) {
 }
 ```
 </TabItem>
+
+<TabItem value="typescript" label="Typescript">
+
+```typescript
+public override async onAssetMessageReceived(wireMessage: AssetMessage): Promise<void> {
+    if (!wireMessage.remoteData) return
+
+    const asset = await this.manager.downloadAsset(wireMessage.remoteData)
+    const fileName = wireMessage.name ?? 'unknown'
+    const outputDir = 'build/downloaded_assets'
+
+    fs.mkdirSync(outputDir, {recursive: true})
+    fs.writeFileSync(`${outputDir}/${fileName}`, asset)
+}
+```
+
+</TabItem>
 </Tabs>

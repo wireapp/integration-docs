@@ -76,4 +76,30 @@ public void onLocationMessageReceived(@NotNull WireMessage.Location wireMessage)
 ```
 
 </TabItem>
+<TabItem value="typescript" label="Typescript">
+
+```typescript
+public override async onLocationMessageReceived(wireMessage: Location): Promise<void> {
+    // Wire HQ in Berlin
+    const hqLat = 52.5240008
+    const hqLon = 13.4025010
+
+    // User location
+    const lat = wireMessage.latitude
+    const lon = wireMessage.longitude
+
+    // Simple approximate distance (in km)
+    const latDiff = lat - hqLat
+    const lonDiff = (lon - hqLon) * Math.cos((((lat + hqLat) / 2) * Math.PI) / 180)
+    const distanceKm = Math.sqrt(latDiff * latDiff + lonDiff * lonDiff) * 111.0
+
+    const message = TextMessage.createReply({
+        originalMessage: wireMessage,
+        text: `You are ${distanceKm} km away from Wire GmbH headquarters.`
+    })
+    await this.manager.sendMessage(message)
+}
+```
+
+</TabItem>
 </Tabs>

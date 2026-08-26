@@ -45,4 +45,23 @@ override suspend fun onUserLeftConversation(
 ```
 
 </TabItem>
+<TabItem value="typescript" label="Typescript">
+
+```typescript
+public override async onUserLeftConversation(
+    conversationId: QualifiedId,
+    members: QualifiedId[]
+): Promise<void> {
+    const users = await this.manager.getUsers(members)
+    const goodbyeText = `Bye ${users.map((user) => user.name).join(' and ')}!`
+
+    const message = TextMessage.create({
+        conversationId: conversationId,
+        text: goodbyeText
+    })
+    await this.manager.sendMessage(message)
+}
+```
+
+</TabItem>
 </Tabs>

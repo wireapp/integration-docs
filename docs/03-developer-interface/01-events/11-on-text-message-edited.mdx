@@ -76,4 +76,23 @@ public void onTextMessageEdited(@NotNull WireMessage.TextEdited wireMessage) {
 ```
 
 </TabItem>
+<TabItem value="typescript" label="Typescript">
+
+```typescript
+private editCount = 0
+
+public override async onTextMessageEdited(wireMessage: TextEditedMessage): Promise<void> {
+    this.editCount++
+
+    const indicator = `✏️ ${this.editCount}x`
+
+    const message = TextMessage.create({
+        conversationId: wireMessage.conversationId,
+        text: indicator
+    })
+    await this.manager.sendMessage(message)
+}
+```
+
+</TabItem>
 </Tabs>
