@@ -62,4 +62,17 @@ applicationManager.addMembersToConversation(
 ```
 
 </TabItem>
+<TabItem value="typescript" label="Typescript">
+
+```typescript
+const applicationManager = wireAppSdk.getApplicationManager()
+
+const myConversationId = new QualifiedId('conversation-id', 'conversation-domain.com')
+
+const myListOfMembers = [new QualifiedId('member-user-id', 'member-domain.com')]
+
+await applicationManager.addMembersToConversation(myConversationId, myListOfMembers)
+```
+
+</TabItem>
 </Tabs>

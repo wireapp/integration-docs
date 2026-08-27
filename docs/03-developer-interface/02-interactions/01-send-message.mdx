@@ -9,7 +9,7 @@ import TabItem from '@theme/TabItem';
 
 The conversation identifier is required. You can get it from:
  - [received message](../01-events/02-on-text-message-received.mdx#echo-received-message),
- - [stored conversations](02-teams-and-conversations.md),
+ - [stored conversations](02-teams-and-conversations.mdx),
  - or by constructing it manually:
 
 <Tabs groupId="programming-language">
@@ -31,6 +31,16 @@ QualifiedId conversationId = new QualifiedId(
         "example.com"
 );
 ```
+</TabItem>
+<TabItem value="typescript" label="Typescript">
+
+```typescript
+const conversationId = new Qualified(
+  "f81d4fae-7dec-11d0-a765-00a0c91e6bf6",
+  "example.com"
+)
+```
+
 </TabItem>
 </Tabs>
 
@@ -64,6 +74,19 @@ WireMessage textMessage = WireMessage.Text.create(
 WireApplicationManager applicationManager = wireAppSdk.getApplicationManager();
 
 applicationManager.sendMessage(textMessage);
+```
+
+</TabItem>
+<TabItem value="typescript" label="Typescript">
+
+```typescript
+const textMessage = TextMessage.create({
+  conversationId: conversationId,
+  text: "Hello world!"
+})
+const applicationManager = sdk.getApplicationManager()
+
+await applicationManager.sendMessage(textMessage)
 ```
 
 </TabItem>
@@ -137,6 +160,34 @@ applicationManager.sendAsset(
 ```
 
 </TabItem>
+<TabItem value="typescript" label="Typescript">
+
+```typescript
+const basePath = 'base_folder'
+const filename = 'my-file.png'
+const filePath = path.join(basePath, filename)
+
+fs.readFile(filePath, (err, data) => {
+  if (err) {
+    throw err
+  }
+
+  const metadata: Image = {
+    type: 'image',
+    width: 240,
+    height: 240
+  }
+
+  this.manager.sendAsset(conversationId, {
+    data: data,
+    name: filename,
+    mimeType: 'image/png',
+    metadata: metadata
+  })
+})
+```
+
+</TabItem>
 </Tabs>
 
 ## Text message with mentions
@@ -184,6 +235,25 @@ applicationManager.sendMessage(textMessage);
 ```
 
 </TabItem>
+<TabItem value="typescript" label="Typescript">
+
+```typescript
+const mention: Mention = {
+  userId: targetUserId,
+  offset: 0,  // Position in text where mention starts
+  length: 5   // Length of the mention text including '@' character
+}
+
+const textMessage = TextMessage.create({
+  conversationId: conversationId,
+  text: "@John check this out",
+  mentions: [mention]
+})
+
+await applicationManager.sendMessage(textMessage)
+```
+
+</TabItem>
 </Tabs>
 
 ## Reply message
@@ -226,6 +296,18 @@ applicationManager.sendMessage(replyMessage);
 ```
 
 </TabItem>
+<TabItem value="typescript" label="Typescript">
+
+```typescript
+const replyMessage = TextMessage.createReply({
+  text: "This is my reply!",
+  originalMessage: originalMessage  // The message you're replying to
+})
+
+await applicationManager.sendMessage(replyMessage)
+```
+
+</TabItem>
 </Tabs>
 
 ## Reaction
@@ -265,6 +347,19 @@ applicationManager.sendMessage(reaction);
 ```
 
 </TabItem>
+<TabItem value="typescript" label="Typescript">
+
+```typescript
+const reaction = Reaction.create({
+  conversationId: targetMessage.conversationId,
+  messageId: targetMessage.id,
+  emojiSet: new Set<string>(["👍", "❤️"])
+})
+
+await applicationManager.sendMessage(reaction)
+```
+
+</TabItem>
 </Tabs>
 
 ## Ephemeral message
@@ -299,6 +394,19 @@ WireMessage ephemeralMessage = WireMessage.Text.create(
 );
 
 applicationManager.sendMessage(ephemeralMessage);
+```
+
+</TabItem>
+<TabItem value="typescript" label="Typescript">
+
+```typescript
+const ephemeralMessage = TextMessage.create({
+  conversationId: conversationId,
+  text: "This message will self-destruct!",
+  expiresAfterMillis: 30000
+})
+
+await applicationManager.sendMessage(ephemeralMessage)
 ```
 
 </TabItem>
@@ -342,6 +450,19 @@ applicationManager.sendMessage(editedMessage);
 ```
 
 </TabItem>
+<TabItem value="typescript" label="Typescript">
+
+```typescript
+const editedMessage = TextEditedMessage.create({
+  conversationId: conversationId,
+  replacingMessageId: originalMessageId,
+  text: "This is the corrected text"
+})
+
+await applicationManager.sendMessage(editedMessage)
+```
+
+</TabItem>
 </Tabs>
 
 ## Delete message
@@ -370,6 +491,18 @@ WireMessage deleteMessage = WireMessage.Deleted.create(
 );
 
 applicationManager.sendMessage(deleteMessage);
+```
+
+</TabItem>
+<TabItem value="typescript" label="Typescript">
+
+```typescript
+const deleteMessage = DeletedMessage.create({
+  conversationId: conversationId,
+  messageId: originalMessageId
+})
+
+await this.manager.sendMessage(deleteMessage)
 ```
 
 </TabItem>
@@ -427,6 +560,26 @@ WireMessage.Composite compositeMessage = WireMessage.Composite.create(
 );
 
 applicationManager.sendMessage(compositeMessage);
+```
+
+</TabItem>
+<TabItem value="typescript" label="Typescript">
+
+```typescript
+const compositeMessage = CompositeMessage.create({
+  conversationId: conversationId,
+  text: 'Composite Title',
+  itemList: [
+    CompositeButton.create({
+      text: 'Button-001'
+    }),
+    CompositeButton.create({
+      text: 'Button-002'
+    })
+  ]
+})
+
+await this.manager.sendMessage(compositeMessage)
 ```
 
 </TabItem>

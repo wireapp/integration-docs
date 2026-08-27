@@ -58,6 +58,22 @@ for (ConversationMember member : members) {
 ```
 
 </TabItem>
+<TabItem value="typescript" label="Typescript">
+
+```typescript
+const applicationManager = wireAppSdk.getApplicationManager()
+
+const myConversationId = new QualifiedId('conversation-id', 'conversation-domain.com')
+
+const members: ConversationMember[] = await applicationManager.getMembersInConversation(myConversationId)
+
+// Iterate through members
+members.forEach((member: ConversationMember) => {
+  console.log(`User: ${member.userId}, Role: ${member.role}`)
+})
+```
+
+</TabItem>
 </Tabs>
 
 ### Use Case: Filter admins from a conversation
@@ -78,6 +94,22 @@ List<ConversationMember> admins = applicationManager.getStoredConversationMember
         .stream()
         .filter(member -> member.role() == ConversationRole.ADMIN)
         .toList();
+```
+
+</TabItem>
+<TabItem value="typescript" label="Typescript">
+
+```typescript
+const applicationManager = wireAppSdk.getApplicationManager();
+
+const myConversationId = new QualifiedId('conversation-id', 'conversation-domain.com')
+
+const members: ConversationMember[] = await applicationManager.getMembersInConversation(myConversationId)
+
+// Iterate through members
+members.forEach((member: ConversationMember) => {
+  console.log(`User: ${member.userId}, Role: ${member.role}`)
+})
 ```
 
 </TabItem>

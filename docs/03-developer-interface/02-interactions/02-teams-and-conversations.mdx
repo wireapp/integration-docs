@@ -1,0 +1,62 @@
+# Managing teams and conversations
+
+The SDK provides access to teams and conversations through the `WireApplicationManager`, available after initializing the `WireAppSDK`
+
+```mdx-code-block
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+```
+
+<Tabs groupId="programming-language">
+<TabItem value="kotlin" label="Kotlin">
+
+```kotlin
+val applicationManager = wireAppSdk.getApplicationManager()
+
+// Get all teams the application has been invited to
+val teams = applicationManager.getTeams()
+teams.forEach { teamId ->
+    println("Team: $teamId")
+}
+
+// Get all conversations the application has access to
+val conversations = applicationManager.getConversations()
+conversations.forEach { conversation ->
+    println("Conversation: ${conversation.id} in team: ${conversation.teamId}")
+}
+```
+
+</TabItem>
+<TabItem value="java" label="Java">
+
+```java
+ApplicationManager applicationManager = wireAppSdk.getApplicationManager();
+
+// Get all teams the application has been invited to
+List<String> teams = applicationManager.getTeams();
+for (String teamId : teams) {
+    System.out.println("Team: " + teamId);
+}
+
+// Get all conversations the application has access to
+List<Conversation> conversations = applicationManager.getConversations();
+for (Conversation conversation : conversations) {
+    System.out.println("Conversation: " + conversation.getId() + " in team: " + conversation.getTeamId());
+}
+```
+
+</TabItem>
+<TabItem value="typescript" label="Typescript">
+
+```typescript
+const applicationManager = wireAppSdk.getApplicationManager()
+
+// Get all conversations the application has access to
+const conversations = await applicationManager.getAllConversations()
+conversations.forEach((conversation: Conversation) => {
+  console.log(`Conversation: ${conversation.id} in team: ${conversation.teamId}`)
+})
+```
+
+</TabItem>
+</Tabs>

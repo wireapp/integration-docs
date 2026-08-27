@@ -54,6 +54,22 @@ for (WireUser user : results) {
 ```
 
 </TabItem>
+<TabItem value="typescript" label="Typescript">
+
+```typescript
+const applicationManager = wireAppSdk.getApplicationManager();
+
+const query = 'Alice'
+const domain = 'wire.com'
+const numberOfResults = 25
+const results: WireUser[] = await applicationManager.searchUsers(query, domain, numberOfResults)
+
+results.forEach((user: WireUser) => {
+  console.log(`Found: ${user.name} (@${user.handle})`)
+})
+```
+
+</TabItem>
 </Tabs>
 
 ## About search results
