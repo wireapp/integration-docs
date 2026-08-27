@@ -42,4 +42,22 @@ applicationManager.leaveConversation(latestConversation.id());
 ```
 
 </TabItem>
+<TabItem value="typescript" label="Typescript">
+
+```typescript
+const applicationManager = wireAppSdk.getApplicationManager()
+
+const latestConversation = (await applicationManager.getAllConversations()).findLast(
+  (conversation: Conversation) => conversation.type === ConversationType.GROUP
+)
+
+if (!latestConversation) {
+  throw new Error('No group conversation found')
+}
+
+const conversationId = new QualifiedId(latestConversation.id, latestConversation.domain)
+await applicationManager.leaveConversation(conversationId)
+```
+
+</TabItem>
 </Tabs>

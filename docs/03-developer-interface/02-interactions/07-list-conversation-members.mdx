@@ -81,4 +81,20 @@ List<ConversationMember> admins = applicationManager.getStoredConversationMember
 ```
 
 </TabItem>
+<TabItem value="typescript" label="Typescript">
+
+```typescript
+const applicationManager = wireAppSdk.getApplicationManager();
+
+const myConversationId = new QualifiedId('conversation-id', 'conversation-domain.com')
+
+const members: ConversationMember[] = await applicationManager.getMembersInConversation(myConversationId)
+
+// Iterate through members
+members.forEach((member: ConversationMember) => {
+  console.log(`User: ${member.userId}, Role: ${member.role}`)
+})
+```
+
+</TabItem>
 </Tabs>

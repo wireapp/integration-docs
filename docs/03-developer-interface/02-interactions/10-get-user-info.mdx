@@ -54,6 +54,20 @@ System.out.println("Handle: @" + user.handle());
 ```
 
 </TabItem>
+<TabItem value="typescript" label="Typescript">
+
+```typescript
+const applicationManager = wireAppSdk.getApplicationManager();
+
+const userId = new QualifiedId('user-id', 'user-domain.com')
+
+const user: WireUser = await applicationManager.getUser(userId)
+
+console.log(`Display name: ${user.name}`)
+console.log(`Handle: @${user.handle}`)
+```
+
+</TabItem>
 </Tabs>
 
 ### Use Case: Get user info from a received message
@@ -78,6 +92,16 @@ override suspend fun onTextMessageSuspending(message: WireMessage.Text) {
 public void onTextMessageReceived(WireMessage.Text message) {
     WireUser senderInfo = manager.getUser(message.sender());
     System.out.println("Message from " + senderInfo.name() + ": " + message.text());
+}
+```
+
+</TabItem>
+<TabItem value="typescript" label="Typescript">
+
+```typescript
+public override async onTextMessageReceived(wireMessage: TextMessage): Promise<void> {
+  const senderInfo = await applicationManager.getUser(wireMessage.sender)
+  console.log(`Message from ${senderInfo.name}: ${wireMessage.text}`)
 }
 ```
 

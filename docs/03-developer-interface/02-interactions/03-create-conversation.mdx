@@ -1,0 +1,105 @@
+# Creating conversations
+
+Through the WireApplicationManager (standalone or through events) you can create conversations (One to One or Group).
+Here are an example for both on the standalone way:
+
+```mdx-code-block
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+```
+
+<Tabs groupId="programming-language">
+<TabItem value="kotlin" label="Kotlin">
+
+```kotlin
+val applicationManager = wireAppSdk.getApplicationManager()
+
+// For Group Conversations there is no need to pass the App user ID as it will be added to the conversation by default.
+val createdGroupConversationId = applicationManager.createGroupConversationSuspending(
+    name = "Conversation Name",
+    userIds = listOf(
+        QualifiedId(userId1, userDomain1),
+        QualifiedId(userId2, userDomain2)
+    )
+)
+
+// For One to One Conversations you need to pass only the user whom the App will create the One to One conversation with.
+val createdOneToOneConversationId = applicationManager.createOneToOneConversationSuspending(
+    userId = QualifiedId(otherUserId, otherUserDomain)
+)
+
+// Channel Conversations are similar to Group Conversations, with the difference of passing the Team ID.
+val createdChannelConversationId = applicationManager.createChannelConversationSuspending(
+    name = "Channel Name",
+    userIds = listOf(
+        QualifiedId(userId1, userDomain1),
+        QualifiedId(userId2, userDomain2)
+    ),
+    teamId = TeamId(value = UUID.fromString("my-team-id"))
+)
+```
+
+</TabItem>
+<TabItem value="java" label="Java">
+
+
+```java
+ApplicationManager applicationManager = wireAppSdk.getApplicationManager();
+
+// For Group Conversations there is no need to pass the App user ID as it will be added to the conversation by default.
+String createdGroupConversationId = applicationManager.createGroupConversation(
+    "Conversation Name",
+    Arrays.asList(
+        new QualifiedId(userId1, userDomain1),
+        new QualifiedId(userId2, userDomain2)
+    )
+);
+
+// For One to One Conversations you need to pass only the user whom the App will create the One to One conversation with.
+String createdOneToOneConversationId = applicationManager.createOneToOneConversation(
+    new QualifiedId(otherUserId, otherUserDomain)
+);
+
+// Channel Conversations are similar to Group Conversations, with the difference of passing the Team ID.
+String createdChannelConversationId = applicationManager.createChannelConversation(
+    "Channel Name",
+    Arrays.asList(
+        new QualifiedId(userId1, userDomain1),
+        new QualifiedId(userId2, userDomain2)
+    ),
+    new TeamId(UUID.fromString("my-team-id"))
+);
+```
+
+</TabItem>
+<TabItem value="typescript" label="Typescript">
+
+```typescript
+const applicationManager = wireAppSdk.getApplicationManager()
+
+// For Group Conversations there is no need to pass the App user ID as it will be added to the conversation by default.
+const createdGroupConversationId = await applicationManager.createGroupConversation(
+  "Conversation Name",
+  [
+    new QualifiedId(userId1, userDomain1),
+    new QualifiedId(userId2, userDomain2)
+  ]
+)
+
+// For One to One Conversations you need to pass only the user whom the App will create the One to One conversation with.
+const createdOneToOneConversationId = await applicationManager.createOneToOneConversation(
+  new QualifiedId(otherUserId, otherUserDomain)
+)
+
+// Channel Conversations are similar to Group Conversations, with the difference of passing the Team ID.
+const createdChannelConversationId = await applicationManager.createChannelConversation(
+  "Channel Name",
+  [
+    new QualifiedId(userId1, userDomain1),
+    new QualifiedId(userId2, userDomain2)
+  ]
+)
+```
+
+</TabItem>
+</Tabs>
