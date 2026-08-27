@@ -66,6 +66,19 @@ applicationManager.updateConversationMemberRole(
 ```
 
 </TabItem>
+<TabItem value="typescript" label="Typescript">
+
+```typescript
+const applicationManager = wireAppSdk.getApplicationManager()
+
+const myConversationId = new QualifiedId('conversation-id', 'conversation-domain.com')
+
+const memberToPromote = new QualifiedId('member-user-id', 'member-domain.com')
+
+await applicationManager.updateConversationMemberRole(myConversationId, memberToPromote, ConversationRole.ADMIN)
+```
+
+</TabItem>
 </Tabs>
 
 ### Use Case: Demote an admin to member
@@ -96,12 +109,6 @@ applicationManager.updateConversationMemberRole(
 <TabItem value="typescript" label="Typescript">
 
 ```typescript
-const applicationManager = wireAppSdk.getApplicationManager();
-
-const myConversationId = new QualifiedId('conversation-id', 'conversation-domain.com')
-
-const memberToPromote = new QualifiedId('member-user-id', 'member-domain.com')
-
 await applicationManager.updateConversationMemberRole(myConversationId, memberToPromote, ConversationRole.ADMIN)
 ```
 
