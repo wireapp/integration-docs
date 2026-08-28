@@ -25,6 +25,7 @@ export type TagType =
   | 'product'
   | 'kotlin'
   | 'java'
+  | 'typescript'
   | 'webhook'
 
 // Add apps to this list
@@ -38,11 +39,18 @@ const Apps: App[] = [
     tags: ['kotlin'],
   },
   {
-    title: 'Callback and Standalone Code Examples',
-    description: 'Example code snippets demonstrating how to use the Wire SDK across various scenarios.',
+    title: 'Callback and Standalone Code Examples (Java)',
+    description: 'Example code snippets demonstrating how to use the Wire JVM SDK across various scenarios.',
     icon: null,
     source: 'https://github.com/wireapp/wire-apps-jvm-sdk/tree/main/sample/sample-java/src/main/java/com/wire/sdk/sample/examples',
     tags: ['java'],
+  },
+  {
+    title: 'Callback and Standalone Code Examples (Typescript)',
+    description: 'Example code snippets demonstrating how to use the Wire Typescript SDK across various scenarios.',
+    icon: null,
+    source: 'https://github.com/wireapp/wire-apps-js-sdk/tree/main/sample/src/examples',
+    tags: ['typescript'],
   },
   {
     title: 'GitHub App',
@@ -122,6 +130,15 @@ export const Tags: { [type in TagType]: Tag } = {
       id: 'showcase.tag.java.description',
     }),
     color: '#2a66d0',
+  },
+
+  typescript: {
+    label: translate({ message: 'Typescript' }),
+    description: translate({
+      message: 'Apps written in Typescript programming language',
+      id: 'showcase.tag.typescript.description',
+    }),
+    color: '#3178C6',
   },
 
   webhook: {
