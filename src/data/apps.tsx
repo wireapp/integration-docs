@@ -138,7 +138,7 @@ export const Tags: { [type in TagType]: Tag } = {
       message: 'Apps written in Typescript programming language',
       id: 'showcase.tag.typescript.description',
     }),
-    color: '#2a66d0',
+    color: '#3178C6',
   },
 
   webhook: {
