@@ -190,6 +190,63 @@ fs.readFile(filePath, (err, data) => {
 </TabItem>
 </Tabs>
 
+## Location message
+
+Share a geographic position in a conversation. The `latitude` and `longitude` are required, while
+The `name` (a human-readable description of the place) and `zoom`
+([Google Maps zoom level](https://developers.google.com/maps/documentation/maps-static/cloud-customization/zoom-levels#understand_zoom-level_styling))
+are optional.
+
+<Tabs groupId="programming-language">
+<TabItem value="kotlin" label="Kotlin">
+
+```kotlin
+val locationMessage = WireMessage.Location.create(
+    conversationId = conversationId,
+    latitude = 52.52527f,
+    longitude = 13.36923f,
+    name = "Berlin Hauptbahnhof, 10557 Berlin",
+    zoom = 50
+)
+
+applicationManager.sendMessageSuspending(locationMessage)
+```
+
+</TabItem>
+<TabItem value="java" label="Java">
+
+```java
+WireMessage locationMessage = WireMessage.Location.create(
+        conversationId,
+        52.52527f,
+        13.36923f,
+        "Berlin Hauptbahnhof, 10557 Berlin",
+        50,
+        Clock.System.INSTANCE.now(),
+        null  // expiresAfterMillis
+);
+
+applicationManager.sendMessage(locationMessage);
+```
+
+</TabItem>
+<TabItem value="typescript" label="Typescript">
+
+```typescript
+const locationMessage = Location.create({
+  conversationId: conversationId,
+  latitude: 52.52527,
+  longitude: 13.36923,
+  name: 'Berlin Hauptbahnhof, 10557 Berlin',
+  zoom: 50
+})
+
+await applicationManager.sendMessage(locationMessage)
+```
+
+</TabItem>
+</Tabs>
+
 ## Text message with mentions
 
 Mentions allow you to tag users in a message. The `Mention` object requires the user's `QualifiedId`, and the `offset` and `length` indicating where the mention appears in the text.
