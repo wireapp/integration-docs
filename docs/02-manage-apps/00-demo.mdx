@@ -95,10 +95,9 @@ Go to `Main.kt` and the copy the below Kotlin code for the simple echo app
 import com.wire.sdk.WireAppSdk
 import com.wire.sdk.WireEventsHandlerSuspending
 import com.wire.sdk.model.WireMessage
-import java.util.UUID
+
 fun main() {
     val wireAppSdk = WireAppSdk(
-        applicationId = UUID.fromString("YOUR_APPLICATION_ID"),
         apiToken = "YOUR_API_TOKEN",
         apiHost = "YOUR_API_HOST",
         cryptographyStorageKey = "yourGeneratedSecureKeyByteArray!".encodeToByteArray(), // Must be 32 bytes,
