@@ -1,0 +1,63 @@
+# Showing a typing indicator
+
+The SDKs let your app show that it is preparing a response in a conversation. Use the conversation's `QualifiedId`, such as the `conversationId` on a received message.
+
+```mdx-code-block
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+```
+
+<Tabs groupId="programming-language">
+<TabItem value="kotlin" label="Kotlin">
+
+```kotlin
+import com.wire.sdk.model.http.conversation.TypingStatus
+
+val applicationManager = wireAppSdk.getApplicationManager()
+
+applicationManager.sendTypingIndicatorSuspending(conversationId, TypingStatus.STARTED)
+try {
+    // Prepare and send the response.
+} finally {
+    applicationManager.sendTypingIndicatorSuspending(conversationId, TypingStatus.STOPPED)
+}
+```
+
+</TabItem>
+<TabItem value="java" label="Java">
+
+```java
+import com.wire.sdk.model.http.conversation.TypingStatus;
+
+WireApplicationManager applicationManager = wireAppSdk.getApplicationManager();
+
+applicationManager.sendTypingIndicator(conversationId, TypingStatus.STARTED);
+try {
+    // Prepare and send the response.
+} finally {
+    applicationManager.sendTypingIndicator(conversationId, TypingStatus.STOPPED);
+}
+```
+
+</TabItem>
+<TabItem value="typescript" label="Typescript">
+
+```typescript
+import {TypingStatus} from '@wireapp/wire-apps-js-sdk'
+
+const applicationManager = sdk.getApplicationManager()
+
+await applicationManager.sendTypingIndicator(conversationId, TypingStatus.STARTED)
+try {
+  // Prepare and send the response.
+} finally {
+  await applicationManager.sendTypingIndicator(conversationId, TypingStatus.STOPPED)
+}
+```
+
+</TabItem>
+</Tabs>
+
+`STARTED` shows the indicator to other conversation members, and `STOPPED` clears it. Each call sends one event; the SDK does not refresh the indicator automatically. For work that takes longer, resend `STARTED` periodically (for example, every 8 seconds) while the response is being prepared. When the work finishes or is cancelled, stop the refresh, wait for any in-flight refresh to finish, then send `STOPPED`.
+
+Typing requests are not retried. Handle a failed request according to your app's needs; a failed refresh does not prevent the next scheduled refresh. Your app must be a member of the conversation for the backend to accept the request.
