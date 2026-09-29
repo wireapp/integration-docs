@@ -1,6 +1,6 @@
 # Showing a typing indicator
 
-The SDKs let your app show that it is preparing a response in a conversation. Use the conversation's `QualifiedId`, such as the `conversationId` on a received message.
+The SDKs show a typing indicator while your app prepares a response. Pass the conversation's `QualifiedId`, such as the `conversationId` on a received message, and the work to perform.
 
 ```mdx-code-block
 import Tabs from '@theme/Tabs';
@@ -11,21 +11,9 @@ import TabItem from '@theme/TabItem';
 <TabItem value="kotlin" label="Kotlin">
 
 ```kotlin
-import com.wire.sdk.model.http.conversation.TypingStatus
-import kotlinx.coroutines.NonCancellable
-import kotlinx.coroutines.withContext
-
 val applicationManager = wireAppSdk.getApplicationManager()
-
-applicationManager.sendTypingIndicatorSuspending(conversationId, TypingStatus.STARTED)
-try {
+applicationManager.processWithTypingIndicatorSuspending(conversationId) {
     // Prepare and send the response.
-} finally {
-    withContext(NonCancellable) {
-        runCatching {
-            applicationManager.sendTypingIndicatorSuspending(conversationId, TypingStatus.STOPPED)
-        }.onFailure { logger.warn("Could not clear typing indicator", it) }
-    }
 }
 ```
 
@@ -33,37 +21,24 @@ try {
 <TabItem value="java" label="Java">
 
 ```java
-import com.wire.sdk.model.http.conversation.TypingStatus;
-
 WireApplicationManager applicationManager = wireAppSdk.getApplicationManager();
-
-applicationManager.sendTypingIndicator(conversationId, TypingStatus.STARTED);
-try {
+applicationManager.processWithTypingIndicator(conversationId, () -> {
     // Prepare and send the response.
-} finally {
-    applicationManager.sendTypingIndicator(conversationId, TypingStatus.STOPPED);
-}
+    return null;
+});
 ```
 
 </TabItem>
 <TabItem value="typescript" label="Typescript">
 
 ```typescript
-import {TypingStatus} from '@wireapp/wire-apps-js-sdk'
-
 const applicationManager = sdk.getApplicationManager()
-
-await applicationManager.sendTypingIndicator(conversationId, TypingStatus.STARTED)
-try {
+await applicationManager.processWithTypingIndicator(conversationId, async () => {
   // Prepare and send the response.
-} finally {
-  await applicationManager.sendTypingIndicator(conversationId, TypingStatus.STOPPED)
-}
+})
 ```
 
 </TabItem>
 </Tabs>
 
-`STARTED` shows the indicator to other conversation members, and `STOPPED` clears it. Each call sends one event; the SDK does not refresh the indicator automatically. The Kotlin example assumes an application logger named `logger`; `NonCancellable` lets cleanup run after coroutine cancellation, and logging a failed `STOPPED` keeps it from replacing the original failure. For work that takes longer, resend `STARTED` periodically (for example, every 8 seconds as a conservative interval) while the response is being prepared. When the work finishes or is cancelled, stop the refresh, wait for any in-flight refresh to finish, then send `STOPPED`.
-
-Typing requests do not retry server or network failures. Handle a failed request according to your app's needs; a failed refresh does not prevent the next scheduled refresh, and a lost `STOPPED` clears when receiving clients time out the indicator. Your app must be a member of the conversation for the backend to accept the request.
+The SDK sends `STARTED`, refreshes it about every eight seconds during long work, and sends `STOPPED` after the work finishes or fails. It waits for a refresh already in progress before sending `STOPPED`. Typing delivery failures are logged and do not replace the work's result. Your app must be a member of the conversation for the backend to accept typing events.
