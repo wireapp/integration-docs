@@ -78,6 +78,11 @@
   flex-wrap: wrap;
 }
 
+.showcaseCardAppId {
+  font-size: smaller;
+  overflow-wrap: anywhere;
+}
+
 .tag {
   font-size: 0.675rem;
   border: 1px solid var(--ifm-color-secondary-darkest);

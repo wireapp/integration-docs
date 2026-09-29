@@ -33,9 +33,16 @@ function HeadingNoResult() {
 
 function HeadingApproved() {
   return (
-    <Heading as="h2" className={styles.headingApproved}>
-      <Translate id="showcase.approvedList.title">Wire-approved Apps</Translate>
-    </Heading>
+    <>
+      <Heading as="h2" className={styles.headingApproved}>
+        <Translate id="showcase.approvedList.title">Wire-approved Apps</Translate>
+      </Heading>
+      <p>
+        <Translate id="showcase.approvedList.description">
+          Ask your team admin to add these as External Apps.
+        </Translate>
+      </p>
+    </>
   );
 }
 
