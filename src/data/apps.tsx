@@ -69,7 +69,7 @@ const Apps: App[] = [
   },
   {
     title: 'Remind App',
-    appId: '25b8c650-3e48-45b1-bfdb-4e0855146c24',
+    appId: '0203b6e6-59f7-4a71-bd89-b52045f322da',
     description: 'Set reminders from your conversations',
     icon: <RemindIcon />,
     source: 'https://github.com/wireapp/remind-app',
