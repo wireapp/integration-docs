@@ -81,6 +81,11 @@
 .showcaseCardAppId {
   font-size: smaller;
   overflow-wrap: anywhere;
+  user-select: none;
+}
+
+.showcaseCardAppId code {
+  user-select: text;
 }
 
 .tag {
