@@ -81,6 +81,11 @@ function ShowcaseCard({app}: {app: App}) {
           )}
         </div>
         <p className={styles.showcaseCardBody}>{app.description}</p>
+        {app.appId && (
+          <p className={styles.showcaseCardAppId}>
+            <Translate id="showcase.card.appId">App ID</Translate>: <code>{app.appId}</code>
+          </p>
+        )}
       </div>
       <ul className={clsx('card__footer', styles.cardFooter)}>
         <ShowcaseCardTag tags={app.tags} />

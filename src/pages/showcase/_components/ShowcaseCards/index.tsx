@@ -7,6 +7,7 @@
 
 import type {ReactNode} from 'react';
 import clsx from 'clsx';
+import Link from '@docusaurus/Link';
 import Translate from '@docusaurus/Translate';
 import {sortedApps, type App} from '@site/src/data/apps';
 import Heading from '@theme/Heading';
@@ -33,9 +34,26 @@ function HeadingNoResult() {
 
 function HeadingApproved() {
   return (
-    <Heading as="h2" className={styles.headingApproved}>
-      <Translate id="showcase.approvedList.title">Wire-approved Apps</Translate>
-    </Heading>
+    <>
+      <Heading as="h2" className={styles.headingApproved}>
+        <Translate id="showcase.approvedList.title">Wire-approved Apps</Translate>
+      </Heading>
+      <p>
+        <Translate
+          id="showcase.approvedList.description"
+          values={{
+            guide: (
+              <Link to="/manage-apps/external-apps/add-external-app">
+                <Translate id="showcase.approvedList.guideLink">
+                  add these as External Apps
+                </Translate>
+              </Link>
+            ),
+          }}>
+          {'Ask your team admin to {guide}.'}
+        </Translate>
+      </p>
+    </>
   );
 }
 

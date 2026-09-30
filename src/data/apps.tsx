@@ -61,6 +61,7 @@ const Apps: App[] = [
   },
   {
     title: 'Poll App',
+    appId: '64b8bc67-77da-43dc-9d97-bf857627de07',
     description: 'Create polls directly in conversations',
     icon: <PollIcon />,
     source: 'https://github.com/wireapp/poll-app',
@@ -68,6 +69,7 @@ const Apps: App[] = [
   },
   {
     title: 'Remind App',
+    appId: '25b8c650-3e48-45b1-bfdb-4e0855146c24',
     description: 'Set reminders from your conversations',
     icon: <RemindIcon />,
     source: 'https://github.com/wireapp/remind-app',
@@ -82,6 +84,7 @@ const Apps: App[] = [
 
 export type App = {
   title: string;
+  appId?: string;
   description: string;
   icon: React.ReactNode | null; // null = use default App icon
   source: string | null;
