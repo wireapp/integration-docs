@@ -41,4 +41,8 @@ await applicationManager.processWithTypingIndicator(conversationId, async () => 
 </TabItem>
 </Tabs>
 
-The SDK sends `STARTED`, refreshes it about every eight seconds during long work, and sends `STOPPED` after the work finishes or fails. It waits for a refresh already in progress before sending `STOPPED`. Typing delivery failures are logged and do not replace the work's result. Your app must be a member of the conversation for the backend to accept typing events.
+The work starts immediately, and its result or failure is returned without waiting for typing delivery or cleanup. Typing requests run in the background, in order, with normal retries and a five-second timeout per status request. Delivery failures are logged and never replace the work's result. Kotlin coroutine cancellation also schedules `STOPPED` cleanup independently in a `NonCancellable` context. Keep the SDK and application running if you need that background cleanup to finish.
+
+Overlapping operations in the same conversation share an indicator within one application manager. `STARTED` is refreshed every 30 seconds; only the last operation to finish schedules `STOPPED`. A continuous typing session lasts at most five minutes, then schedules `STOPPED` and stops refreshing while the work continues. New overlapping operations do not restart an expired session until all its operations end.
+
+Your app must be a conversation member for the backend to accept typing events. Typing delivery and cleanup are best effort; network failures or application shutdown can prevent delivery.
