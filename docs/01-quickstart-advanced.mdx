@@ -21,8 +21,15 @@ import TabItem from '@theme/TabItem';
 <TabItem value="gradle" label="Gradle">
 
 ```kotlin
+
+repositories {
+    maven {
+        url = uri("https://maven.wire.com")
+    }
+}
+
 dependencies {
-    implementation("com.wire:wire-apps-jvm-sdk:0.1.0")
+    implementation("com.wire:wire-apps-jvm-sdk:0.3.0")
 }
 ```
 
@@ -30,10 +37,17 @@ dependencies {
 <TabItem value="maven" label="Maven">
 
 ```xml
+<repositories>
+    <repository>
+        <id>wire</id>
+        <url>https://maven.wire.com</url>
+    </repository>
+</repositories>
+
 <dependency>
     <groupId>com.wire</groupId>
     <artifactId>wire-apps-jvm-sdk</artifactId>
-    <version>0.1.0</version>
+    <version>0.3.0</version>
 </dependency>
 ```
 </TabItem>
