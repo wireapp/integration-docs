@@ -15,6 +15,7 @@
     "@docusaurus/core": "^3.10.1",
     "@docusaurus/faster": "^3.10.1",
     "@docusaurus/preset-classic": "^3.10.1",
+    "@docusaurus/theme-common": "^3.10.1",
     "@docusaurus/theme-mermaid": "^3.10.1",
     "@easyops-cn/docusaurus-search-local": "^0.52.2",
     "@mdx-js/react": "^3.0.0",
@@ -23,7 +24,8 @@
     "prism-react-renderer": "^2.3.0",
     "react": "^19.2.7",
     "react-dom": "^19.2.7",
-    "react-player": "^3.3.3"
+    "react-player": "^3.3.3",
+    "vanilla-cookieconsent": "^3.1.0"
   },
   "devDependencies": {
     "@docusaurus/module-type-aliases": "^3.10.1",

@@ -96,6 +96,18 @@ const config = {
             ],
           },
           {
+            title: "Legal",
+            items: [
+              {
+                label: "Privacy Policy",
+                href: "/privacy-policy",
+              },
+              {
+                html: '<button type="button" data-cc="show-preferencesModal">Cookie Preferences</button>',
+              }
+            ],
+          },
+          {
             title: 'More',
             items: [
               {
@@ -142,7 +154,10 @@ const config = {
       }),
     ],
   ],
-  clientModules: [require.resolve('./src/scripts/mermaid_icons.js')],
+  clientModules: [
+    require.resolve('./src/scripts/client_module.js'),
+    require.resolve('./src/scripts/mermaid_icons.js')
+  ],
   headTags: [
     {
       tagName: "link",
