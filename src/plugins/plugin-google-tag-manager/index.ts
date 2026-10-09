@@ -31,20 +31,7 @@ export default function pluginGoogleTagManager(
 
     injectHtmlTags() {
       return {
-        preBodyTags: [
-          {
-            tagName: 'noscript',
-            innerHTML: `<iframe src="https://www.googletagmanager.com/ns.html?id=${containerId}" height="0" width="0" style="display:none;visibility:hidden"></iframe>`,
-          },
-        ],
         headTags: [
-          {
-            tagName: 'link',
-            attributes: {
-              rel: 'preconnect',
-              href: 'https://www.googletagmanager.com',
-            },
-          },
           {
             tagName: 'script',
             innerHTML: `window.dataLayer = window.dataLayer || [];`,
