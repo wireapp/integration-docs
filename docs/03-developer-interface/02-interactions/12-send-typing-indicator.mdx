@@ -1,0 +1,48 @@
+# Showing a typing indicator
+
+The SDKs show a typing indicator while your app prepares a response. Pass the conversation's `QualifiedId`, such as the `conversationId` on a received message, and the work to perform.
+
+```mdx-code-block
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+```
+
+<Tabs groupId="programming-language">
+<TabItem value="kotlin" label="Kotlin">
+
+```kotlin
+val applicationManager = wireAppSdk.getApplicationManager()
+applicationManager.processWithTypingIndicatorSuspending(conversationId) {
+    // Prepare and send the response.
+}
+```
+
+</TabItem>
+<TabItem value="java" label="Java">
+
+```java
+WireApplicationManager applicationManager = wireAppSdk.getApplicationManager();
+applicationManager.processWithTypingIndicator(conversationId, () -> {
+    // Prepare and send the response.
+    return null;
+});
+```
+
+</TabItem>
+<TabItem value="typescript" label="Typescript">
+
+```typescript
+const applicationManager = sdk.getApplicationManager()
+await applicationManager.processWithTypingIndicator(conversationId, async () => {
+  // Prepare and send the response.
+})
+```
+
+</TabItem>
+</Tabs>
+
+The work starts immediately, and its result or failure is returned without waiting for typing delivery or cleanup. Typing requests run in the background, in order, with normal retries and a five-second timeout per status request. Delivery failures are logged and never replace the work's result. Kotlin coroutine cancellation also schedules `STOPPED` cleanup independently in a `NonCancellable` context. Keep the SDK and application running if you need that background cleanup to finish.
+
+Overlapping operations in the same conversation share an indicator within one application manager. `STARTED` is refreshed every 30 seconds; only the last operation to finish schedules `STOPPED`. A continuous typing session lasts at most five minutes, then schedules `STOPPED` and stops refreshing while the work continues. New overlapping operations do not restart an expired session until all its operations end.
+
+Your app must be a conversation member for the backend to accept typing events. Typing delivery and cleanup are best effort; network failures or application shutdown can prevent delivery.
